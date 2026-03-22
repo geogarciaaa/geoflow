@@ -287,6 +287,28 @@
 
     .plan ul li::before { content: "✓"; color: #4ade80; font-weight: 700; }
 
+    /* Services section */
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .service {
+      background: #111;
+      border: 1px solid #1e1e1e;
+      border-radius: 14px;
+      padding: 26px;
+      transition: border-color 0.2s;
+    }
+
+    .service:hover { border-color: #333; }
+
+    .service-icon { font-size: 1.6rem; margin-bottom: 14px; }
+    .service h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .service p { color: #666; font-size: 0.875rem; line-height: 1.5; }
+
     .plan-btn {
       display: block;
       text-align: center;
@@ -395,6 +417,38 @@
     </div>
   </div>
 
+  <div class="section" id="services">
+    <p class="section-label">What We Do</p>
+    <h2>Tools that run while you work</h2>
+    <div class="services">
+
+      <div class="service">
+        <div class="service-icon">📲</div>
+        <h3>Missed Call Auto-Text</h3>
+        <p>Anyone who calls and doesn't get an answer automatically gets a text back within 2 minutes. Stop losing jobs to voicemail.</p>
+      </div>
+
+      <div class="service">
+        <div class="service-icon">⭐</div>
+        <h3>Review Request Automation</h3>
+        <p>After every job, your customer gets a text asking for a Google review. Most contractors get 5 reviews a year — you'll get 5 a week.</p>
+      </div>
+
+      <div class="service">
+        <div class="service-icon">💬</div>
+        <h3>AI Website Chatbot</h3>
+        <p>A chat widget on your site answers questions 24/7 — pricing, availability, service areas. Captures leads even at 2am.</p>
+      </div>
+
+      <div class="service">
+        <div class="service-icon">🗓️</div>
+        <h3>Appointment Reminders</h3>
+        <p>Auto-text customers the day before a scheduled job to confirm. Cuts no-shows and last-minute cancellations.</p>
+      </div>
+
+    </div>
+  </div>
+
   <div class="section" id="pricing">
     <p class="section-label">Pricing</p>
     <h2>Simple, flat pricing</h2>
@@ -405,6 +459,7 @@
         <div class="plan-desc">+ $297 one-time setup</div>
         <ul>
           <li>Missed call auto-text</li>
+          <li>Appointment reminders</li>
           <li>Custom message for your business</li>
           <li>Works on your existing number</li>
           <li>Setup in 24 hours</li>
@@ -417,9 +472,9 @@
         <div class="plan-desc">+ $497 one-time setup</div>
         <ul>
           <li>Everything in Starter</li>
-          <li>24/7 AI chat on your website</li>
+          <li>Google review automation</li>
+          <li>AI chatbot on your website</li>
           <li>Monthly lead capture report</li>
-          <li>Auto review requests after jobs</li>
           <li>Priority support</li>
         </ul>
         <a href="mailto:getgeoflowai@gmail.com?subject=Pro Plan" class="plan-btn">Get Started</a>
