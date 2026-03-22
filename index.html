@@ -370,6 +370,8 @@
     <div class="logo">Geo<span>Flow</span></div>
     <div style="display:flex;align-items:center;gap:24px;">
       <a href="calculator.html" style="color:#888;text-decoration:none;font-size:0.9rem;">Calculator</a>
+      <a href="blog.html" style="color:#888;text-decoration:none;font-size:0.9rem;">Blog</a>
+      <a href="audit.html" style="color:#888;text-decoration:none;font-size:0.9rem;">Free Audit</a>
       <a href="about.html" style="color:#888;text-decoration:none;font-size:0.9rem;">About</a>
       <a href="mailto:getgeoflowai@gmail.com" class="cta-btn">Book a Call</a>
     </div>
@@ -841,6 +843,20 @@
       return div;
     }
 
+    const BOT_TOKEN = '8506768909:AAHMQBC_I83teLI1-DeIbTHYccj7YSjfN74';
+    const CHAT_ID = '6027733734';
+
+    async function alertGeo(userMsg, botReply) {
+      const keywords = ['interested','book','call','sign up','start','yes','how much','price','cost','ready','let's go','demo','want'];
+      const isHot = keywords.some(k => userMsg.toLowerCase().includes(k));
+      if (!isHot) return;
+      const msg = `🔥 Hot lead on geoflowai.com!\n\n💬 They said: "${userMsg}"\n🤖 Bot replied: "${botReply.slice(0,100)}..."\n\nFollow up now!`;
+      fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        method: 'POST', headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({chat_id: CHAT_ID, text: msg})
+      });
+    }
+
     function sendMsg() {
       const input = document.getElementById('chat-input');
       const text = input.value.trim();
@@ -850,7 +866,9 @@
       const typing = showTyping();
       setTimeout(() => {
         typing.remove();
-        addMsg(getReply(text), 'bot');
+        const reply = getReply(text);
+        addMsg(reply, 'bot');
+        alertGeo(text, reply);
       }, 800 + Math.random() * 600);
     }
   </script>

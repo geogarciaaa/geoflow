@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Lead Audit — GeoFlow</title>
+  <meta name="description" content="Get a free missed call audit for your business. Find out exactly how many leads you're losing and how to fix it." />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0a; color: #f0f0f0; line-height: 1.6; }
+
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; border-bottom: 1px solid #1e1e1e; }
+    .logo { font-size: 1.4rem; font-weight: 700; text-decoration: none; color: #fff; }
+    .logo span { color: #4ade80; }
+    nav a.back { color: #888; text-decoration: none; font-size: 0.9rem; }
+
+    .hero { max-width: 620px; margin: 70px auto 50px; padding: 0 24px; text-align: center; }
+    .badge { display: inline-block; background: #1a1a1a; border: 1px solid #2a2a2a; color: #4ade80; font-size: 0.8rem; padding: 6px 14px; border-radius: 20px; margin-bottom: 20px; }
+    h1 { font-size: 2.4rem; font-weight: 800; letter-spacing: -1px; line-height: 1.15; margin-bottom: 14px; }
+    h1 span { color: #4ade80; }
+    .subtitle { color: #777; font-size: 0.95rem; }
+
+    .form-wrap { max-width: 560px; margin: 0 auto 80px; padding: 0 24px; }
+    .form-box { background: #111; border: 1px solid #1e1e1e; border-radius: 16px; padding: 36px; }
+
+    .field { margin-bottom: 22px; }
+    .field label { display: block; font-size: 0.875rem; font-weight: 600; color: #ccc; margin-bottom: 8px; }
+    .field input, .field select, .field textarea {
+      width: 100%; background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 8px;
+      padding: 11px 14px; color: #f0f0f0; font-size: 0.9rem; outline: none;
+      transition: border-color 0.2s; font-family: inherit;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: #4ade80; }
+    .field select option { background: #1a1a1a; }
+    .field textarea { resize: vertical; min-height: 80px; }
+
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .submit-btn {
+      width: 100%; background: #4ade80; color: #000; border: none; border-radius: 9px;
+      padding: 14px; font-size: 1rem; font-weight: 700; cursor: pointer; margin-top: 8px;
+      transition: opacity 0.2s;
+    }
+    .submit-btn:hover { opacity: 0.85; }
+    .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .fine-print { font-size: 0.75rem; color: #444; text-align: center; margin-top: 14px; }
+
+    .success { display: none; text-align: center; padding: 40px 20px; }
+    .success.show { display: block; }
+    .success .check { font-size: 3rem; margin-bottom: 16px; }
+    .success h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; }
+    .success p { color: #777; font-size: 0.9rem; }
+
+    .what-you-get { background: #0f1a0f; border: 1px solid #4ade8020; border-radius: 10px; padding: 20px; margin-bottom: 24px; }
+    .what-you-get h3 { font-size: 0.85rem; color: #4ade80; font-weight: 600; margin-bottom: 12px; letter-spacing: 1px; text-transform: uppercase; }
+    .what-you-get ul { list-style: none; }
+    .what-you-get ul li { font-size: 0.875rem; color: #888; padding: 5px 0; display: flex; gap: 8px; }
+    .what-you-get ul li::before { content: "✓"; color: #4ade80; font-weight: 700; }
+
+    footer { text-align: center; padding: 24px; color: #333; font-size: 0.8rem; border-top: 1px solid #1a1a1a; }
+
+    @media (max-width: 500px) {
+      h1 { font-size: 1.8rem; }
+      nav { padding: 16px 20px; }
+      .form-box { padding: 24px; }
+      .row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">Geo<span>Flow</span></a>
+    <a href="index.html" class="back">← Back</a>
+  </nav>
+
+  <div class="hero">
+    <div class="badge">🔍 100% Free — No Strings</div>
+    <h1>Get your free<br><span>missed call audit</span></h1>
+    <p class="subtitle">Fill out the form and I'll personally review your business and send you a report showing exactly how many leads you're losing — and how to fix it.</p>
+  </div>
+
+  <div class="form-wrap">
+    <div class="form-box">
+
+      <div class="what-you-get">
+        <h3>What you'll get</h3>
+        <ul>
+          <li>Estimated monthly revenue you're losing to missed calls</li>
+          <li>Review of your current Google presence + reviews</li>
+          <li>3 specific things you can do right now to capture more leads</li>
+          <li>Personal response from Geo within 24 hours</li>
+        </ul>
+      </div>
+
+      <form id="audit-form">
+        <div class="row">
+          <div class="field">
+            <label>Your Name</label>
+            <input type="text" id="name" placeholder="Mike" required />
+          </div>
+          <div class="field">
+            <label>Business Name</label>
+            <input type="text" id="business" placeholder="Mike's Roofing" required />
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Your Email</label>
+          <input type="email" id="email" placeholder="mike@yourbusiness.com" required />
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label>Phone Number</label>
+            <input type="tel" id="phone" placeholder="(215) 555-0100" />
+          </div>
+          <div class="field">
+            <label>Business Type</label>
+            <select id="type">
+              <option value="">Select...</option>
+              <option>Roofing</option>
+              <option>HVAC</option>
+              <option>Plumbing</option>
+              <option>Electrician</option>
+              <option>Landscaping</option>
+              <option>General Contractor</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Website (if you have one)</label>
+          <input type="url" id="website" placeholder="https://yourbusiness.com" />
+        </div>
+
+        <div class="field">
+          <label>Roughly how many calls do you get per week?</label>
+          <select id="calls">
+            <option value="">Select...</option>
+            <option>Less than 5</option>
+            <option>5–15</option>
+            <option>15–30</option>
+            <option>30–50</option>
+            <option>50+</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Anything specific you want me to look at? (optional)</label>
+          <textarea id="notes" placeholder="E.g. we miss a lot of calls after hours, not sure if our Google listing is set up right..."></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submit-btn">Send My Free Audit Request →</button>
+        <p class="fine-print">No spam, no sales pressure. Just a real audit from a real person.</p>
+      </form>
+
+      <div class="success" id="success">
+        <div class="check">✅</div>
+        <h2>You're on the list!</h2>
+        <p>I'll review your business and send your audit within 24 hours.<br><br>— Geo</p>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>© 2026 GeoFlow · geoflowai.com</footer>
+
+  <script>
+    const BOT_TOKEN = '8506768909:AAHMQBC_I83teLI1-DeIbTHYccj7YSjfN74';
+    const CHAT_ID = '6027733734';
+
+    async function sendTelegram(msg) {
+      await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: CHAT_ID, text: msg, parse_mode: 'HTML' })
+      });
+    }
+
+    document.getElementById('audit-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('submit-btn');
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+
+      const name = document.getElementById('name').value;
+      const business = document.getElementById('business').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const type = document.getElementById('type').value;
+      const website = document.getElementById('website').value;
+      const calls = document.getElementById('calls').value;
+      const notes = document.getElementById('notes').value;
+
+      const msg = `🔥 <b>New Audit Request!</b>\n\n👤 ${name}\n🏢 ${business}\n📧 ${email}\n📞 ${phone || 'not provided'}\n🔨 ${type || 'not specified'}\n🌐 ${website || 'no website'}\n📞 Calls/week: ${calls || 'not specified'}\n\n💬 Notes: ${notes || 'none'}\n\n<i>Reply to follow up!</i>`;
+
+      await sendTelegram(msg);
+
+      document.getElementById('audit-form').style.display = 'none';
+      document.getElementById('success').classList.add('show');
+    });
+  </script>
+
+</body>
+</html>
