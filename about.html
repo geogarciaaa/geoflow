@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — GeoFlow</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0a0a0a;
+      color: #f0f0f0;
+      line-height: 1.6;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      border-bottom: 1px solid #1e1e1e;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+    }
+    .logo span { color: #4ade80; }
+
+    nav a {
+      color: #888;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: #fff; }
+
+    .cta-btn {
+      background: #4ade80;
+      color: #000 !important;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+
+    .hero {
+      max-width: 760px;
+      margin: 80px auto 60px;
+      padding: 0 40px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      color: #4ade80;
+      font-size: 0.8rem;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+      letter-spacing: 0.5px;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      margin-bottom: 24px;
+    }
+
+    h1 span { color: #4ade80; }
+
+    .intro {
+      font-size: 1.1rem;
+      color: #888;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    /* Story section */
+    .story {
+      max-width: 760px;
+      margin: 0 auto 80px;
+      padding: 0 40px;
+    }
+
+    .story-block {
+      border-left: 2px solid #1e1e1e;
+      padding-left: 28px;
+      margin-bottom: 40px;
+    }
+
+    .story-block:hover { border-left-color: #4ade80; }
+
+    .story-label {
+      font-size: 0.75rem;
+      color: #4ade80;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .story-block h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .story-block p {
+      color: #777;
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    /* Values */
+    .values {
+      max-width: 760px;
+      margin: 0 auto 80px;
+      padding: 0 40px;
+    }
+
+    .values-title {
+      font-size: 0.75rem;
+      color: #555;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #1a1a1a;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .value-card {
+      background: #111;
+      border: 1px solid #1e1e1e;
+      border-radius: 12px;
+      padding: 22px;
+    }
+
+    .value-icon { font-size: 1.5rem; margin-bottom: 10px; }
+    .value-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; }
+    .value-card p { font-size: 0.82rem; color: #666; line-height: 1.5; }
+
+    /* CTA */
+    .cta-box {
+      max-width: 760px;
+      margin: 0 auto 80px;
+      padding: 0 40px;
+    }
+
+    .cta-inner {
+      background: #111;
+      border: 1px solid #1e1e1e;
+      border-radius: 14px;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .cta-inner h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 10px; }
+    .cta-inner p { color: #666; margin-bottom: 28px; font-size: 0.95rem; }
+
+    .btn-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    .btn-green {
+      background: #4ade80;
+      color: #000;
+      padding: 13px 26px;
+      border-radius: 9px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    .btn-ghost {
+      background: #1a1a1a;
+      color: #ccc;
+      padding: 13px 26px;
+      border-radius: 9px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 0.95rem;
+      border: 1px solid #2a2a2a;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: #333;
+      font-size: 0.8rem;
+      border-top: 1px solid #1a1a1a;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      nav { padding: 16px 20px; }
+      .hero, .story, .values, .cta-box { padding: 0 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">Geo<span>Flow</span></a>
+    <a href="mailto:getgeoflowai@gmail.com" class="cta-btn">Book a Call</a>
+  </nav>
+
+  <div class="hero">
+    <div class="tag">👋 About GeoFlow</div>
+    <h1>Built by a student.<br>For <span>real businesses.</span></h1>
+    <p class="intro">
+      Hey — I'm Geo. I'm a Business & Engineering student based in Philadelphia, and I built GeoFlow because I kept seeing the same problem everywhere: good local businesses losing customers simply because nobody picked up the phone.
+    </p>
+    <p class="intro">
+      Most automation tools are built by big companies for big companies. GeoFlow is different — it's built for the HVAC guy, the roofer, the plumber, the landscaper who's out on jobs all day and can't afford to miss a single lead.
+    </p>
+  </div>
+
+  <div class="story">
+
+    <div class="story-block">
+      <div class="story-label">The Problem</div>
+      <h2>40-60% of leads go to voicemail and never call back</h2>
+      <p>
+        Think about the last time you called a business, got voicemail, and just moved on to the next one. That's what's happening to local businesses every single day. They're working hard, doing great work — but losing jobs before they even get a chance to quote them. It's not a skill problem. It's a follow-up problem.
+      </p>
+    </div>
+
+    <div class="story-block">
+      <div class="story-label">The Idea</div>
+      <h2>What if the follow-up happened automatically — in 2 minutes?</h2>
+      <p>
+        I started thinking about this when I noticed how fast people move on. If you text someone back within 2 minutes of a missed call, there's still a good chance they respond. Wait an hour and they've already hired someone else. So I built a system that does exactly that — the moment a call is missed, the person gets a personal text back instantly. No app, no change to how the business operates. It just runs in the background.
+      </p>
+    </div>
+
+    <div class="story-block">
+      <div class="story-label">Why Me</div>
+      <h2>I'm a Business & Engineering student who actually builds things</h2>
+      <p>
+        I study both business and engineering, which means I understand the tech side AND the business side. I'm not outsourcing this to an agency overseas — I build it myself, I set it up personally, and I stay involved. When you work with GeoFlow, you're working directly with me. No middlemen, no ticket systems, no runaround.
+      </p>
+    </div>
+
+    <div class="story-block">
+      <div class="story-label">The Mission</div>
+      <h2>Help local businesses compete with the big guys</h2>
+      <p>
+        Big franchises have entire call centers and CRM systems. Local businesses have one guy and a cell phone. GeoFlow levels the playing field — giving small businesses the same automated follow-up power as a company 10x their size, at a price that actually makes sense.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="values">
+    <div class="values-title">What We Stand For</div>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">🤝</div>
+        <h3>Personal Service</h3>
+        <p>You work directly with me. No bots, no overseas support teams.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">⚡</div>
+        <h3>Fast Setup</h3>
+        <p>Live in 24 hours. We don't make you wait weeks for results.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🔒</div>
+        <h3>No Contracts</h3>
+        <p>Cancel anytime. We earn your business every month.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">📍</div>
+        <h3>Local First</h3>
+        <p>Started in Philly. Built for real businesses in real neighborhoods.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-box">
+    <div class="cta-inner">
+      <h2>Let's talk.</h2>
+      <p>Book a free 10-minute call. I'll show you exactly what GeoFlow does and whether it's a fit for your business — no pressure, no pitch deck.</p>
+      <div class="btn-row">
+        <a href="mailto:getgeoflowai@gmail.com?subject=Book a Call" class="btn-green">Book a Free Call</a>
+        <a href="https://www.linkedin.com/in/geovannigarciarosales/" target="_blank" class="btn-ghost">My LinkedIn</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>© 2026 GeoFlow · Philadelphia, PA · getgeoflowai@gmail.com</footer>
+
+</body>
+</html>
