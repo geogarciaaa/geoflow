@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GeoFlow — Never Lose a Lead Again</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0a0a0a;
+      color: #f0f0f0;
+      line-height: 1.6;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      border-bottom: 1px solid #1e1e1e;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.5px;
+    }
+
+    .logo span { color: #4ade80; }
+
+    nav a {
+      color: #888;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: #fff; }
+
+    .cta-btn {
+      background: #4ade80;
+      color: #000 !important;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem !important;
+    }
+
+    .hero {
+      max-width: 800px;
+      margin: 100px auto;
+      padding: 0 40px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      color: #4ade80;
+      font-size: 0.8rem;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+      letter-spacing: 0.5px;
+    }
+
+    h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+    }
+
+    h1 span { color: #4ade80; }
+
+    .subtitle {
+      font-size: 1.15rem;
+      color: #888;
+      max-width: 560px;
+      margin: 0 auto 40px;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: #4ade80;
+      color: #000;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .btn-primary:hover { opacity: 0.85; }
+
+    .btn-secondary {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      border: 1px solid #2a2a2a;
+      transition: border-color 0.2s;
+    }
+
+    .btn-secondary:hover { border-color: #444; }
+
+    .social-proof {
+      margin-top: 50px;
+      color: #555;
+      font-size: 0.85rem;
+    }
+
+    .social-proof strong { color: #888; }
+
+    /* How it works */
+    .section {
+      max-width: 900px;
+      margin: 80px auto;
+      padding: 0 40px;
+    }
+
+    .section-label {
+      text-align: center;
+      color: #4ade80;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section h2 {
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 50px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .step {
+      background: #111;
+      border: 1px solid #1e1e1e;
+      border-radius: 14px;
+      padding: 28px;
+    }
+
+    .step-num {
+      width: 36px;
+      height: 36px;
+      background: #4ade8020;
+      border: 1px solid #4ade8040;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #4ade80;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+    }
+
+    .step h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .step p {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    /* Example text */
+    .example-box {
+      background: #111;
+      border: 1px solid #1e1e1e;
+      border-radius: 14px;
+      padding: 32px;
+      margin: 50px auto;
+      max-width: 600px;
+    }
+
+    .example-box .label {
+      font-size: 0.75rem;
+      color: #555;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .sms-bubble {
+      background: #1a2e1a;
+      border: 1px solid #2d4d2d;
+      border-radius: 12px;
+      padding: 16px 20px;
+      color: #a3d9a3;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .result-tag {
+      margin-top: 16px;
+      font-size: 0.85rem;
+      color: #4ade80;
+    }
+
+    /* Pricing */
+    .pricing {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .plan {
+      background: #111;
+      border: 1px solid #1e1e1e;
+      border-radius: 14px;
+      padding: 32px;
+    }
+
+    .plan.featured {
+      border-color: #4ade80;
+    }
+
+    .plan-name {
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .plan-price {
+      font-size: 2.4rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .plan-price span {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #666;
+    }
+
+    .plan-desc {
+      color: #666;
+      font-size: 0.85rem;
+      margin-bottom: 24px;
+    }
+
+    .plan ul {
+      list-style: none;
+      margin-bottom: 28px;
+    }
+
+    .plan ul li {
+      font-size: 0.9rem;
+      color: #aaa;
+      padding: 6px 0;
+      border-bottom: 1px solid #1a1a1a;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .plan ul li::before { content: "✓"; color: #4ade80; font-weight: 700; }
+
+    .plan-btn {
+      display: block;
+      text-align: center;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      background: #1a1a1a;
+      color: #fff;
+      border: 1px solid #2a2a2a;
+      transition: border-color 0.2s;
+    }
+
+    .plan.featured .plan-btn {
+      background: #4ade80;
+      color: #000;
+      border: none;
+    }
+
+    /* CTA section */
+    .final-cta {
+      text-align: center;
+      padding: 80px 40px;
+      border-top: 1px solid #1a1a1a;
+    }
+
+    .final-cta h2 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .final-cta p {
+      color: #666;
+      margin-bottom: 32px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: #444;
+      font-size: 0.8rem;
+      border-top: 1px solid #1a1a1a;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2.2rem; }
+      nav { padding: 16px 20px; }
+      .hero { margin: 60px auto; padding: 0 20px; }
+      .section { padding: 0 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">Geo<span>Flow</span></div>
+    <a href="mailto:getgeoflowai@gmail.com" class="cta-btn">Book a Call</a>
+  </nav>
+
+  <div class="hero">
+    <div class="badge">🟢 For Contractors & Local Service Businesses</div>
+    <h1>Stop losing jobs<br>to <span>voicemail</span></h1>
+    <p class="subtitle">GeoFlow automatically texts back anyone who calls and doesn't get an answer — within 2 minutes. No missed leads, no lost jobs.</p>
+    <div class="hero-btns">
+      <a href="mailto:getgeoflowai@gmail.com?subject=I want a demo" class="btn-primary">Get a Free Demo</a>
+      <a href="#how-it-works" class="btn-secondary">See How It Works</a>
+    </div>
+    <p class="social-proof">Helping Philadelphia contractors capture leads they'd otherwise lose. <strong>Setup in 24 hours.</strong></p>
+  </div>
+
+  <div class="section" id="how-it-works">
+    <p class="section-label">How It Works</p>
+    <h2>Simple. Automatic. Effective.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Someone calls you</h3>
+        <p>Doesn't matter if you're on a job, driving, or just busy — the call comes in.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>You miss it</h3>
+        <p>It goes to voicemail. Normally they move on to the next contractor. Not anymore.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>They get a text in 2 mins</h3>
+        <p>An automatic, personalized text goes out immediately keeping them engaged.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>You get the job</h3>
+        <p>They reply, you follow up, you close. Jobs you would've lost are now yours.</p>
+      </div>
+    </div>
+
+    <div class="example-box">
+      <div class="label">Example auto-text your leads receive</div>
+      <div class="sms-bubble">
+        "Hey it's Mike from Philly Roofing — we're out on a job right now but I don't want to leave you hanging. Want a free estimate? Just text back and I'll reach out tonight."
+      </div>
+      <div class="result-tag">⚡ Sent automatically within 2 minutes of a missed call</div>
+    </div>
+  </div>
+
+  <div class="section" id="pricing">
+    <p class="section-label">Pricing</p>
+    <h2>Simple, flat pricing</h2>
+    <div class="pricing">
+      <div class="plan">
+        <div class="plan-name">Starter</div>
+        <div class="plan-price">$97<span>/mo</span></div>
+        <div class="plan-desc">+ $297 one-time setup</div>
+        <ul>
+          <li>Missed call auto-text</li>
+          <li>Custom message for your business</li>
+          <li>Works on your existing number</li>
+          <li>Setup in 24 hours</li>
+        </ul>
+        <a href="mailto:getgeoflowai@gmail.com?subject=Starter Plan" class="plan-btn">Get Started</a>
+      </div>
+      <div class="plan featured">
+        <div class="plan-name">Pro</div>
+        <div class="plan-price">$197<span>/mo</span></div>
+        <div class="plan-desc">+ $497 one-time setup</div>
+        <ul>
+          <li>Everything in Starter</li>
+          <li>24/7 AI chat on your website</li>
+          <li>Monthly lead capture report</li>
+          <li>Auto review requests after jobs</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="mailto:getgeoflowai@gmail.com?subject=Pro Plan" class="plan-btn">Get Started</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="final-cta">
+    <h2>Ready to stop losing leads?</h2>
+    <p>Book a free 10-minute call. We'll show you exactly how it works for your business.</p>
+    <a href="mailto:getgeoflowai@gmail.com?subject=Book a Call" class="btn-primary">Book a Free Call</a>
+  </div>
+
+  <footer>© 2026 GeoFlow · Philadelphia, PA · getgeoflowai@gmail.com</footer>
+
+</body>
+</html>
