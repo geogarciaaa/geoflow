@@ -372,7 +372,7 @@
   </nav>
 
   <div class="hero">
-    <div class="badge">🟢 For Contractors & Local Service Businesses</div>
+    <div class="badge">🟢 AI Automation for Growing Businesses</div>
     <h1>Stop losing jobs<br>to <span>voicemail</span></h1>
     <p class="subtitle">GeoFlow automatically texts back anyone who calls and doesn't get an answer — within 2 minutes. No missed leads, no lost jobs.</p>
     <div class="hero-btns">
@@ -489,6 +489,232 @@
   </div>
 
   <footer>© 2026 GeoFlow · Philadelphia, PA · getgeoflowai@gmail.com</footer>
+
+  <!-- Chatbot Widget -->
+  <style>
+    #chat-bubble {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 56px;
+      height: 56px;
+      background: #4ade80;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(74,222,128,0.4);
+      z-index: 9999;
+      font-size: 1.4rem;
+      transition: transform 0.2s;
+    }
+    #chat-bubble:hover { transform: scale(1.08); }
+
+    #chat-window {
+      position: fixed;
+      bottom: 96px;
+      right: 28px;
+      width: 340px;
+      max-height: 480px;
+      background: #111;
+      border: 1px solid #2a2a2a;
+      border-radius: 16px;
+      display: none;
+      flex-direction: column;
+      z-index: 9998;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    }
+
+    #chat-window.open { display: flex; }
+
+    #chat-header {
+      background: #161616;
+      border-bottom: 1px solid #1e1e1e;
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .chat-dot { width: 9px; height: 9px; background: #4ade80; border-radius: 50%; animation: pulse 2s infinite; }
+
+    #chat-header .chat-name { font-weight: 700; font-size: 0.95rem; }
+    #chat-header .chat-status { font-size: 0.75rem; color: #4ade80; }
+
+    #chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .msg {
+      max-width: 80%;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+
+    .msg.bot {
+      background: #1a1a1a;
+      color: #ddd;
+      border-bottom-left-radius: 4px;
+      align-self: flex-start;
+    }
+
+    .msg.user {
+      background: #4ade80;
+      color: #000;
+      border-bottom-right-radius: 4px;
+      align-self: flex-end;
+      font-weight: 500;
+    }
+
+    #chat-input-area {
+      border-top: 1px solid #1e1e1e;
+      padding: 12px;
+      display: flex;
+      gap: 8px;
+    }
+
+    #chat-input {
+      flex: 1;
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      border-radius: 8px;
+      padding: 9px 12px;
+      color: #fff;
+      font-size: 0.875rem;
+      outline: none;
+    }
+
+    #chat-input:focus { border-color: #4ade80; }
+
+    #chat-send {
+      background: #4ade80;
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    .typing { display: flex; gap: 4px; padding: 12px 14px; }
+    .typing span {
+      width: 7px; height: 7px;
+      background: #555;
+      border-radius: 50%;
+      animation: bounce 1.2s infinite;
+    }
+    .typing span:nth-child(2) { animation-delay: 0.2s; }
+    .typing span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes bounce {
+      0%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-6px); }
+    }
+  </style>
+
+  <div id="chat-bubble" onclick="toggleChat()">💬</div>
+
+  <div id="chat-window">
+    <div id="chat-header">
+      <div class="chat-dot"></div>
+      <div>
+        <div class="chat-name">GeoFlow AI</div>
+        <div class="chat-status">Online now</div>
+      </div>
+    </div>
+    <div id="chat-messages">
+      <div class="msg bot">Hey! 👋 I'm the GeoFlow assistant. What can I help you with?</div>
+      <div class="msg bot">You can ask me about our services, pricing, or how it all works.</div>
+    </div>
+    <div id="chat-input-area">
+      <input id="chat-input" type="text" placeholder="Ask me anything..." onkeydown="if(event.key==='Enter') sendMsg()" />
+      <button id="chat-send" onclick="sendMsg()">↑</button>
+    </div>
+  </div>
+
+  <script>
+    function toggleChat() {
+      const w = document.getElementById('chat-window');
+      w.classList.toggle('open');
+      if (w.classList.contains('open')) {
+        document.getElementById('chat-input').focus();
+      }
+    }
+
+    const responses = {
+      price: "We have two plans:\n\n💚 Starter — $97/mo + $297 setup: missed call auto-text + appointment reminders.\n\n🚀 Pro — $197/mo + $497 setup: everything in Starter + Google review automation + AI chatbot on your site.\n\nBoth include 24hr setup and no long-term contracts.",
+      pricing: "We have two plans:\n\n💚 Starter — $97/mo + $297 setup\n🚀 Pro — $197/mo + $497 setup\n\nWant me to tell you more about what's included?",
+      cost: "Starter is $97/mo + $297 one-time setup. Pro is $197/mo + $497 setup. No hidden fees.",
+      how: "When someone calls your business and you don't answer, they automatically get a text back within 2 minutes. Something like: 'Hey sorry I missed you — want a free estimate? Text back and I'll reach out tonight.' Most businesses lose 40-60% of leads to voicemail. We fix that.",
+      work: "It connects to your business phone number. When a call is missed, our system fires a personalized text to the caller automatically — no action needed from you.",
+      review: "Our review automation texts your customers after every job asking for a Google review. Most contractors get 5 reviews a year. Our clients get 5 a week. More reviews = higher ranking in Google Maps.",
+      chatbot: "We build a chat widget for your website (like this one!) that answers customer questions 24/7 — pricing, availability, service areas. It captures leads even when you're asleep.",
+      appointment: "We auto-text your customers the day before a scheduled job to confirm. Cuts no-shows and last-minute cancellations significantly.",
+      contact: "You can reach Geo directly at getgeoflowai@gmail.com or book a free 10-min call using the button on this page. We'll show you exactly how it works for your business.",
+      setup: "Setup takes 24 hours. We handle everything — you just need to share your business phone number and a few details about your business.",
+      cancel: "No long-term contracts. Cancel anytime — no questions asked.",
+      trial: "We offer a free demo so you can see exactly how it works before you commit. Just reach out at getgeoflowai@gmail.com.",
+    };
+
+    function getReply(msg) {
+      const m = msg.toLowerCase();
+      if (m.includes('price') || m.includes('pricing') || m.includes('how much') || m.includes('cost') || m.includes('plan')) return responses.price;
+      if (m.includes('how') && (m.includes('work') || m.includes('does'))) return responses.how;
+      if (m.includes('review')) return responses.review;
+      if (m.includes('chat') || m.includes('bot')) return responses.chatbot;
+      if (m.includes('appointment') || m.includes('reminder') || m.includes('remind')) return responses.appointment;
+      if (m.includes('contact') || m.includes('reach') || m.includes('talk') || m.includes('call')) return responses.contact;
+      if (m.includes('setup') || m.includes('start') || m.includes('long') || m.includes('take')) return responses.setup;
+      if (m.includes('cancel') || m.includes('contract')) return responses.cancel;
+      if (m.includes('trial') || m.includes('free') || m.includes('demo')) return responses.trial;
+      return "Good question! For anything specific, you can reach Geo directly at getgeoflowai@gmail.com or book a free 10-min call. He'll walk you through everything. 👍";
+    }
+
+    function addMsg(text, type) {
+      const msgs = document.getElementById('chat-messages');
+      const div = document.createElement('div');
+      div.className = 'msg ' + type;
+      div.innerText = text;
+      msgs.appendChild(div);
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    function showTyping() {
+      const msgs = document.getElementById('chat-messages');
+      const div = document.createElement('div');
+      div.className = 'msg bot typing-indicator';
+      div.innerHTML = '<div class="typing"><span></span><span></span><span></span></div>';
+      msgs.appendChild(div);
+      msgs.scrollTop = msgs.scrollHeight;
+      return div;
+    }
+
+    function sendMsg() {
+      const input = document.getElementById('chat-input');
+      const text = input.value.trim();
+      if (!text) return;
+      addMsg(text, 'user');
+      input.value = '';
+      const typing = showTyping();
+      setTimeout(() => {
+        typing.remove();
+        addMsg(getReply(text), 'bot');
+      }, 800 + Math.random() * 600);
+    }
+  </script>
 
 </body>
 </html>
