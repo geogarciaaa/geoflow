@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Missed Call Calculator — How Much Are You Losing?</title>
+  <meta name="description" content="Find out exactly how much revenue you're losing to missed calls every month. Free calculator for local service businesses." />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0a0a0a;
+      color: #f0f0f0;
+      line-height: 1.6;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      border-bottom: 1px solid #1e1e1e;
+    }
+
+    .logo { font-size: 1.4rem; font-weight: 700; text-decoration: none; color: #fff; }
+    .logo span { color: #4ade80; }
+    nav a.nav-link { color: #888; text-decoration: none; font-size: 0.9rem; }
+    nav a.nav-link:hover { color: #fff; }
+
+    .hero {
+      max-width: 680px;
+      margin: 70px auto 0;
+      padding: 0 24px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      color: #4ade80;
+      font-size: 0.8rem;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 2.6rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    h1 span { color: #4ade80; }
+
+    .subtitle {
+      color: #777;
+      font-size: 1rem;
+      margin-bottom: 50px;
+    }
+
+    /* Calculator */
+    .calc-wrap {
+      max-width: 580px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+    }
+
+    .calc-box {
+      background: #111;
+      border: 1px solid #1e1e1e;
+      border-radius: 16px;
+      padding: 36px;
+    }
+
+    .field { margin-bottom: 28px; }
+
+    .field label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #ddd;
+    }
+
+    .field .hint {
+      font-size: 0.78rem;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .slider-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    input[type="range"] {
+      flex: 1;
+      -webkit-appearance: none;
+      height: 4px;
+      background: #2a2a2a;
+      border-radius: 2px;
+      outline: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      background: #4ade80;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .slider-val {
+      min-width: 64px;
+      text-align: right;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #4ade80;
+    }
+
+    /* Result */
+    .result {
+      display: none;
+      margin-top: 32px;
+      border-top: 1px solid #1e1e1e;
+      padding-top: 28px;
+    }
+
+    .result.show { display: block; }
+
+    .loss-amount {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .loss-label {
+      font-size: 0.8rem;
+      color: #666;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .loss-number {
+      font-size: 3.2rem;
+      font-weight: 800;
+      color: #f87171;
+      letter-spacing: -2px;
+      line-height: 1;
+    }
+
+    .loss-sub {
+      font-size: 0.85rem;
+      color: #555;
+      margin-top: 4px;
+    }
+
+    .breakdown {
+      background: #0f0f0f;
+      border: 1px solid #1a1a1a;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+
+    .breakdown-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.875rem;
+      padding: 7px 0;
+      border-bottom: 1px solid #1a1a1a;
+      color: #888;
+    }
+
+    .breakdown-row:last-child { border-bottom: none; }
+    .breakdown-row span:last-child { color: #f0f0f0; font-weight: 600; }
+
+    .fix-box {
+      background: #0f1f0f;
+      border: 1px solid #4ade8030;
+      border-radius: 12px;
+      padding: 22px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .fix-box p {
+      font-size: 0.9rem;
+      color: #a3d9a3;
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .fix-box strong { color: #4ade80; }
+
+    .cta-btn {
+      display: inline-block;
+      background: #4ade80;
+      color: #000;
+      padding: 13px 28px;
+      border-radius: 9px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    .share-row {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 16px;
+    }
+
+    .share-btn {
+      padding: 9px 18px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid #2a2a2a;
+      color: #aaa;
+      background: #1a1a1a;
+      cursor: pointer;
+    }
+
+    .share-btn:hover { border-color: #555; color: #fff; }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: #333;
+      font-size: 0.8rem;
+      border-top: 1px solid #1a1a1a;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      nav { padding: 16px 20px; }
+      .calc-box { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">Geo<span>Flow</span></a>
+    <a href="index.html" class="nav-link">← Back to site</a>
+  </nav>
+
+  <div class="hero">
+    <div class="badge">💸 Free Calculator</div>
+    <h1>How much are missed calls<br>costing you <span>every month?</span></h1>
+    <p class="subtitle">Move the sliders to find out exactly what you're leaving on the table.</p>
+  </div>
+
+  <div class="calc-wrap">
+    <div class="calc-box">
+
+      <div class="field">
+        <label>How many calls do you get per week?</label>
+        <div class="hint">Include all inbound calls — estimates, questions, bookings</div>
+        <div class="slider-wrap">
+          <input type="range" id="calls" min="1" max="100" value="20" oninput="update()">
+          <div class="slider-val" id="calls-val">20 calls</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>What % of calls do you miss?</label>
+        <div class="hint">Most contractors miss 40-60% while on the job</div>
+        <div class="slider-wrap">
+          <input type="range" id="miss-rate" min="5" max="90" value="50" oninput="update()">
+          <div class="slider-val" id="miss-val">50%</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>What % of callers DON'T leave a voicemail or call back?</label>
+        <div class="hint">Studies show ~62% of people hang up without leaving a message</div>
+        <div class="slider-wrap">
+          <input type="range" id="lost-rate" min="10" max="90" value="62" oninput="update()">
+          <div class="slider-val" id="lost-val">62%</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>What's your average job value?</label>
+        <div class="hint">Average revenue per new customer job</div>
+        <div class="slider-wrap">
+          <input type="range" id="job-value" min="100" max="10000" step="50" value="800" oninput="update()">
+          <div class="slider-val" id="job-val">$800</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>What % of callers would have booked if you answered?</label>
+        <div class="hint">Rough close rate on new inbound leads</div>
+        <div class="slider-wrap">
+          <input type="range" id="close-rate" min="5" max="80" value="30" oninput="update()">
+          <div class="slider-val" id="close-val">30%</div>
+        </div>
+      </div>
+
+      <!-- Result -->
+      <div class="result show" id="result">
+        <div class="loss-amount">
+          <div class="loss-label">Estimated monthly revenue lost</div>
+          <div class="loss-number" id="loss-number">$0</div>
+          <div class="loss-sub" id="loss-sub">from missed calls per month</div>
+        </div>
+
+        <div class="breakdown" id="breakdown"></div>
+
+        <div class="fix-box">
+          <p>GeoFlow auto-texts every missed caller within 2 minutes — recovering an estimated <strong id="recover-est">$0</strong>/month for businesses like yours.</p>
+          <a href="mailto:getgeoflowai@gmail.com?subject=I want to stop losing leads" class="cta-btn">Fix This for $97/mo →</a>
+        </div>
+
+        <div class="share-row">
+          <a class="share-btn" id="share-twitter" href="#" target="_blank">Share on X</a>
+          <button class="share-btn" onclick="copyLink()">Copy Link</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>© 2026 GeoFlow · geoflowai.com · Free tool, no signup required</footer>
+
+  <script>
+    function fmt(n) {
+      return '$' + Math.round(n).toLocaleString();
+    }
+
+    function update() {
+      const calls = +document.getElementById('calls').value;
+      const missRate = +document.getElementById('miss-rate').value / 100;
+      const lostRate = +document.getElementById('lost-rate').value / 100;
+      const jobValue = +document.getElementById('job-value').value;
+      const closeRate = +document.getElementById('close-rate').value / 100;
+
+      document.getElementById('calls-val').textContent = calls + ' calls';
+      document.getElementById('miss-val').textContent = Math.round(missRate * 100) + '%';
+      document.getElementById('lost-val').textContent = Math.round(lostRate * 100) + '%';
+      document.getElementById('job-val').textContent = '$' + jobValue.toLocaleString();
+      document.getElementById('close-val').textContent = Math.round(closeRate * 100) + '%';
+
+      const weeklyCalls = calls;
+      const missedPerWeek = weeklyCalls * missRate;
+      const lostLeadsPerWeek = missedPerWeek * lostRate;
+      const lostJobsPerWeek = lostLeadsPerWeek * closeRate;
+      const lostRevenuePerWeek = lostJobsPerWeek * jobValue;
+      const lostPerMonth = lostRevenuePerWeek * 4.3;
+      const lostPerYear = lostPerMonth * 12;
+      const recoverEst = lostPerMonth * 0.6; // recover ~60% with auto-text
+
+      document.getElementById('loss-number').textContent = fmt(lostPerMonth);
+      document.getElementById('loss-sub').textContent = `that's ${fmt(lostPerYear)} per year`;
+      document.getElementById('recover-est').textContent = fmt(recoverEst);
+
+      document.getElementById('breakdown').innerHTML = `
+        <div class="breakdown-row"><span>Calls per week</span><span>${calls}</span></div>
+        <div class="breakdown-row"><span>Missed calls/week</span><span>${Math.round(missedPerWeek)}</span></div>
+        <div class="breakdown-row"><span>Lost leads/week (hung up)</span><span>${Math.round(lostLeadsPerWeek)}</span></div>
+        <div class="breakdown-row"><span>Lost jobs/week</span><span>${lostJobsPerWeek.toFixed(1)}</span></div>
+        <div class="breakdown-row"><span>Lost revenue/week</span><span>${fmt(lostRevenuePerWeek)}</span></div>
+        <div class="breakdown-row"><span style="color:#f87171;font-weight:600;">Lost revenue/month</span><span style="color:#f87171;">${fmt(lostPerMonth)}</span></div>
+      `;
+
+      // Update share link
+      const msg = `I just found out I'm losing ${fmt(lostPerMonth)}/month to missed calls 😬 Use this free calculator to see yours → geoflowai.com/calculator`;
+      document.getElementById('share-twitter').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(msg)}`;
+    }
+
+    function copyLink() {
+      navigator.clipboard.writeText('https://geoflowai.com/calculator').then(() => {
+        const btn = event.target;
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = 'Copy Link', 2000);
+      });
+    }
+
+    update();
+  </script>
+
+</body>
+</html>
