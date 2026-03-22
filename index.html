@@ -392,6 +392,69 @@
       .step { padding: 20px; }
       .service { padding: 20px; }
       .plan { padding: 24px; }
+
+      /* Mobile Menu Styles */
+      #mobile-menu-toggle {
+        display: block; /* Show hamburger on mobile */
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 1.8rem;
+        cursor: pointer;
+        z-index: 10000; /* Above everything */
+        position: relative; /* Ensure it's clickable */
+      }
+
+      #mobile-menu-drawer {
+        position: fixed;
+        top: 0;
+        right: -300px; /* Hidden off-screen */
+        width: 280px;
+        height: 100%;
+        background: #111;
+        border-left: 1px solid #2a2a2a;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        padding: 80px 24px 24px;
+        transition: right 0.3s ease-in-out;
+        box-shadow: -4px 0 20px rgba(0,0,0,0.5);
+      }
+
+      #mobile-menu-drawer.open { right: 0; }
+
+      #mobile-menu-drawer a {
+        color: #eee;
+        text-decoration: none;
+        font-size: 1.1rem;
+        padding: 14px 0;
+        border-bottom: 1px solid #1a1a1a;
+        transition: color 0.2s;
+      }
+
+      #mobile-menu-drawer a:last-of-type { border-bottom: none; margin-top: 20px; }
+      #mobile-menu-drawer a:hover { color: #4ade80; }
+
+      #mobile-menu-drawer .cta-btn {
+        background: #4ade80;
+        color: #000 !important;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1.1rem !important;
+        text-align: center;
+        display: block;
+      }
+    }
+
+    /* Hide desktop nav and show mobile toggle on small screens */
+    @media (max-width: 768px) {
+      .nav-right { display: none; }
+    }
+
+    /* Hide mobile elements on desktop */
+    @media (min-width: 769px) {
+      #mobile-menu-toggle, #mobile-menu-drawer { display: none; }
     }
   </style>
 </head>
@@ -406,7 +469,21 @@
       <a href="about.html" class="nav-link">About</a>
       <a href="book-call.html" class="cta-btn">Book a Call</a>
     </div>
+    <!-- Mobile menu toggle -->
+    <button id="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
   </nav>
+
+  <!-- Mobile Menu Drawer -->
+  <div id="mobile-menu-drawer">
+    <a href="#how-it-works" onclick="toggleMobileMenu()">How It Works</a>
+    <a href="#services" onclick="toggleMobileMenu()">What We Do</a>
+    <a href="#pricing" onclick="toggleMobileMenu()">Pricing</a>
+    <a href="calculator.html" onclick="toggleMobileMenu()">Calculator</a>
+    <a href="blog.html" onclick="toggleMobileMenu()">Blog</a>
+    <a href="audit.html" onclick="toggleMobileMenu()">Free Audit</a>
+    <a href="about.html" onclick="toggleMobileMenu()">About</a>
+    <a href="book-call.html" class="cta-btn" onclick="toggleMobileMenu()">Book a Call</a>
+  </div>
 
   <div class="hero">
     <div class="badge">🟢 AI Automation for Growing Businesses</div>
@@ -901,6 +978,12 @@
         addMsg(reply, 'bot');
         alertGeo(text, reply);
       }, 800 + Math.random() * 600);
+    }
+
+    // Mobile menu toggle script
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobile-menu-drawer');
+      drawer.classList.toggle('open');
     }
   </script>
 
