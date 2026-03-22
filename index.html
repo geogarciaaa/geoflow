@@ -482,6 +482,121 @@
     </div>
   </div>
 
+  <!-- Video Section -->
+  <div class="section" id="video">
+    <p class="section-label">See It In Action</p>
+    <h2>Watch how it works</h2>
+    <div style="background:#111;border:1px solid #1e1e1e;border-radius:14px;padding:60px 40px;text-align:center;margin-top:20px;">
+      <div style="font-size:3rem;margin-bottom:16px;">▶️</div>
+      <p style="color:#666;margin-bottom:8px;">Video coming soon</p>
+      <p style="color:#444;font-size:0.85rem;">In the meantime, book a free 10-min call and we'll walk you through it live.</p>
+      <a href="mailto:getgeoflowai@gmail.com?subject=Book a Call" style="display:inline-block;margin-top:20px;background:#4ade80;color:#000;padding:11px 24px;border-radius:8px;font-weight:700;text-decoration:none;font-size:0.9rem;">Book a Demo Call</a>
+    </div>
+  </div>
+
+  <!-- FAQ Section -->
+  <div class="section" id="faq">
+    <p class="section-label">FAQ</p>
+    <h2>Common questions</h2>
+    <div style="margin-top:32px;display:flex;flex-direction:column;gap:2px;">
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do I need to change my phone number? <span class="faq-arrow">↓</span>
+        </button>
+        <div class="faq-a">Nope. We work with your existing business number. Nothing changes on your end — calls still come in the same way.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How long does setup take? <span class="faq-arrow">↓</span>
+        </button>
+        <div class="faq-a">24 hours or less. We handle the entire setup. You just give us your business details and we take it from there.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Is there a contract? <span class="faq-arrow">↓</span>
+        </button>
+        <div class="faq-a">No contracts, no commitments. Cancel anytime — no questions asked.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What if someone calls after hours? <span class="faq-arrow">↓</span>
+        </button>
+        <div class="faq-a">The system runs 24/7. Whether it's 2pm or 2am, missed calls get a text back automatically.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Can I customize the messages? <span class="faq-arrow">↓</span>
+        </button>
+        <div class="faq-a">100%. Every message is written specifically for your business — your name, your tone, your services. It sounds like you, not a robot.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What kinds of businesses is this for? <span class="faq-arrow">↓</span>
+        </button>
+        <div class="faq-a">Any business that gets calls and misses them — contractors, service businesses, agencies, retail, medical offices, real estate, restaurants. If you miss calls, we can help.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How do I get started? <span class="faq-arrow">↓</span>
+        </button>
+        <div class="faq-a">Just book a free 10-minute call. We'll show you how it works for your specific business and get you set up within 24 hours.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <style>
+    .faq-item { border-bottom: 1px solid #1a1a1a; }
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      color: #f0f0f0;
+      text-align: left;
+      padding: 18px 4px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .faq-q:hover { color: #4ade80; }
+    .faq-arrow { color: #555; font-size: 1rem; transition: transform 0.2s; flex-shrink: 0; }
+    .faq-q.open .faq-arrow { transform: rotate(180deg); color: #4ade80; }
+    .faq-a {
+      color: #777;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      padding: 0 4px;
+    }
+    .faq-a.open { max-height: 200px; padding: 0 4px 16px; }
+  </style>
+
+  <script>
+    function toggleFaq(btn) {
+      const answer = btn.nextElementSibling;
+      const isOpen = answer.classList.contains('open');
+      document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+      document.querySelectorAll('.faq-q').forEach(b => b.classList.remove('open'));
+      if (!isOpen) {
+        answer.classList.add('open');
+        btn.classList.add('open');
+      }
+    }
+  </script>
+
   <div class="final-cta">
     <h2>Ready to stop losing leads?</h2>
     <p>Book a free 10-minute call. We'll show you exactly how it works for your business.</p>
