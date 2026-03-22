@@ -864,18 +864,18 @@
       return div;
     }
 
-    const BOT_TOKEN = '8506768909:AAGXbrOZbXWxFPwMuo8y-O-t8enJsfhP2yw';
+
     const CHAT_ID = '6027733734';
 
     async function alertGeo(userMsg, botReply) {
       const keywords = ['interested','book','call','sign up','start','yes','how much','price','cost','ready','lets go','demo','want'];
       const isHot = keywords.some(k => userMsg.toLowerCase().includes(k));
       if (!isHot) return;
-      const msg = `🔥 Hot lead on geoflowai.com!\n\n💬 They said: "${userMsg}"\n🤖 Bot replied: "${botReply.slice(0,100)}..."\n\nFollow up now!`;
-      fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+      // Alert handled server-side
+      fetch('https://geoclaw.taild0d486.ts.net/notify', {
         method: 'POST', headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({chat_id: CHAT_ID, text: msg})
-      });
+        body: JSON.stringify({ msg: userMsg, reply: botReply.slice(0,100) })
+      }).catch(()=>{});
     }
 
     function sendMsg() {

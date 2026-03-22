@@ -169,15 +169,13 @@
   <footer>© 2026 GeoFlow · geoflowai.com</footer>
 
   <script>
-    const BOT_TOKEN = '8506768909:AAGXbrOZbXWxFPwMuo8y-O-t8enJsfhP2yw';
-    const CHAT_ID = '6027733734';
 
     async function sendTelegram(msg) {
-      await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+      await fetch('https://geoclaw.taild0d486.ts.net/notify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id: CHAT_ID, text: msg, parse_mode: 'HTML' })
-      });
+        body: JSON.stringify({ msg, source: 'audit' })
+      }).catch(()=>{});
     }
 
     document.getElementById('audit-form').addEventListener('submit', async (e) => {
