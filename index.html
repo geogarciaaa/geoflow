@@ -868,7 +868,7 @@
     const CHAT_ID = '6027733734';
 
     async function alertGeo(userMsg, botReply) {
-      const keywords = ['interested','book','call','sign up','start','yes','how much','price','cost','ready','let's go','demo','want'];
+      const keywords = ['interested','book','call','sign up','start','yes','how much','price','cost','ready','lets go','demo','want'];
       const isHot = keywords.some(k => userMsg.toLowerCase().includes(k));
       if (!isHot) return;
       const msg = `🔥 Hot lead on geoflowai.com!\n\n💬 They said: "${userMsg}"\n🤖 Bot replied: "${botReply.slice(0,100)}..."\n\nFollow up now!`;
