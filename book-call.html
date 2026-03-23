@@ -156,7 +156,11 @@
 
     async function sendForm(data) {
       await fetch('https://formspree.io/f/mojkongn', {
-        method: 'POST', accept: 'application/json',
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify(data)
       }).catch(()=>{});
     }
