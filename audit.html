@@ -170,6 +170,17 @@
 
   <script>
 
+    async function sendForm(data) {
+      await fetch('https://formspree.io/f/mojkongn', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      }).catch(()=>{});
+    }
+
     async function sendTelegram(msg) {
       await fetch('https://geoclaw.taild0d486.ts.net/notify', {
         method: 'POST',
