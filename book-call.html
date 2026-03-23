@@ -152,14 +152,12 @@
   <footer>© 2026 GeoFlow · geoflowai.com</footer>
 
   <script>
-    const CHAT_ID = '6027733734'; // Geo's Telegram Chat ID
 
-    async function sendTelegram(msg) {
-      // This sends to the local notify server on your machine, which then sends to Telegram
-      await fetch('https://geoclaw.taild0d486.ts.net/notify', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ msg, source: 'book-call' })
+
+    async function sendForm(data) {
+      await fetch('https://formspree.io/f/mojkongn', {
+        method: 'POST', accept: 'application/json',
+        body: JSON.stringify(data)
       }).catch(()=>{});
     }
 
@@ -178,7 +176,7 @@
 
       const msg = `🗓️ <b>New Call Request!</b>\n\n👤 ${name}\n🏢 ${business}\n📧 ${email}\n📞 ${phone || 'not provided'}\n🔨 ${type || 'not specified'}\n⏰ Availability: ${availability || 'not specified'}\n\n<i>Follow up to schedule!</i>`;
 
-      await sendTelegram(msg);
+      await sendForm({ name, business, email, phone, type, availability });
 
       document.getElementById('call-form').style.display = 'none';
       document.getElementById('success').classList.add('show');

@@ -195,7 +195,7 @@
 
       const msg = `🔥 <b>New Audit Request!</b>\n\n👤 ${name}\n🏢 ${business}\n📧 ${email}\n📞 ${phone || 'not provided'}\n🔨 ${type || 'not specified'}\n🌐 ${website || 'no website'}\n📞 Calls/week: ${calls || 'not specified'}\n\n💬 Notes: ${notes || 'none'}\n\n<i>Reply to follow up!</i>`;
 
-      await sendTelegram(msg);
+      await sendForm({ name, business, email, phone, type, website, calls, notes });
 
       document.getElementById('audit-form').style.display = 'none';
       document.getElementById('success').classList.add('show');
