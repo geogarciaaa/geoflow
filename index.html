@@ -3,989 +3,803 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GeoFlow — Never Lose a Lead Again</title>
+  <title>GeoAI — AI systems that capture leads, automate work, and make money</title>
+  <meta name="description" content="GeoAI builds AI systems for local businesses and operators. GeoFlow captures missed-call leads, automates follow-up, and turns operations into revenue." />
+  <meta property="og:title" content="GeoAI — AI systems that capture leads, automate work, and make money" />
+  <meta property="og:description" content="GeoFlow is our lead recovery system for local businesses. We build AI that saves time and prints money." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://geoflowai.com" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #071019;
+      --bg-2: #0b1420;
+      --panel: rgba(10, 18, 31, 0.82);
+      --panel-2: rgba(15, 23, 42, 0.78);
+      --line: rgba(148, 163, 184, 0.12);
+      --text: #edf4ff;
+      --muted: #96a5be;
+      --green: #4ade80;
+      --green-2: #22c55e;
+      --blue: #60a5fa;
+      --purple: #a78bfa;
+      --shadow: 0 30px 80px rgba(2, 8, 23, 0.45);
+      --radius: 24px;
+      --max: 1180px;
+    }
 
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #0a0a0a;
-      color: #f0f0f0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(96,165,250,.15), transparent 28%),
+        radial-gradient(circle at 100% 0%, rgba(167,139,250,.12), transparent 22%),
+        radial-gradient(circle at 50% 30%, rgba(74,222,128,.08), transparent 30%),
+        linear-gradient(180deg, var(--bg) 0%, #08121d 55%, #0a1420 100%);
+      color: var(--text);
       line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(7, 16, 25, 0.68);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.08);
     }
 
     nav {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 20px 40px;
-      border-bottom: 1px solid #1e1e1e;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 16px 0;
     }
 
-    .logo {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: -0.5px;
-    }
-
-    .logo span { color: #4ade80; }
-
-    nav a {
-      color: #888;
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.2s;
-    }
-
-    nav a:hover { color: #fff; }
-
-    .nav-right {
+    .brand {
       display: flex;
       align-items: center;
-      gap: 32px;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      font-size: 1.05rem;
     }
 
-    .nav-link {
-      color: #666;
-      text-decoration: none;
-      font-size: 0.875rem;
-      transition: color 0.2s;
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(74,222,128,.2), rgba(96,165,250,.18));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
     }
 
-    .nav-link:hover { color: #fff; }
+    .brand span { color: var(--green); }
 
-    @media (max-width: 768px) {
-      .nav-right .nav-link { display: none; }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 0.94rem;
     }
 
-    .cta-btn {
-      background: #4ade80;
-      color: #000 !important;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.9rem !important;
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      padding: 11px 16px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--green), #86efac);
+      color: #04110a;
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(74,222,128,.22);
     }
 
     .hero {
-      max-width: 800px;
-      margin: 110px auto 90px;
-      padding: 0 48px;
-      text-align: center;
+      padding: 78px 0 42px;
     }
 
-    .badge {
-      display: inline-block;
-      background: #1a1a1a;
-      border: 1px solid #2a2a2a;
-      color: #4ade80;
-      font-size: 0.8rem;
-      padding: 6px 14px;
-      border-radius: 20px;
-      margin-bottom: 24px;
-      letter-spacing: 0.5px;
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 26px;
+      align-items: stretch;
+    }
+
+    .hero-copy, .hero-panel, .card, .mini-card, .proof-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .hero-copy {
+      padding: 34px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-copy::after {
+      content: "";
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      right: -80px;
+      top: -80px;
+      background: radial-gradient(circle, rgba(96,165,250,.16), transparent 62%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--green);
+      margin-bottom: 18px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(74,222,128,.16);
+      background: rgba(74,222,128,.08);
     }
 
     h1 {
-      font-size: 3.2rem;
-      font-weight: 800;
-      line-height: 1.15;
-      letter-spacing: -1px;
-      margin-bottom: 20px;
+      font-size: clamp(2.5rem, 5vw, 4.8rem);
+      line-height: .95;
+      letter-spacing: -0.06em;
+      margin-bottom: 18px;
+      max-width: 12ch;
     }
 
-    h1 span { color: #4ade80; }
-
-    .subtitle {
-      font-size: 1.15rem;
-      color: #888;
-      max-width: 560px;
-      margin: 0 auto 40px;
+    .headline-accent {
+      background: linear-gradient(135deg, #fff, #a7f3d0 60%, #93c5fd 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    .hero-btns {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      background: #4ade80;
-      color: #000;
-      padding: 14px 28px;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 1rem;
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
-
-    .btn-primary:hover { opacity: 0.85; }
-
-    .btn-secondary {
-      background: #1a1a1a;
-      color: #fff;
-      padding: 14px 28px;
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 1rem;
-      text-decoration: none;
-      border: 1px solid #2a2a2a;
-      transition: border-color 0.2s;
-    }
-
-    .btn-secondary:hover { border-color: #444; }
-
-    .social-proof {
-      margin-top: 50px;
-      color: #555;
-      font-size: 0.85rem;
-    }
-
-    .social-proof strong { color: #888; }
-
-    /* How it works */
-    .section {
-      max-width: 900px;
-      margin: 100px auto;
-      padding: 0 48px;
-    }
-
-    .section-label {
-      text-align: center;
-      color: #4ade80;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .section h2 {
-      text-align: center;
-      font-size: 2.2rem;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      margin-bottom: 40px;
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-      margin-top: 10px;
-    }
-
-    .step {
-      background: #111;
-      border: 1px solid #1e1e1e;
-      border-radius: 14px;
-      padding: 28px;
-    }
-
-    .step-num {
-      width: 36px;
-      height: 36px;
-      background: #4ade8020;
-      border: 1px solid #4ade8040;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #4ade80;
-      font-weight: 700;
-      font-size: 0.9rem;
-      margin-bottom: 16px;
-    }
-
-    .step h3 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .step p {
-      color: #666;
-      font-size: 0.9rem;
-    }
-
-    /* Example text */
-    .example-box {
-      background: #111;
-      border: 1px solid #1e1e1e;
-      border-radius: 14px;
-      padding: 32px;
-      margin: 50px auto;
-      max-width: 600px;
-    }
-
-    .example-box .label {
-      font-size: 0.75rem;
-      color: #555;
-      margin-bottom: 12px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    .sms-bubble {
-      background: #1a2e1a;
-      border: 1px solid #2d4d2d;
-      border-radius: 12px;
-      padding: 16px 20px;
-      color: #a3d9a3;
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-
-    .result-tag {
-      margin-top: 16px;
-      font-size: 0.85rem;
-      color: #4ade80;
-    }
-
-    /* Pricing */
-    .pricing {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-      margin-top: 40px;
-    }
-
-    .plan {
-      background: #111;
-      border: 1px solid #1e1e1e;
-      border-radius: 14px;
-      padding: 32px;
-    }
-
-    .plan.featured {
-      border-color: #4ade80;
-    }
-
-    .plan-name {
-      font-size: 0.85rem;
-      color: #888;
-      margin-bottom: 8px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .plan-price {
-      font-size: 2.4rem;
-      font-weight: 800;
-      margin-bottom: 4px;
-    }
-
-    .plan-price span {
-      font-size: 1rem;
-      font-weight: 400;
-      color: #666;
-    }
-
-    .plan-desc {
-      color: #666;
-      font-size: 0.85rem;
-      margin-bottom: 24px;
-    }
-
-    .plan ul {
-      list-style: none;
+    .subhead {
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 60ch;
       margin-bottom: 28px;
     }
 
-    .plan ul li {
-      font-size: 0.9rem;
-      color: #aaa;
-      padding: 6px 0;
-      border-bottom: 1px solid #1a1a1a;
+    .hero-actions {
       display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .btn-primary, .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 0.98rem;
+      transition: transform .18s ease, opacity .18s ease, border-color .18s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--green), #86efac);
+      color: #04110a;
+      box-shadow: 0 16px 36px rgba(74,222,128,.22);
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.02);
+    }
+
+    .btn-primary:hover, .btn-secondary:hover { transform: translateY(-1px); opacity: .95; }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+    }
+
+    .mini-card {
+      padding: 16px 18px;
+      background: rgba(255,255,255,.03);
+    }
+
+    .mini-card .label {
+      color: var(--muted);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      margin-bottom: 8px;
+    }
+
+    .mini-card .value {
+      font-size: 1.55rem;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+    }
+
+    .hero-panel {
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      background: linear-gradient(180deg, rgba(14,22,36,.96), rgba(11,20,32,.82));
+    }
+
+    .panel-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .panel-tag {
+      color: var(--muted);
+      font-size: 0.76rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .live-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--green);
+      box-shadow: 0 0 0 10px rgba(74,222,128,.08);
+    }
+
+    .flow-card {
+      border-radius: 20px;
+      border: 1px solid rgba(148,163,184,.08);
+      background: rgba(255,255,255,.03);
+      padding: 18px;
+    }
+
+    .flow-card h3 {
+      font-size: 1.08rem;
+      margin-bottom: 6px;
+    }
+
+    .flow-card p {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-bottom: 12px;
+    }
+
+    .flow-list {
+      display: grid;
+      gap: 10px;
+      color: #d5e2f4;
+      font-size: 0.92rem;
+    }
+
+    .flow-pill {
+      display: inline-flex;
       align-items: center;
       gap: 8px;
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(148,163,184,.08);
+      width: fit-content;
+      color: var(--muted);
+      font-size: 0.84rem;
+      margin-bottom: 14px;
     }
 
-    .plan ul li::before { content: "✓"; color: #4ade80; font-weight: 700; }
-
-    /* Services section */
-    .services {
+    .strip {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
-      margin-top: 40px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 18px;
     }
 
-    .service {
-      background: #111;
-      border: 1px solid #1e1e1e;
-      border-radius: 14px;
-      padding: 26px;
-      transition: border-color 0.2s;
+    .proof-card {
+      padding: 18px;
+      background: rgba(255,255,255,.03);
     }
 
-    .service:hover { border-color: #333; }
-
-    .service-icon { font-size: 1.6rem; margin-bottom: 14px; }
-    .service h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
-    .service p { color: #666; font-size: 0.875rem; line-height: 1.5; }
-
-    .plan-btn {
-      display: block;
-      text-align: center;
-      padding: 12px;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      text-decoration: none;
-      background: #1a1a1a;
-      color: #fff;
-      border: 1px solid #2a2a2a;
-      transition: border-color 0.2s;
+    .proof-kicker {
+      color: var(--muted);
+      font-size: .76rem;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      margin-bottom: 10px;
     }
 
-    .plan.featured .plan-btn {
-      background: #4ade80;
-      color: #000;
-      border: none;
-    }
-
-    /* CTA section */
-    .final-cta {
-      text-align: center;
-      padding: 100px 48px;
-      border-top: 1px solid #1a1a1a;
-    }
-
-    .final-cta h2 {
-      font-size: 2.4rem;
+    .proof-value {
+      font-size: 1.7rem;
       font-weight: 800;
+      letter-spacing: -0.04em;
+      margin-bottom: 8px;
+    }
+
+    .proof-copy {
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    section {
+      padding: 36px 0;
+    }
+
+    .section-head {
+      margin-bottom: 24px;
+      max-width: 760px;
+    }
+
+    .section-kicker {
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-size: .8rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .section-title {
+      font-size: clamp(1.9rem, 3vw, 3.1rem);
+      letter-spacing: -0.05em;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .section-copy {
+      color: var(--muted);
+      max-width: 60ch;
+      font-size: 1rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      padding: 22px;
+      background: rgba(255,255,255,.03);
+    }
+
+    .card-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-size: 1.25rem;
+      background: linear-gradient(135deg, rgba(74,222,128,.16), rgba(96,165,250,.16));
       margin-bottom: 16px;
-      letter-spacing: -0.5px;
+      border: 1px solid rgba(148,163,184,.12);
     }
 
-    .final-cta p {
-      color: #666;
-      margin-bottom: 32px;
+    .card h3 {
+      font-size: 1.12rem;
+      margin-bottom: 10px;
+      letter-spacing: -0.03em;
     }
 
-    footer {
-      text-align: center;
+    .card p, .card li {
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .card ul {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .stack {
+      display: grid;
+      gap: 14px;
+    }
+
+    .system-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 0;
+      border-top: 1px solid rgba(148,163,184,.08);
+    }
+
+    .system-row:first-child { border-top: 0; }
+    .system-row strong { display: block; margin-bottom: 4px; }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: .85rem;
+      font-weight: 700;
+      background: rgba(74,222,128,.1);
+      color: #a7f3d0;
+      border: 1px solid rgba(74,222,128,.18);
+      white-space: nowrap;
+      height: fit-content;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .quote {
       padding: 24px;
-      color: #444;
-      font-size: 0.8rem;
-      border-top: 1px solid #1a1a1a;
+      font-size: 1.08rem;
+      color: #dce7f8;
+      line-height: 1.7;
     }
 
-    @media (max-width: 768px) {
-      h1 { font-size: 2rem; }
-      nav { padding: 16px 20px; }
-      .hero { margin: 60px auto 50px; padding: 0 20px; }
-      .section { padding: 0 20px; margin: 60px auto; }
-      .final-cta { padding: 60px 20px; }
-      .steps { grid-template-columns: 1fr; gap: 14px; }
-      .services { grid-template-columns: 1fr; }
-      .pricing { grid-template-columns: 1fr; }
-      .skills-grid { grid-template-columns: 1fr 1fr; }
-      .section-label { font-size: 0.7rem; }
-      .section h2 { font-size: 1.8rem; }
-      .example-box { padding: 20px; }
-      .step { padding: 20px; }
-      .service { padding: 20px; }
-      .plan { padding: 24px; }
+    .quote strong { color: #fff; }
 
-      /* Mobile Menu Styles */
-      #mobile-menu-toggle {
-        display: block; /* Show hamburger on mobile */
-        background: none;
-        border: none;
-        color: #fff;
-        font-size: 1.8rem;
-        cursor: pointer;
-        z-index: 10000; /* Above everything */
-        position: relative; /* Ensure it's clickable */
-      }
-
-      #mobile-menu-drawer {
-        position: fixed;
-        top: 0;
-        right: -300px; /* Hidden off-screen */
-        width: 280px;
-        height: 100%;
-        background: #111;
-        border-left: 1px solid #2a2a2a;
-        z-index: 9999;
-        display: flex;
-        flex-direction: column;
-        padding: 80px 24px 24px;
-        transition: right 0.3s ease-in-out;
-        box-shadow: -4px 0 20px rgba(0,0,0,0.5);
-      }
-
-      #mobile-menu-drawer.open { right: 0; }
-
-      #mobile-menu-drawer a {
-        color: #eee;
-        text-decoration: none;
-        font-size: 1.1rem;
-        padding: 14px 0;
-        border-bottom: 1px solid #1a1a1a;
-        transition: color 0.2s;
-      }
-
-      #mobile-menu-drawer a:last-of-type { border-bottom: none; margin-top: 20px; }
-      #mobile-menu-drawer a:hover { color: #4ade80; }
-
-      #mobile-menu-drawer .cta-btn {
-        background: #4ade80;
-        color: #000 !important;
-        padding: 12px 20px;
-        border-radius: 8px;
-        font-weight: 600;
-        font-size: 1.1rem !important;
-        text-align: center;
-        display: block;
-      }
+    .cta-section {
+      padding: 32px 0 80px;
     }
 
-    /* Hide desktop nav and show mobile toggle on small screens */
-    @media (max-width: 768px) {
-      .nav-right { display: none; }
+    .cta-shell {
+      position: relative;
+      overflow: hidden;
+      padding: 34px;
     }
 
-    /* Hide mobile elements on desktop */
-    @media (min-width: 769px) {
-      #mobile-menu-toggle, #mobile-menu-drawer { display: none; }
+    .cta-shell::before {
+      content: "";
+      position: absolute;
+      inset: auto auto -160px -120px;
+      width: 340px;
+      height: 340px;
+      background: radial-gradient(circle, rgba(74,222,128,.14), transparent 62%);
+      pointer-events: none;
+    }
+
+    .cta-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .cta-title {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      letter-spacing: -0.06em;
+      line-height: .96;
+      margin-bottom: 14px;
+    }
+
+    .cta-copy {
+      color: var(--muted);
+      max-width: 54ch;
+      margin-bottom: 24px;
+    }
+
+    .footer {
+      border-top: 1px solid rgba(148,163,184,.08);
+      padding: 26px 0 36px;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid, .split, .cta-grid, .grid-3, .strip, .product-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero { padding-top: 54px; }
+      .nav-links { display: none; }
+    }
+
+    @media (max-width: 720px) {
+      .wrap { width: min(var(--max), calc(100% - 20px)); }
+      .hero-copy, .hero-panel, .card, .proof-card, .cta-shell { padding: 22px; }
+      .hero-stats { grid-template-columns: 1fr; }
+      h1 { max-width: 100%; }
+      .topbar nav { padding: 14px 0; }
     }
   </style>
 </head>
 <body>
-
-  <nav>
-    <div class="logo">Geo<span>Flow</span></div>
-    <div class="nav-right">
-      <a href="calculator.html" class="nav-link">Calculator</a>
-      <a href="blog.html" class="nav-link">Blog</a>
-      <a href="audit.html" class="nav-link">Free Audit</a>
-      <a href="about.html" class="nav-link">About</a>
-      <a href="book-call.html" class="cta-btn">Book a Call</a>
-    </div>
-    <!-- Mobile menu toggle -->
-    <button id="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
-  </nav>
-
-  <!-- Mobile Menu Drawer -->
-  <div id="mobile-menu-drawer">
-    <a href="#how-it-works" onclick="toggleMobileMenu()">How It Works</a>
-    <a href="#services" onclick="toggleMobileMenu()">What We Do</a>
-    <a href="#pricing" onclick="toggleMobileMenu()">Pricing</a>
-    <a href="calculator.html" onclick="toggleMobileMenu()">Calculator</a>
-    <a href="blog.html" onclick="toggleMobileMenu()">Blog</a>
-    <a href="audit.html" onclick="toggleMobileMenu()">Free Audit</a>
-    <a href="about.html" onclick="toggleMobileMenu()">About</a>
-    <a href="book-call.html" class="cta-btn" onclick="toggleMobileMenu()">Book a Call</a>
-  </div>
-
-  <div class="hero">
-    <div class="badge">🟢 AI Automation for Growing Businesses</div>
-    <h1>Stop losing jobs<br>to <span>voicemail</span></h1>
-    <p class="subtitle">GeoFlow automatically texts back anyone who calls and doesn't get an answer — within 2 minutes. No missed leads, no lost jobs.</p>
-    <div class="hero-btns">
-      <a href="book-call.html?subject=I want a demo" class="btn-primary">Get a Free Demo</a>
-      <a href="#how-it-works" class="btn-secondary">See How It Works</a>
-    </div>
-    <p class="social-proof">Serving Philadelphia, South Jersey, Delaware, and the entire Delaware Valley. <strong>Setup in 24 hours.</strong></p>
-  </div>
-
-  <div class="section" id="how-it-works">
-    <p class="section-label">How It Works</p>
-    <h2>Simple. Automatic. Effective.</h2>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <h3>Someone calls you</h3>
-        <p>Doesn't matter if you're on a job, driving, or just busy — the call comes in.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <h3>You miss it</h3>
-        <p>It goes to voicemail. Normally they move on to the next contractor. Not anymore.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <h3>They get a text in 2 mins</h3>
-        <p>An automatic, personalized text goes out immediately keeping them engaged.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <h3>You get the job</h3>
-        <p>They reply, you follow up, you close. Jobs you would've lost are now yours.</p>
-      </div>
-    </div>
-
-    <div class="example-box">
-      <div class="label">Example auto-text your leads receive</div>
-      <div class="sms-bubble">
-        "Hey it's Mike from Philly Roofing — we're out on a job right now but I don't want to leave you hanging. Want a free estimate? Just text back and I'll reach out tonight."
-      </div>
-      <div class="result-tag">⚡ Sent automatically within 2 minutes of a missed call</div>
+  <div class="topbar">
+    <div class="wrap">
+      <nav>
+        <a class="brand" href="#top">
+          <div class="brand-mark">🦞</div>
+          <div>Geo<span>AI</span></div>
+        </a>
+        <div class="nav-links">
+          <a href="#products">Products</a>
+          <a href="#systems">Systems</a>
+          <a href="#why">Why GeoAI</a>
+          <a href="calculator.html">Calculator</a>
+          <a href="audit.html">Free Audit</a>
+          <a class="nav-cta" href="book-call.html">Book a Call</a>
+        </div>
+      </nav>
     </div>
   </div>
 
-  <div class="section" id="services">
-    <p class="section-label">What We Do</p>
-    <h2>Tools that run while you work</h2>
-    <div class="services">
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div class="eyebrow">AI systems for real operators</div>
+            <h1>We build <span class="headline-accent">AI that makes money</span>, captures leads, and runs in the background.</h1>
+            <p class="subhead">
+              GeoAI is the umbrella. GeoFlow is the first product. We design practical AI systems for businesses that want more leads,
+              faster follow-up, better automation, and less wasted time.
+            </p>
+            <div class="hero-actions">
+              <a class="btn-primary" href="book-call.html">Book a Free Call</a>
+              <a class="btn-secondary" href="audit.html">Get a Free Audit</a>
+              <a class="btn-secondary" href="calculator.html">Use Revenue Calculator</a>
+            </div>
+            <div class="hero-stats">
+              <div class="mini-card">
+                <div class="label">Flagship Product</div>
+                <div class="value">GeoFlow</div>
+              </div>
+              <div class="mini-card">
+                <div class="label">Setup Window</div>
+                <div class="value">24 Hours</div>
+              </div>
+              <div class="mini-card">
+                <div class="label">Primary Market</div>
+                <div class="value">Local Biz</div>
+              </div>
+            </div>
+          </div>
 
-      <div class="service">
-        <div class="service-icon">📲</div>
-        <h3>Missed Call Auto-Text</h3>
-        <p>Anyone who calls and doesn't get an answer automatically gets a text back within 2 minutes. Stop losing jobs to voicemail.</p>
+          <div class="hero-panel">
+            <div class="panel-top">
+              <div class="panel-tag">Live system preview</div>
+              <div class="live-dot"></div>
+            </div>
+
+            <div class="flow-card">
+              <div class="flow-pill">GeoFlow • lead recovery engine</div>
+              <h3>Missed call in. Text goes out. Lead stays alive.</h3>
+              <p>Built for contractors, service businesses, and anyone losing revenue to voicemail.</p>
+              <div class="flow-list">
+                <div>📞 Prospect calls and no one answers</div>
+                <div>⚡ GeoFlow texts back in minutes</div>
+                <div>💬 Lead replies instead of disappearing</div>
+                <div>📈 Business recovers revenue that used to die in voicemail</div>
+              </div>
+            </div>
+
+            <div class="strip">
+              <div class="proof-card">
+                <div class="proof-kicker">Lead Capture</div>
+                <div class="proof-value">24/7</div>
+                <div class="proof-copy">No sleep. No missed after-hours follow-up.</div>
+              </div>
+              <div class="proof-card">
+                <div class="proof-kicker">Use Case</div>
+                <div class="proof-value">Missed Calls</div>
+                <div class="proof-copy">Fastest money leak to fix for local businesses.</div>
+              </div>
+              <div class="proof-card">
+                <div class="proof-kicker">Built For</div>
+                <div class="proof-value">Operators</div>
+                <div class="proof-copy">Simple systems that actually matter.</div>
+              </div>
+              <div class="proof-card">
+                <div class="proof-kicker">Contact</div>
+                <div class="proof-value">geo@</div>
+                <div class="proof-copy">geo@geoflowai.com</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <div class="service">
-        <div class="service-icon">⭐</div>
-        <h3>Review Request Automation</h3>
-        <p>After every job, your customer gets a text asking for a Google review. Most contractors get 5 reviews a year — you'll get 5 a week.</p>
+    <section id="products">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">Products & services</div>
+          <h2 class="section-title">Start with one money leak. Then build the whole machine.</h2>
+          <p class="section-copy">
+            GeoAI is the brand. GeoFlow is the wedge. We start by fixing one painful revenue problem, then expand into automation,
+            follow-up, website AI, review systems, and internal tools.
+          </p>
+        </div>
+        <div class="grid-3">
+          <div class="card">
+            <div class="card-icon">🟢</div>
+            <h3>GeoFlow</h3>
+            <p>Missed-call auto text back, reply capture, lead dashboard, and follow-up flow for local businesses that hate losing easy money.</p>
+            <ul>
+              <li>Missed call text-back</li>
+              <li>Lead dashboard</li>
+              <li>Reply capture</li>
+              <li>Fast client setup</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="card-icon">🤖</div>
+            <h3>Custom AI Automation</h3>
+            <p>We build internal tools, lead routing, inbox workflows, follow-up systems, and operator-facing AI that reduces admin time.</p>
+            <ul>
+              <li>Appointment reminders</li>
+              <li>Review generation flows</li>
+              <li>Website chat systems</li>
+              <li>Back-office automation</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="card-icon">📊</div>
+            <h3>Operator Systems</h3>
+            <p>Beyond websites, we think in systems: dashboards, bots, AI workflows, and practical infrastructure that keeps working after launch.</p>
+            <ul>
+              <li>Dashboards</li>
+              <li>Alerts</li>
+              <li>Automation logic</li>
+              <li>Practical deployment</li>
+            </ul>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <div class="service">
-        <div class="service-icon">💬</div>
-        <h3>AI Website Chatbot</h3>
-        <p>A chat widget on your site answers questions 24/7 — pricing, availability, service areas. Captures leads even at 2am.</p>
+    <section id="systems">
+      <div class="wrap split">
+        <div class="card">
+          <div class="section-kicker">How it works</div>
+          <h2 class="section-title">A cleaner system for businesses that don’t have time to babysit software.</h2>
+          <p class="section-copy" style="margin-bottom: 18px;">
+            We don’t sell “AI” as a buzzword. We build a tight system, plug it into the business, and make it easy to understand.
+          </p>
+          <div class="stack">
+            <div class="system-row">
+              <div>
+                <strong>1. Find the leak</strong>
+                <div class="section-copy">Missed calls, no-shows, weak follow-up, bad lead handling, or website dead ends.</div>
+              </div>
+              <div class="status-badge">Audit</div>
+            </div>
+            <div class="system-row">
+              <div>
+                <strong>2. Build the fix</strong>
+                <div class="section-copy">SMS flows, call capture, dashboards, reminders, or web automation — whatever solves the actual problem.</div>
+              </div>
+              <div class="status-badge">Build</div>
+            </div>
+            <div class="system-row">
+              <div>
+                <strong>3. Keep it live</strong>
+                <div class="section-copy">Once it’s in place, it should run quietly in the background and keep producing value.</div>
+              </div>
+              <div class="status-badge">Operate</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stack">
+          <div class="card">
+            <div class="section-kicker">Why GeoFlow first</div>
+            <h3 style="font-size:1.35rem; letter-spacing:-0.04em; margin-bottom:10px;">Because missed calls are easy money.</h3>
+            <p class="section-copy">
+              A lot of local businesses don’t need some giant enterprise AI rollout. They need one simple fix that pays for itself fast.
+              GeoFlow is that fix.
+            </p>
+          </div>
+          <div class="card quote">
+            <strong>“Someone calls. No answer. They move on.”</strong><br><br>
+            That’s what we’re attacking first — not because it’s trendy, but because it’s common, expensive, and easy to solve.
+          </div>
+        </div>
       </div>
+    </section>
 
-      <div class="service">
-        <div class="service-icon">🗓️</div>
-        <h3>Appointment Reminders</h3>
-        <p>Auto-text customers the day before a scheduled job to confirm. Cuts no-shows and last-minute cancellations.</p>
+    <section id="why">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">Why GeoAI</div>
+          <h2 class="section-title">Premium enough to trust. Practical enough to buy.</h2>
+          <p class="section-copy">
+            The goal isn’t to look like a giant agency. The goal is to look sharp, move fast, and build systems that punch above their size.
+          </p>
+        </div>
+        <div class="product-grid">
+          <div class="card">
+            <div class="card-icon">⚡</div>
+            <h3>Fast execution</h3>
+            <p>No endless decks, no bloated process. We move from problem to deployed system quickly.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🧠</div>
+            <h3>Operator mindset</h3>
+            <p>We care about ROI, not AI theater. If it doesn’t save time or make money, it’s noise.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">📞</div>
+            <h3>Built for local businesses</h3>
+            <p>Contractors, service businesses, and operators who need tighter lead handling more than fancy jargon.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🔒</div>
+            <h3>Clean systems</h3>
+            <p>Hosted, monitored, and built to run without constant hand-holding once they’re in place.</p>
+          </div>
+        </div>
       </div>
+    </section>
 
+    <section class="cta-section">
+      <div class="wrap">
+        <div class="card cta-shell">
+          <div class="cta-grid">
+            <div>
+              <div class="section-kicker">Let’s make this real</div>
+              <h2 class="cta-title">If you’re losing leads, wasting admin time, or stuck in follow-up chaos, let’s fix it.</h2>
+              <p class="cta-copy">
+                Book a quick call, request a free audit, or run the calculator and see what the leak might actually be costing you.
+              </p>
+              <div class="hero-actions">
+                <a class="btn-primary" href="book-call.html">Book a Free Call</a>
+                <a class="btn-secondary" href="audit.html">Request Free Audit</a>
+              </div>
+            </div>
+            <div class="card" style="background: rgba(255,255,255,.035);">
+              <div class="section-kicker">Direct contact</div>
+              <h3 style="font-size:1.35rem; letter-spacing:-0.04em; margin-bottom:10px;">Talk directly to Geo.</h3>
+              <p class="section-copy" style="margin-bottom:16px;">
+                Want to skip the fluff? Email directly and we’ll figure out whether GeoFlow or a custom build makes more sense.
+              </p>
+              <div class="flow-pill">geo@geoflowai.com</div>
+              <div class="flow-list">
+                <div>• Philadelphia based</div>
+                <div>• Works remote too</div>
+                <div>• Fast builds, practical systems</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <div>© 2026 GeoAI / GeoFlow · Philadelphia, PA · geo@geoflowai.com</div>
+      <div><a href="book-call.html">Book a Call</a> · <a href="audit.html">Free Audit</a> · <a href="calculator.html">Calculator</a></div>
     </div>
-  </div>
-
-  <div class="section" id="pricing">
-    <p class="section-label">Pricing</p>
-    <h2>Simple, flat pricing</h2>
-    <div class="pricing">
-      <div class="plan">
-        <div class="plan-name">Starter</div>
-        <div class="plan-price">$97<span>/mo</span></div>
-        <div class="plan-desc">+ $297 one-time setup</div>
-        <ul>
-          <li>Missed call auto-text</li>
-          <li>Appointment reminders</li>
-          <li>Custom message for your business</li>
-          <li>Works on your existing number</li>
-          <li>Setup in 24 hours</li>
-        </ul>
-        <a href="book-call.html" class="plan-btn">Get Started</a>
-      </div>
-      <div class="plan featured">
-        <div class="plan-name">Pro</div>
-        <div class="plan-price">$197<span>/mo</span></div>
-        <div class="plan-desc">+ $497 one-time setup</div>
-        <ul>
-          <li>Everything in Starter</li>
-          <li>Google review automation</li>
-          <li>AI chatbot on your website</li>
-          <li>Monthly lead capture report</li>
-          <li>Priority support</li>
-        </ul>
-        <a href="book-call.html" class="plan-btn">Get Started</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Video Section -->
-  <div class="section" id="video">
-    <p class="section-label">See It In Action</p>
-    <h2>Watch how it works</h2>
-    <div style="background:#111;border:1px solid #1e1e1e;border-radius:14px;padding:60px 40px;text-align:center;margin-top:20px;">
-      <div style="font-size:3rem;margin-bottom:16px;">▶️</div>
-      <p style="color:#666;margin-bottom:8px;">Video coming soon</p>
-      <p style="color:#444;font-size:0.85rem;">In the meantime, book a free 10-min call and we'll walk you through it live.</p>
-      <a href="book-call.html" style="display:inline-block;margin-top:20px;background:#4ade80;color:#000;padding:11px 24px;border-radius:8px;font-weight:700;text-decoration:none;font-size:0.9rem;">Book a Demo Call</a>
-    </div>
-  </div>
-
-  <!-- Service Area -->
-  <div class="section">
-    <p class="section-label">Service Area</p>
-    <h2>Local roots. Remote reach.</h2>
-    <div style="background:#111;border:1px solid #1e1e1e;border-radius:14px;padding:32px;margin-top:24px;text-align:center;">
-      <p style="color:#888;margin-bottom:20px;font-size:0.95rem;">Based in Philadelphia — serving the greater Delaware Valley and beyond</p>
-      <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">
-        <span style="background:#1a1a1a;border:1px solid #2a2a2a;color:#aaa;padding:7px 16px;border-radius:20px;font-size:0.85rem;">📍 Philadelphia, PA</span>
-        <span style="background:#1a1a1a;border:1px solid #2a2a2a;color:#aaa;padding:7px 16px;border-radius:20px;font-size:0.85rem;">📍 Montgomery County, PA</span>
-        <span style="background:#1a1a1a;border:1px solid #2a2a2a;color:#aaa;padding:7px 16px;border-radius:20px;font-size:0.85rem;">📍 Bucks County, PA</span>
-        <span style="background:#1a1a1a;border:1px solid #2a2a2a;color:#aaa;padding:7px 16px;border-radius:20px;font-size:0.85rem;">📍 Delaware County, PA</span>
-        <span style="background:#1a1a1a;border:1px solid #2a2a2a;color:#aaa;padding:7px 16px;border-radius:20px;font-size:0.85rem;">📍 Chester County, PA</span>
-        <span style="background:#1a1a1a;border:1px solid #2a2a2a;color:#aaa;padding:7px 16px;border-radius:20px;font-size:0.85rem;">📍 South Jersey (Camden, Cherry Hill)</span>
-        <span style="background:#1a1a1a;border:1px solid #2a2a2a;color:#aaa;padding:7px 16px;border-radius:20px;font-size:0.85rem;">📍 Delaware</span>
-        <span style="background:#1a1a1a;border:1px solid #2a2a2a;color:#aaa;padding:7px 16px;border-radius:20px;font-size:0.85rem;">📍 Maryland</span>
-        <span style="background:#1a3a1a;border:1px solid #4ade8040;color:#4ade80;padding:7px 16px;border-radius:20px;font-size:0.85rem;">🌐 + Anywhere remote</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- FAQ Section -->
-  <div class="section" id="faq">
-    <p class="section-label">FAQ</p>
-    <h2>Common questions</h2>
-    <div style="margin-top:32px;display:flex;flex-direction:column;gap:2px;">
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Do I need to change my phone number? <span class="faq-arrow">↓</span>
-        </button>
-        <div class="faq-a">Nope. We work with your existing business number. Nothing changes on your end — calls still come in the same way.</div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          How long does setup take? <span class="faq-arrow">↓</span>
-        </button>
-        <div class="faq-a">24 hours or less. We handle the entire setup. You just give us your business details and we take it from there.</div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Is there a contract? <span class="faq-arrow">↓</span>
-        </button>
-        <div class="faq-a">No contracts, no commitments. Cancel anytime — no questions asked.</div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          What if someone calls after hours? <span class="faq-arrow">↓</span>
-        </button>
-        <div class="faq-a">The system runs 24/7. Whether it's 2pm or 2am, missed calls get a text back automatically.</div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Can I customize the messages? <span class="faq-arrow">↓</span>
-        </button>
-        <div class="faq-a">100%. Every message is written specifically for your business — your name, your tone, your services. It sounds like you, not a robot.</div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          What kinds of businesses is this for? <span class="faq-arrow">↓</span>
-        </button>
-        <div class="faq-a">Any business that gets calls and misses them. We serve Philadelphia, South Jersey, Delaware, Montgomery County, Bucks County, Delaware County, Chester County, and beyond. Remote setup means we can work with anyone, anywhere.</div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          How do I get started? <span class="faq-arrow">↓</span>
-        </button>
-        <div class="faq-a">Just book a free 10-minute call. We'll show you how it works for your specific business and get you set up within 24 hours.</div>
-      </div>
-
-    </div>
-  </div>
-
-  <style>
-    .faq-item { border-bottom: 1px solid #1a1a1a; }
-    .faq-q {
-      width: 100%;
-      background: none;
-      border: none;
-      color: #f0f0f0;
-      text-align: left;
-      padding: 18px 4px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-    }
-    .faq-q:hover { color: #4ade80; }
-    .faq-arrow { color: #555; font-size: 1rem; transition: transform 0.2s; flex-shrink: 0; }
-    .faq-q.open .faq-arrow { transform: rotate(180deg); color: #4ade80; }
-    .faq-a {
-      color: #777;
-      font-size: 0.9rem;
-      line-height: 1.6;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease, padding 0.3s ease;
-      padding: 0 4px;
-    }
-    .faq-a.open { max-height: 200px; padding: 0 4px 16px; }
-  </style>
-
-  <script>
-    function toggleFaq(btn) {
-      const answer = btn.nextElementSibling;
-      const isOpen = answer.classList.contains('open');
-      document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
-      document.querySelectorAll('.faq-q').forEach(b => b.classList.remove('open'));
-      if (!isOpen) {
-        answer.classList.add('open');
-        btn.classList.add('open');
-      }
-    }
-  </script>
-
-  <div class="final-cta">
-    <h2>Ready to stop losing leads?</h2>
-    <p>Book a free 10-minute call. We'll show you exactly how it works for your business.</p>
-    <a href="book-call.html" class="btn-primary">Book a Free Call</a>
-  </div>
-
-  <footer>© 2026 GeoFlow · Serving Philadelphia, South Jersey, Delaware Valley & beyond · geo@geoflowai.com</footer>
-
-  <!-- Chatbot Widget -->
-  <style>
-    #chat-bubble {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      width: 56px;
-      height: 56px;
-      background: #4ade80;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 4px 20px rgba(74,222,128,0.4);
-      z-index: 9999;
-      font-size: 1.4rem;
-      transition: transform 0.2s;
-    }
-    #chat-bubble:hover { transform: scale(1.08); }
-
-    #chat-window {
-      position: fixed;
-      bottom: 96px;
-      right: 28px;
-      width: 340px;
-      max-height: 480px;
-      background: #111;
-      border: 1px solid #2a2a2a;
-      border-radius: 16px;
-      display: none;
-      flex-direction: column;
-      z-index: 9998;
-      overflow: hidden;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
-    }
-
-    #chat-window.open { display: flex; }
-
-    #chat-header {
-      background: #161616;
-      border-bottom: 1px solid #1e1e1e;
-      padding: 16px 18px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .chat-dot { width: 9px; height: 9px; background: #4ade80; border-radius: 50%; animation: pulse 2s infinite; }
-
-    #chat-header .chat-name { font-weight: 700; font-size: 0.95rem; }
-    #chat-header .chat-status { font-size: 0.75rem; color: #4ade80; }
-
-    #chat-messages {
-      flex: 1;
-      overflow-y: auto;
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .msg {
-      max-width: 80%;
-      padding: 10px 14px;
-      border-radius: 12px;
-      font-size: 0.875rem;
-      line-height: 1.5;
-    }
-
-    .msg.bot {
-      background: #1a1a1a;
-      color: #ddd;
-      border-bottom-left-radius: 4px;
-      align-self: flex-start;
-    }
-
-    .msg.user {
-      background: #4ade80;
-      color: #000;
-      border-bottom-right-radius: 4px;
-      align-self: flex-end;
-      font-weight: 500;
-    }
-
-    #chat-input-area {
-      border-top: 1px solid #1e1e1e;
-      padding: 12px;
-      display: flex;
-      gap: 8px;
-    }
-
-    #chat-input {
-      flex: 1;
-      background: #1a1a1a;
-      border: 1px solid #2a2a2a;
-      border-radius: 8px;
-      padding: 9px 12px;
-      color: #fff;
-      font-size: 0.875rem;
-      outline: none;
-    }
-
-    #chat-input:focus { border-color: #4ade80; }
-
-    #chat-send {
-      background: #4ade80;
-      color: #000;
-      border: none;
-      border-radius: 8px;
-      width: 36px;
-      height: 36px;
-      cursor: pointer;
-      font-size: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-    }
-
-    .typing { display: flex; gap: 4px; padding: 12px 14px; }
-    .typing span {
-      width: 7px; height: 7px;
-      background: #555;
-      border-radius: 50%;
-      animation: bounce 1.2s infinite;
-    }
-    .typing span:nth-child(2) { animation-delay: 0.2s; }
-    .typing span:nth-child(3) { animation-delay: 0.4s; }
-    @keyframes bounce {
-      0%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(-6px); }
-    }
-  </style>
-
-  <div id="chat-bubble" onclick="toggleChat()">💬</div>
-
-  <div id="chat-window">
-    <div id="chat-header">
-      <div class="chat-dot"></div>
-      <div>
-        <div class="chat-name">GeoFlow AI</div>
-        <div class="chat-status">Online now</div>
-      </div>
-    </div>
-    <div id="chat-messages">
-      <div class="msg bot">Hey! 👋 I'm the GeoFlow assistant. What can I help you with?</div>
-      <div class="msg bot">You can ask me about our services, pricing, or how it all works.</div>
-    </div>
-    <div id="chat-input-area">
-      <input id="chat-input" type="text" placeholder="Ask me anything..." onkeydown="if(event.key==='Enter') sendMsg()" />
-      <button id="chat-send" onclick="sendMsg()">↑</button>
-    </div>
-  </div>
-
-  <script>
-    function toggleChat() {
-      const w = document.getElementById('chat-window');
-      w.classList.toggle('open');
-      if (w.classList.contains('open')) {
-        document.getElementById('chat-input').focus();
-      }
-    }
-
-    const responses = {
-      price: "We have two plans:\n\n💚 Starter — $97/mo + $297 setup: missed call auto-text + appointment reminders.\n\n🚀 Pro — $197/mo + $497 setup: everything in Starter + Google review automation + AI chatbot on your site.\n\nBoth include 24hr setup and no long-term contracts.",
-      pricing: "We have two plans:\n\n💚 Starter — $97/mo + $297 setup\n🚀 Pro — $197/mo + $497 setup\n\nWant me to tell you more about what's included?",
-      cost: "Starter is $97/mo + $297 one-time setup. Pro is $197/mo + $497 setup. No hidden fees.",
-      how: "When someone calls your business and you don't answer, they automatically get a text back within 2 minutes. Something like: 'Hey sorry I missed you — want a free estimate? Text back and I'll reach out tonight.' Most businesses lose 40-60% of leads to voicemail. We fix that.",
-      work: "It connects to your business phone number. When a call is missed, our system fires a personalized text to the caller automatically — no action needed from you.",
-      review: "Our review automation texts your customers after every job asking for a Google review. Most contractors get 5 reviews a year. Our clients get 5 a week. More reviews = higher ranking in Google Maps.",
-      chatbot: "We build a chat widget for your website (like this one!) that answers customer questions 24/7 — pricing, availability, service areas. It captures leads even when you're asleep.",
-      appointment: "We auto-text your customers the day before a scheduled job to confirm. Cuts no-shows and last-minute cancellations significantly.",
-      contact: "You can reach Geo directly at geo@geoflowai.com or book a free 10-min call using the button on this page. We'll show you exactly how it works for your business.",
-      setup: "Setup takes 24 hours. We handle everything — you just need to share your business phone number and a few details about your business.",
-      cancel: "No long-term contracts. Cancel anytime — no questions asked.",
-      trial: "We offer a free demo so you can see exactly how it works before you commit. Just reach out at geo@geoflowai.com.",
-    };
-
-    function getReply(msg) {
-      const m = msg.toLowerCase();
-      if (m.includes('price') || m.includes('pricing') || m.includes('how much') || m.includes('cost') || m.includes('plan')) return responses.price;
-      if (m.includes('how') && (m.includes('work') || m.includes('does'))) return responses.how;
-      if (m.includes('review')) return responses.review;
-      if (m.includes('chat') || m.includes('bot')) return responses.chatbot;
-      if (m.includes('appointment') || m.includes('reminder') || m.includes('remind')) return responses.appointment;
-      if (m.includes('contact') || m.includes('reach') || m.includes('talk') || m.includes('call')) return responses.contact;
-      if (m.includes('setup') || m.includes('start') || m.includes('long') || m.includes('take')) return responses.setup;
-      if (m.includes('cancel') || m.includes('contract')) return responses.cancel;
-      if (m.includes('trial') || m.includes('free') || m.includes('demo')) return responses.trial;
-      return "Good question! For anything specific, you can reach Geo directly at geo@geoflowai.com or book a free 10-min call. He'll walk you through everything. 👍";
-    }
-
-    function addMsg(text, type) {
-      const msgs = document.getElementById('chat-messages');
-      const div = document.createElement('div');
-      div.className = 'msg ' + type;
-      div.innerText = text;
-      msgs.appendChild(div);
-      msgs.scrollTop = msgs.scrollHeight;
-    }
-
-    function showTyping() {
-      const msgs = document.getElementById('chat-messages');
-      const div = document.createElement('div');
-      div.className = 'msg bot typing-indicator';
-      div.innerHTML = '<div class="typing"><span></span><span></span><span></span></div>';
-      msgs.appendChild(div);
-      msgs.scrollTop = msgs.scrollHeight;
-      return div;
-    }
-
-
-    const CHAT_ID = '6027733734';
-
-    async function alertGeo(userMsg, botReply) {
-      const keywords = ['interested','book','call','sign up','start','yes','how much','price','cost','ready','lets go','demo','want'];
-      const isHot = keywords.some(k => userMsg.toLowerCase().includes(k));
-      if (!isHot) return;
-      // Alert handled server-side
-      fetch('https://geoclaw.taild0d486.ts.net/notify', {
-        method: 'POST', headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({ msg: userMsg, reply: botReply.slice(0,100) })
-      }).catch(()=>{});
-    }
-
-    function sendMsg() {
-      const input = document.getElementById('chat-input');
-      const text = input.value.trim();
-      if (!text) return;
-      addMsg(text, 'user');
-      input.value = '';
-      const typing = showTyping();
-      setTimeout(() => {
-        typing.remove();
-        const reply = getReply(text);
-        addMsg(reply, 'bot');
-        alertGeo(text, reply);
-      }, 800 + Math.random() * 600);
-    }
-
-    // Mobile menu toggle script
-    function toggleMobileMenu() {
-      const drawer = document.getElementById('mobile-menu-drawer');
-      drawer.classList.toggle('open');
-    }
-  </script>
-
+  </footer>
 </body>
 </html>
