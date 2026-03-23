@@ -737,7 +737,7 @@
     <a href="book-call.html" class="btn-primary">Book a Free Call</a>
   </div>
 
-  <footer>© 2026 GeoFlow · Serving Philadelphia, South Jersey, Delaware Valley & beyond · getgeoflowai@gmail.com</footer>
+  <footer>© 2026 GeoFlow · Serving Philadelphia, South Jersey, Delaware Valley & beyond · geo@geoflowai.com</footer>
 
   <!-- Chatbot Widget -->
   <style>
@@ -912,10 +912,10 @@
       review: "Our review automation texts your customers after every job asking for a Google review. Most contractors get 5 reviews a year. Our clients get 5 a week. More reviews = higher ranking in Google Maps.",
       chatbot: "We build a chat widget for your website (like this one!) that answers customer questions 24/7 — pricing, availability, service areas. It captures leads even when you're asleep.",
       appointment: "We auto-text your customers the day before a scheduled job to confirm. Cuts no-shows and last-minute cancellations significantly.",
-      contact: "You can reach Geo directly at getgeoflowai@gmail.com or book a free 10-min call using the button on this page. We'll show you exactly how it works for your business.",
+      contact: "You can reach Geo directly at geo@geoflowai.com or book a free 10-min call using the button on this page. We'll show you exactly how it works for your business.",
       setup: "Setup takes 24 hours. We handle everything — you just need to share your business phone number and a few details about your business.",
       cancel: "No long-term contracts. Cancel anytime — no questions asked.",
-      trial: "We offer a free demo so you can see exactly how it works before you commit. Just reach out at getgeoflowai@gmail.com.",
+      trial: "We offer a free demo so you can see exactly how it works before you commit. Just reach out at geo@geoflowai.com.",
     };
 
     function getReply(msg) {
@@ -929,7 +929,7 @@
       if (m.includes('setup') || m.includes('start') || m.includes('long') || m.includes('take')) return responses.setup;
       if (m.includes('cancel') || m.includes('contract')) return responses.cancel;
       if (m.includes('trial') || m.includes('free') || m.includes('demo')) return responses.trial;
-      return "Good question! For anything specific, you can reach Geo directly at getgeoflowai@gmail.com or book a free 10-min call. He'll walk you through everything. 👍";
+      return "Good question! For anything specific, you can reach Geo directly at geo@geoflowai.com or book a free 10-min call. He'll walk you through everything. 👍";
     }
 
     function addMsg(text, type) {
