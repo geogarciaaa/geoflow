@@ -3,532 +3,157 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GeoAI — AI systems that capture leads, automate work, and make money</title>
-  <meta name="description" content="GeoAI builds AI systems for local businesses and operators. GeoFlow captures missed-call leads, automates follow-up, and turns operations into revenue." />
-  <meta property="og:title" content="GeoAI — AI systems that capture leads, automate work, and make money" />
-  <meta property="og:description" content="GeoFlow is our lead recovery system for local businesses. We build AI that saves time and prints money." />
+  <title>GeoFlow — Missed-call recovery for contractors</title>
+  <meta name="description" content="GeoFlow helps contractors recover missed-call leads with instant text-back, lead capture, and tighter follow-up." />
+  <meta property="og:title" content="GeoFlow — Missed-call recovery for contractors" />
+  <meta property="og:description" content="Turn missed calls into booked jobs with an instant text-back and lead recovery system built for local service businesses." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://geoflowai.com" />
   <style>
     :root {
-      --bg: #071019;
-      --bg-2: #0b1420;
-      --panel: rgba(10, 18, 31, 0.82);
-      --panel-2: rgba(15, 23, 42, 0.78);
-      --line: rgba(148, 163, 184, 0.12);
-      --text: #edf4ff;
-      --muted: #96a5be;
-      --green: #4ade80;
-      --green-2: #22c55e;
-      --blue: #60a5fa;
-      --purple: #a78bfa;
-      --shadow: 0 30px 80px rgba(2, 8, 23, 0.45);
-      --radius: 24px;
+      --bg: #0a0f14;
+      --bg-2: #101821;
+      --panel: rgba(14, 20, 28, 0.82);
+      --panel-strong: rgba(16, 24, 34, 0.96);
+      --line: rgba(255, 255, 255, 0.08);
+      --text: #eef3f8;
+      --muted: #9fb0c0;
+      --green: #79f2a3;
+      --lime: #cbff7a;
+      --blue: #79b8ff;
+      --amber: #ffbb70;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+      --radius: 26px;
       --max: 1180px;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at 0% 0%, rgba(96,165,250,.15), transparent 28%),
-        radial-gradient(circle at 100% 0%, rgba(167,139,250,.12), transparent 22%),
-        radial-gradient(circle at 50% 30%, rgba(74,222,128,.08), transparent 30%),
-        linear-gradient(180deg, var(--bg) 0%, #08121d 55%, #0a1420 100%);
       color: var(--text);
-      line-height: 1.6;
+      background:
+        radial-gradient(circle at 15% 0%, rgba(121, 242, 163, 0.10), transparent 22%),
+        radial-gradient(circle at 85% 8%, rgba(121, 184, 255, 0.14), transparent 20%),
+        linear-gradient(180deg, #081017 0%, #0b1219 35%, #0a1016 100%);
+      line-height: 1.55;
       min-height: 100vh;
+      overflow-x: hidden;
     }
-
     a { color: inherit; text-decoration: none; }
     .wrap { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
-
     .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(18px);
-      background: rgba(7, 16, 25, 0.68);
-      border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+      position: sticky; top: 0; z-index: 50; backdrop-filter: blur(18px);
+      background: rgba(8, 14, 20, 0.72); border-bottom: 1px solid rgba(255,255,255,.05);
     }
-
-    nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      padding: 16px 0;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      font-size: 1.05rem;
-    }
-
+    nav { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 16px 0; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; letter-spacing: -0.04em; font-size: 1.06rem; }
     .brand-mark {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, rgba(74,222,128,.2), rgba(96,165,250,.18));
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
+      width: 42px; height: 42px; border-radius: 14px; display: grid; place-items: center;
+      background: linear-gradient(135deg, rgba(121,242,163,.22), rgba(121,184,255,.18));
+      border: 1px solid var(--line); box-shadow: var(--shadow);
     }
-
     .brand span { color: var(--green); }
-
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      align-items: center;
-      color: var(--muted);
-      font-size: 0.94rem;
-    }
-
-    .nav-links a:hover { color: var(--text); }
-
+    .nav-links { display: flex; gap: 24px; align-items: center; color: var(--muted); font-size: 0.94rem; }
+    .nav-links a { transition: color .18s ease, transform .18s ease; }
+    .nav-links a:hover { color: var(--text); transform: translateY(-1px); }
     .nav-cta {
-      padding: 11px 16px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--green), #86efac);
-      color: #04110a;
-      font-weight: 700;
-      box-shadow: 0 10px 30px rgba(74,222,128,.22);
+      padding: 11px 16px; border-radius: 13px; background: linear-gradient(135deg, var(--green), var(--lime));
+      color: #07110a; font-weight: 800; box-shadow: 0 14px 30px rgba(121, 242, 163, 0.18);
     }
-
-    .hero {
-      padding: 78px 0 42px;
+    .hero { padding: 76px 0 36px; }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 22px; align-items: stretch; }
+    .hero-main, .hero-side, .section-card, .signal-card, .proof-card, .ops-card {
+      background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); backdrop-filter: blur(14px); box-shadow: var(--shadow);
     }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap: 26px;
-      align-items: stretch;
+    .hero-main {
+      padding: 34px; position: relative; overflow: hidden; min-height: 560px; display: flex; flex-direction: column; justify-content: space-between;
     }
-
-    .hero-copy, .hero-panel, .card, .mini-card, .proof-card {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(14px);
+    .hero-main::before {
+      content: ""; position: absolute; inset: auto -10% -20% auto; width: 380px; height: 380px;
+      background: radial-gradient(circle, rgba(121,184,255,.16), transparent 62%); pointer-events: none;
     }
-
-    .hero-copy {
-      padding: 34px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .hero-copy::after {
-      content: "";
-      position: absolute;
-      width: 320px;
-      height: 320px;
-      right: -80px;
-      top: -80px;
-      background: radial-gradient(circle, rgba(96,165,250,.16), transparent 62%);
-      pointer-events: none;
-    }
-
     .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.82rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--green);
-      margin-bottom: 18px;
-      padding: 9px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(74,222,128,.16);
-      background: rgba(74,222,128,.08);
+      display: inline-flex; align-items: center; gap: 8px; padding: 9px 12px; border-radius: 999px;
+      font-size: .8rem; text-transform: uppercase; letter-spacing: .15em; color: var(--green);
+      border: 1px solid rgba(121,242,163,.16); background: rgba(121,242,163,.08); margin-bottom: 18px;
     }
-
     h1 {
-      font-size: clamp(2.5rem, 5vw, 4.8rem);
-      line-height: .95;
-      letter-spacing: -0.06em;
-      margin-bottom: 18px;
-      max-width: 12ch;
+      font-size: clamp(2.8rem, 5vw, 5.1rem); line-height: .92; letter-spacing: -0.065em; max-width: 10.2ch; margin-bottom: 18px;
     }
-
-    .headline-accent {
-      background: linear-gradient(135deg, #fff, #a7f3d0 60%, #93c5fd 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .gradient-text {
+      background: linear-gradient(135deg, #ffffff, #d9ffe7 50%, #a7d3ff 100%);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
     }
-
-    .subhead {
-      color: var(--muted);
-      font-size: 1.08rem;
-      max-width: 60ch;
-      margin-bottom: 28px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 28px;
-    }
-
+    .subhead { max-width: 58ch; color: var(--muted); font-size: 1.04rem; margin-bottom: 26px; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
     .btn-primary, .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 14px 20px;
-      border-radius: 14px;
-      font-weight: 700;
-      font-size: 0.98rem;
-      transition: transform .18s ease, opacity .18s ease, border-color .18s ease;
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 20px;
+      border-radius: 14px; font-size: .98rem; font-weight: 800;
     }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--green), #86efac);
-      color: #04110a;
-      box-shadow: 0 16px 36px rgba(74,222,128,.22);
+    .btn-primary { background: linear-gradient(135deg, var(--green), var(--lime)); color: #07110a; box-shadow: 0 16px 34px rgba(121,242,163,.18); }
+    .btn-secondary { background: rgba(255,255,255,.02); border: 1px solid var(--line); color: var(--text); }
+    .hero-foot { display: grid; grid-template-columns: 1.1fr .9fr; gap: 16px; align-items: end; }
+    .metrics-ribbon { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .signal-card { padding: 16px; background: rgba(255,255,255,.03); }
+    .signal-label { color: var(--muted); font-size: .76rem; text-transform: uppercase; letter-spacing: .14em; margin-bottom: 8px; }
+    .signal-value { font-size: 1.6rem; font-weight: 800; letter-spacing: -.05em; }
+    .operator-note { padding: 16px 18px; border-radius: 18px; background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015)); border: 1px solid var(--line); }
+    .operator-note small { display: block; color: var(--muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: .14em; font-size: .72rem; }
+    .hero-side { padding: 22px; background: linear-gradient(180deg, rgba(16,24,34,.98), rgba(9,15,24,.92)); display: grid; gap: 14px; align-content: start; }
+    .ops-top { display: flex; justify-content: space-between; align-items: center; color: var(--muted); text-transform: uppercase; letter-spacing: .15em; font-size: .74rem; }
+    .ops-live { display: inline-flex; align-items: center; gap: 8px; }
+    .dot { width: 10px; height: 10px; border-radius: 999px; background: var(--green); box-shadow: 0 0 0 8px rgba(121,242,163,.1); }
+    .call-feed { display: grid; gap: 10px; }
+    .feed-item, .ops-card { padding: 16px; border-radius: 18px; border: 1px solid var(--line); background: rgba(255,255,255,.025); }
+    .feed-head { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 8px; font-size: .86rem; color: var(--muted); }
+    .feed-body { font-size: .95rem; color: var(--text); }
+    .ops-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .ops-card strong { display: block; font-size: 1.2rem; margin-top: 4px; }
+    .section { padding: 28px 0; }
+    .section-head { display: flex; justify-content: space-between; gap: 20px; align-items: end; margin-bottom: 20px; }
+    .section-head h2 { font-size: clamp(1.7rem, 3vw, 2.7rem); letter-spacing: -.05em; line-height: .96; max-width: 11ch; }
+    .section-head p { max-width: 54ch; color: var(--muted); }
+    .proof-grid, .stack-grid, .steps-grid { display: grid; gap: 16px; }
+    .proof-grid { grid-template-columns: 1.1fr .9fr .9fr; }
+    .stack-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .steps-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .proof-card, .section-card { padding: 22px; }
+    .proof-kicker, .card-kicker { color: var(--muted); font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 12px; }
+    .proof-big { font-size: clamp(2.2rem, 4vw, 3.4rem); letter-spacing: -.06em; line-height: .9; margin-bottom: 12px; font-weight: 800; }
+    .section-card h3 { font-size: 1.15rem; margin-bottom: 12px; letter-spacing: -.03em; }
+    .section-card p, .proof-card p { color: var(--muted); }
+    .timeline { display: grid; gap: 14px; }
+    .timeline-item { display: grid; grid-template-columns: 36px 1fr; gap: 12px; align-items: start; }
+    .timeline-index {
+      width: 36px; height: 36px; border-radius: 12px; display: grid; place-items: center;
+      background: rgba(121,242,163,.08); color: var(--green); border: 1px solid rgba(121,242,163,.16); font-weight: 800;
     }
-
-    .btn-secondary {
-      color: var(--text);
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.02);
+    .split-band {
+      padding: 22px; border-radius: var(--radius); border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(121,242,163,.08), rgba(121,184,255,.08));
+      box-shadow: var(--shadow); display: grid; grid-template-columns: 1.05fr .95fr; gap: 24px; align-items: center;
     }
-
-    .btn-primary:hover, .btn-secondary:hover { transform: translateY(-1px); opacity: .95; }
-
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 12px;
+    .quote { font-size: 1.22rem; line-height: 1.35; letter-spacing: -.03em; max-width: 32ch; }
+    .quote-meta { color: var(--muted); margin-top: 10px; font-size: .92rem; }
+    .cta-box {
+      padding: 26px; border-radius: var(--radius); border: 1px solid rgba(121,242,163,.14);
+      background: linear-gradient(180deg, rgba(14, 20, 28, .95), rgba(14, 20, 28, .85)); box-shadow: var(--shadow);
     }
-
-    .mini-card {
-      padding: 16px 18px;
-      background: rgba(255,255,255,.03);
-    }
-
-    .mini-card .label {
-      color: var(--muted);
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: .14em;
-      margin-bottom: 8px;
-    }
-
-    .mini-card .value {
-      font-size: 1.55rem;
-      font-weight: 800;
-      letter-spacing: -0.05em;
-    }
-
-    .hero-panel {
-      padding: 26px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      background: linear-gradient(180deg, rgba(14,22,36,.96), rgba(11,20,32,.82));
-    }
-
-    .panel-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 6px;
-    }
-
-    .panel-tag {
-      color: var(--muted);
-      font-size: 0.76rem;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-    }
-
-    .live-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background: var(--green);
-      box-shadow: 0 0 0 10px rgba(74,222,128,.08);
-    }
-
-    .flow-card {
-      border-radius: 20px;
-      border: 1px solid rgba(148,163,184,.08);
-      background: rgba(255,255,255,.03);
-      padding: 18px;
-    }
-
-    .flow-card h3 {
-      font-size: 1.08rem;
-      margin-bottom: 6px;
-    }
-
-    .flow-card p {
-      color: var(--muted);
-      font-size: 0.92rem;
-      margin-bottom: 12px;
-    }
-
-    .flow-list {
-      display: grid;
-      gap: 10px;
-      color: #d5e2f4;
-      font-size: 0.92rem;
-    }
-
-    .flow-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      border-radius: 999px;
-      padding: 8px 12px;
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(148,163,184,.08);
-      width: fit-content;
-      color: var(--muted);
-      font-size: 0.84rem;
-      margin-bottom: 14px;
-    }
-
-    .strip {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .proof-card {
-      padding: 18px;
-      background: rgba(255,255,255,.03);
-    }
-
-    .proof-kicker {
-      color: var(--muted);
-      font-size: .76rem;
-      text-transform: uppercase;
-      letter-spacing: .14em;
-      margin-bottom: 10px;
-    }
-
-    .proof-value {
-      font-size: 1.7rem;
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      margin-bottom: 8px;
-    }
-
-    .proof-copy {
-      color: var(--muted);
-      font-size: .92rem;
-    }
-
-    section {
-      padding: 36px 0;
-    }
-
-    .section-head {
-      margin-bottom: 24px;
-      max-width: 760px;
-    }
-
-    .section-kicker {
-      color: var(--green);
-      text-transform: uppercase;
-      letter-spacing: .16em;
-      font-size: .8rem;
-      margin-bottom: 10px;
-      font-weight: 700;
-    }
-
-    .section-title {
-      font-size: clamp(1.9rem, 3vw, 3.1rem);
-      letter-spacing: -0.05em;
-      line-height: 1;
-      margin-bottom: 12px;
-    }
-
-    .section-copy {
-      color: var(--muted);
-      max-width: 60ch;
-      font-size: 1rem;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .card {
-      padding: 22px;
-      background: rgba(255,255,255,.03);
-    }
-
-    .card-icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      font-size: 1.25rem;
-      background: linear-gradient(135deg, rgba(74,222,128,.16), rgba(96,165,250,.16));
-      margin-bottom: 16px;
-      border: 1px solid rgba(148,163,184,.12);
-    }
-
-    .card h3 {
-      font-size: 1.12rem;
-      margin-bottom: 10px;
-      letter-spacing: -0.03em;
-    }
-
-    .card p, .card li {
-      color: var(--muted);
-      font-size: .95rem;
-    }
-
-    .card ul {
-      list-style: none;
-      display: grid;
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    .split {
-      display: grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap: 18px;
-      align-items: stretch;
-    }
-
-    .stack {
-      display: grid;
-      gap: 14px;
-    }
-
-    .system-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 16px 0;
-      border-top: 1px solid rgba(148,163,184,.08);
-    }
-
-    .system-row:first-child { border-top: 0; }
-    .system-row strong { display: block; margin-bottom: 4px; }
-
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-size: .85rem;
-      font-weight: 700;
-      background: rgba(74,222,128,.1);
-      color: #a7f3d0;
-      border: 1px solid rgba(74,222,128,.18);
-      white-space: nowrap;
-      height: fit-content;
-    }
-
-    .product-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
-    .quote {
-      padding: 24px;
-      font-size: 1.08rem;
-      color: #dce7f8;
-      line-height: 1.7;
-    }
-
-    .quote strong { color: #fff; }
-
-    .cta-section {
-      padding: 32px 0 80px;
-    }
-
-    .cta-shell {
-      position: relative;
-      overflow: hidden;
-      padding: 34px;
-    }
-
-    .cta-shell::before {
-      content: "";
-      position: absolute;
-      inset: auto auto -160px -120px;
-      width: 340px;
-      height: 340px;
-      background: radial-gradient(circle, rgba(74,222,128,.14), transparent 62%);
-      pointer-events: none;
-    }
-
-    .cta-grid {
-      position: relative;
-      display: grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap: 20px;
-      align-items: center;
-    }
-
-    .cta-title {
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      letter-spacing: -0.06em;
-      line-height: .96;
-      margin-bottom: 14px;
-    }
-
-    .cta-copy {
-      color: var(--muted);
-      max-width: 54ch;
-      margin-bottom: 24px;
-    }
-
-    .footer {
-      border-top: 1px solid rgba(148,163,184,.08);
-      padding: 26px 0 36px;
-      color: var(--muted);
-      font-size: .92rem;
-    }
-
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    @media (max-width: 1024px) {
-      .hero-grid, .split, .cta-grid, .grid-3, .strip, .product-grid {
-        grid-template-columns: 1fr;
-      }
-      .hero { padding-top: 54px; }
+    .cta-box h2 { font-size: clamp(1.8rem, 3vw, 3rem); line-height: .95; letter-spacing: -.06em; margin-bottom: 12px; max-width: 11ch; }
+    .cta-box p { color: var(--muted); max-width: 50ch; margin-bottom: 18px; }
+    footer { padding: 28px 0 42px; color: var(--muted); font-size: .92rem; }
+    .footer-row { display: flex; justify-content: space-between; gap: 18px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.06); flex-wrap: wrap; }
+    @media (max-width: 980px) {
+      .hero-grid,.proof-grid,.stack-grid,.steps-grid,.split-band,.hero-foot { grid-template-columns: 1fr; }
       .nav-links { display: none; }
+      .hero-main { min-height: auto; }
     }
-
-    @media (max-width: 720px) {
-      .wrap { width: min(var(--max), calc(100% - 20px)); }
-      .hero-copy, .hero-panel, .card, .proof-card, .cta-shell { padding: 22px; }
-      .hero-stats { grid-template-columns: 1fr; }
-      h1 { max-width: 100%; }
-      .topbar nav { padding: 14px 0; }
+    @media (max-width: 640px) {
+      .wrap { width: min(var(--max), calc(100% - 22px)); }
+      .hero-main, .hero-side, .proof-card, .section-card, .cta-box, .split-band { padding: 18px; border-radius: 20px; }
+      .hero-actions { flex-direction: column; }
+      .btn-primary, .btn-secondary { width: 100%; }
+      .metrics-ribbon, .ops-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -536,269 +161,133 @@
   <div class="topbar">
     <div class="wrap">
       <nav>
-        <a class="brand" href="#top">
-          <div class="brand-mark">🦞</div>
-          <div>Geo<span>AI</span></div>
-        </a>
+        <a class="brand" href="index.html"><div class="brand-mark">↗</div><div>Geo<span>Flow</span></div></a>
         <div class="nav-links">
-          <a href="#products">Products</a>
-          <a href="#systems">Systems</a>
-          <a href="#why">Why GeoAI</a>
-          <a href="calculator.html">Calculator</a>
-          <a href="audit.html">Free Audit</a>
-          <a class="nav-cta" href="book-call.html">Book a Call</a>
+          <a href="#system">System</a>
+          <a href="#proof">Proof</a>
+          <a href="#fit">Who it's for</a>
+          <a href="audit.html">Free audit</a>
+          <a href="book-call.html" class="nav-cta">Book a demo</a>
         </div>
       </nav>
     </div>
   </div>
 
-  <main id="top">
-    <section class="hero">
-      <div class="wrap">
-        <div class="hero-grid">
-          <div class="hero-copy">
-            <div class="eyebrow">AI systems for real operators</div>
-            <h1>We build <span class="headline-accent">AI that makes money</span>, captures leads, and runs in the background.</h1>
-            <p class="subhead">
-              GeoAI is the umbrella. GeoFlow is the first product. We design practical AI systems for businesses that want more leads,
-              faster follow-up, better automation, and less wasted time.
-            </p>
-            <div class="hero-actions">
-              <a class="btn-primary" href="book-call.html">Book a Free Call</a>
-              <a class="btn-secondary" href="audit.html">Get a Free Audit</a>
-              <a class="btn-secondary" href="calculator.html">Use Revenue Calculator</a>
-            </div>
-            <div class="hero-stats">
-              <div class="mini-card">
-                <div class="label">Flagship Product</div>
-                <div class="value">GeoFlow</div>
-              </div>
-              <div class="mini-card">
-                <div class="label">Setup Window</div>
-                <div class="value">24 Hours</div>
-              </div>
-              <div class="mini-card">
-                <div class="label">Primary Market</div>
-                <div class="value">Local Biz</div>
-              </div>
-            </div>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-main">
+        <div>
+          <div class="eyebrow">Missed-call recovery for contractors</div>
+          <h1>Turn dead calls into <span class="gradient-text">booked jobs</span></h1>
+          <p class="subhead">GeoFlow gives local service businesses an instant text-back system, tighter follow-up, and a cleaner lead-recovery workflow when nobody can pick up the phone.</p>
+          <div class="hero-actions">
+            <a class="btn-primary" href="book-call.html">See the live demo</a>
+            <a class="btn-secondary" href="audit.html">Get a free missed-call audit</a>
           </div>
-
-          <div class="hero-panel">
-            <div class="panel-top">
-              <div class="panel-tag">Live system preview</div>
-              <div class="live-dot"></div>
-            </div>
-
-            <div class="flow-card">
-              <div class="flow-pill">GeoFlow • lead recovery engine</div>
-              <h3>Missed call in. Text goes out. Lead stays alive.</h3>
-              <p>Built for contractors, service businesses, and anyone losing revenue to voicemail.</p>
-              <div class="flow-list">
-                <div>📞 Prospect calls and no one answers</div>
-                <div>⚡ GeoFlow texts back in minutes</div>
-                <div>💬 Lead replies instead of disappearing</div>
-                <div>📈 Business recovers revenue that used to die in voicemail</div>
-              </div>
-            </div>
-
-            <div class="strip">
-              <div class="proof-card">
-                <div class="proof-kicker">Lead Capture</div>
-                <div class="proof-value">24/7</div>
-                <div class="proof-copy">No sleep. No missed after-hours follow-up.</div>
-              </div>
-              <div class="proof-card">
-                <div class="proof-kicker">Use Case</div>
-                <div class="proof-value">Missed Calls</div>
-                <div class="proof-copy">Fastest money leak to fix for local businesses.</div>
-              </div>
-              <div class="proof-card">
-                <div class="proof-kicker">Built For</div>
-                <div class="proof-value">Operators</div>
-                <div class="proof-copy">Simple systems that actually matter.</div>
-              </div>
-              <div class="proof-card">
-                <div class="proof-kicker">Contact</div>
-                <div class="proof-value">geo@</div>
-                <div class="proof-copy">geo@geoflowai.com</div>
-              </div>
-            </div>
+        </div>
+        <div class="hero-foot">
+          <div class="metrics-ribbon">
+            <div class="signal-card"><div class="signal-label">Response speed</div><div class="signal-value">~instant</div></div>
+            <div class="signal-card"><div class="signal-label">Lead capture</div><div class="signal-value">24/7</div></div>
+            <div class="signal-card"><div class="signal-label">Setup</div><div class="signal-value">Fast</div></div>
           </div>
+          <div class="operator-note"><small>Operator angle</small>GeoFlow is built for businesses where the owner is in the field, the phone rings at the wrong time, and every missed call can become lost revenue.</div>
         </div>
       </div>
-    </section>
 
-    <section id="products">
-      <div class="wrap">
-        <div class="section-head">
-          <div class="section-kicker">Products & services</div>
-          <h2 class="section-title">Start with one money leak. Then build the whole machine.</h2>
-          <p class="section-copy">
-            GeoAI is the brand. GeoFlow is the wedge. We start by fixing one painful revenue problem, then expand into automation,
-            follow-up, website AI, review systems, and internal tools.
-          </p>
+      <div class="hero-side">
+        <div class="ops-top"><span>Live system view</span><span class="ops-live"><span class="dot"></span> Active</span></div>
+        <div class="call-feed">
+          <div class="feed-item"><div class="feed-head"><span>Incoming call</span><span>11:02 AM</span></div><div class="feed-body">New homeowner call comes in while the crew is on a roof.</div></div>
+          <div class="feed-item"><div class="feed-head"><span>Auto text-back</span><span>11:02 AM</span></div><div class="feed-body">Lead gets an immediate message instead of voicemail silence.</div></div>
+          <div class="feed-item"><div class="feed-head"><span>Reply captured</span><span>11:04 AM</span></div><div class="feed-body">Conversation is logged so follow-up can happen before the lead moves on.</div></div>
         </div>
-        <div class="grid-3">
-          <div class="card">
-            <div class="card-icon">🟢</div>
-            <h3>GeoFlow</h3>
-            <p>Missed-call auto text back, reply capture, lead dashboard, and follow-up flow for local businesses that hate losing easy money.</p>
-            <ul>
-              <li>Missed call text-back</li>
-              <li>Lead dashboard</li>
-              <li>Reply capture</li>
-              <li>Fast client setup</li>
-            </ul>
-          </div>
-          <div class="card">
-            <div class="card-icon">🤖</div>
-            <h3>Custom AI Automation</h3>
-            <p>We build internal tools, lead routing, inbox workflows, follow-up systems, and operator-facing AI that reduces admin time.</p>
-            <ul>
-              <li>Appointment reminders</li>
-              <li>Review generation flows</li>
-              <li>Website chat systems</li>
-              <li>Back-office automation</li>
-            </ul>
-          </div>
-          <div class="card">
-            <div class="card-icon">📊</div>
-            <h3>Operator Systems</h3>
-            <p>Beyond websites, we think in systems: dashboards, bots, AI workflows, and practical infrastructure that keeps working after launch.</p>
-            <ul>
-              <li>Dashboards</li>
-              <li>Alerts</li>
-              <li>Automation logic</li>
-              <li>Practical deployment</li>
-            </ul>
-          </div>
+        <div class="ops-grid">
+          <div class="ops-card"><div class="proof-kicker">Best fit</div><strong>Roofing / HVAC / Plumbing</strong></div>
+          <div class="ops-card"><div class="proof-kicker">Use case</div><strong>Recover lost inbound leads</strong></div>
+          <div class="ops-card"><div class="proof-kicker">Offer</div><strong>Setup + monthly management</strong></div>
+          <div class="ops-card"><div class="proof-kicker">Outcome</div><strong>More callbacks. Less leakage.</strong></div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="systems">
-      <div class="wrap split">
-        <div class="card">
-          <div class="section-kicker">How it works</div>
-          <h2 class="section-title">A cleaner system for businesses that don’t have time to babysit software.</h2>
-          <p class="section-copy" style="margin-bottom: 18px;">
-            We don’t sell “AI” as a buzzword. We build a tight system, plug it into the business, and make it easy to understand.
-          </p>
-          <div class="stack">
-            <div class="system-row">
-              <div>
-                <strong>1. Find the leak</strong>
-                <div class="section-copy">Missed calls, no-shows, weak follow-up, bad lead handling, or website dead ends.</div>
-              </div>
-              <div class="status-badge">Audit</div>
-            </div>
-            <div class="system-row">
-              <div>
-                <strong>2. Build the fix</strong>
-                <div class="section-copy">SMS flows, call capture, dashboards, reminders, or web automation — whatever solves the actual problem.</div>
-              </div>
-              <div class="status-badge">Build</div>
-            </div>
-            <div class="system-row">
-              <div>
-                <strong>3. Keep it live</strong>
-                <div class="section-copy">Once it’s in place, it should run quietly in the background and keep producing value.</div>
-              </div>
-              <div class="status-badge">Operate</div>
-            </div>
-          </div>
-        </div>
+  <section class="section" id="proof">
+    <div class="wrap">
+      <div class="section-head">
+        <div><h2>Built around one ugly truth</h2></div>
+        <p>Most local service businesses do not need more leads first. They need to stop dropping the ones already calling.</p>
+      </div>
+      <div class="proof-grid">
+        <div class="proof-card"><div class="proof-kicker">Why this exists</div><div class="proof-big">Missed call = lost revenue</div><p>If the owner is driving, on-site, or after-hours, the lead often bounces to the next contractor in minutes.</p></div>
+        <div class="proof-card"><div class="proof-kicker">What GeoFlow fixes</div><p>Instant text-back, lead capture, and cleaner follow-up so inbound intent doesn’t vanish into voicemail.</p></div>
+        <div class="proof-card"><div class="proof-kicker">How it feels</div><p>Less chaos, tighter response time, and a system that helps busy operators look more on top of things without hiring office staff.</p></div>
+      </div>
+    </div>
+  </section>
 
-        <div class="stack">
-          <div class="card">
-            <div class="section-kicker">Why GeoFlow first</div>
-            <h3 style="font-size:1.35rem; letter-spacing:-0.04em; margin-bottom:10px;">Because missed calls are easy money.</h3>
-            <p class="section-copy">
-              A lot of local businesses don’t need some giant enterprise AI rollout. They need one simple fix that pays for itself fast.
-              GeoFlow is that fix.
-            </p>
-          </div>
-          <div class="card quote">
-            <strong>“Someone calls. No answer. They move on.”</strong><br><br>
-            That’s what we’re attacking first — not because it’s trendy, but because it’s common, expensive, and easy to solve.
-          </div>
+  <section class="section" id="system">
+    <div class="wrap">
+      <div class="section-head">
+        <div><h2>The system is simple on purpose</h2></div>
+        <p>No bloated CRM pitch. No giant software stack. Just the pieces that matter when a real customer is trying to reach you.</p>
+      </div>
+      <div class="stack-grid">
+        <div class="section-card"><div class="card-kicker">01 / Instant response</div><h3>Missed-call text-back</h3><p>The caller gets a reply fast, so the conversation starts while intent is still hot.</p></div>
+        <div class="section-card"><div class="card-kicker">02 / Lead visibility</div><h3>Reply capture + logging</h3><p>Messages and lead details stay organized so nothing disappears into a messy inbox.</p></div>
+        <div class="section-card"><div class="card-kicker">03 / Follow-up flow</div><h3>Cleaner handoff for the owner</h3><p>When you're free, you already know who reached out, what they said, and who needs the callback first.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="fit">
+    <div class="wrap split-band">
+      <div>
+        <div class="card-kicker">Best-fit customer</div>
+        <div class="quote">If you get inbound calls but can’t always answer immediately, GeoFlow is built for you.</div>
+        <div class="quote-meta">Especially strong fit for roofing, HVAC, plumbing, electricians, junk removal, garage door companies, and locksmiths.</div>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-index">1</div><div><strong>Someone calls</strong><p class="muted">Your team is on-site, after-hours, or already tied up.</p></div></div>
+        <div class="timeline-item"><div class="timeline-index">2</div><div><strong>GeoFlow replies instantly</strong><p class="muted">The lead gets a useful text instead of silence.</p></div></div>
+        <div class="timeline-item"><div class="timeline-index">3</div><div><strong>You follow up with context</strong><p class="muted">Now you’re calling back with momentum instead of guessing what happened.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div><h2>Fast to understand. Easier to trust.</h2></div>
+        <p>That’s the point. GeoFlow should feel like a practical operating upgrade, not another “marketing thing” you have to babysit.</p>
+      </div>
+      <div class="steps-grid">
+        <div class="section-card"><div class="card-kicker">Step 1</div><h3>Quick audit</h3><p>We look at how leads are coming in and where missed opportunities are happening.</p></div>
+        <div class="section-card"><div class="card-kicker">Step 2</div><h3>Message setup</h3><p>The missed-call text is tailored to your business and tone.</p></div>
+        <div class="section-card"><div class="card-kicker">Step 3</div><h3>Go live</h3><p>The workflow is tested so you can see it work before relying on it.</p></div>
+        <div class="section-card"><div class="card-kicker">Step 4</div><h3>Recover more leads</h3><p>More callbacks happen with actual context and less leakage.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="cta-box">
+        <div class="card-kicker">See if this fits your business</div>
+        <h2>Get the missed-call flow in front of you</h2>
+        <p>Book a short demo if you want to see the system in action, or request a free audit if you want a quick look at where your current lead response is probably leaking money.</p>
+        <div class="hero-actions" style="margin-bottom:0;">
+          <a class="btn-primary" href="book-call.html">Book a demo</a>
+          <a class="btn-secondary" href="audit.html">Request a free audit</a>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="why">
-      <div class="wrap">
-        <div class="section-head">
-          <div class="section-kicker">Why GeoAI</div>
-          <h2 class="section-title">Premium enough to trust. Practical enough to buy.</h2>
-          <p class="section-copy">
-            The goal isn’t to look like a giant agency. The goal is to look sharp, move fast, and build systems that punch above their size.
-          </p>
-        </div>
-        <div class="product-grid">
-          <div class="card">
-            <div class="card-icon">⚡</div>
-            <h3>Fast execution</h3>
-            <p>No endless decks, no bloated process. We move from problem to deployed system quickly.</p>
-          </div>
-          <div class="card">
-            <div class="card-icon">🧠</div>
-            <h3>Operator mindset</h3>
-            <p>We care about ROI, not AI theater. If it doesn’t save time or make money, it’s noise.</p>
-          </div>
-          <div class="card">
-            <div class="card-icon">📞</div>
-            <h3>Built for local businesses</h3>
-            <p>Contractors, service businesses, and operators who need tighter lead handling more than fancy jargon.</p>
-          </div>
-          <div class="card">
-            <div class="card-icon">🔒</div>
-            <h3>Clean systems</h3>
-            <p>Hosted, monitored, and built to run without constant hand-holding once they’re in place.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta-section">
-      <div class="wrap">
-        <div class="card cta-shell">
-          <div class="cta-grid">
-            <div>
-              <div class="section-kicker">Let’s make this real</div>
-              <h2 class="cta-title">If you’re losing leads, wasting admin time, or stuck in follow-up chaos, let’s fix it.</h2>
-              <p class="cta-copy">
-                Book a quick call, request a free audit, or run the calculator and see what the leak might actually be costing you.
-              </p>
-              <div class="hero-actions">
-                <a class="btn-primary" href="book-call.html">Book a Free Call</a>
-                <a class="btn-secondary" href="audit.html">Request Free Audit</a>
-              </div>
-            </div>
-            <div class="card" style="background: rgba(255,255,255,.035);">
-              <div class="section-kicker">Direct contact</div>
-              <h3 style="font-size:1.35rem; letter-spacing:-0.04em; margin-bottom:10px;">Talk directly to Geo.</h3>
-              <p class="section-copy" style="margin-bottom:16px;">
-                Want to skip the fluff? Email directly and we’ll figure out whether GeoFlow or a custom build makes more sense.
-              </p>
-              <div class="flow-pill">geo@geoflowai.com</div>
-              <div class="flow-list">
-                <div>• Philadelphia based</div>
-                <div>• Works remote too</div>
-                <div>• Fast builds, practical systems</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="wrap footer-inner">
-      <div>© 2026 GeoAI / GeoFlow · Philadelphia, PA · geo@geoflowai.com</div>
-      <div><a href="book-call.html">Book a Call</a> · <a href="audit.html">Free Audit</a> · <a href="calculator.html">Calculator</a></div>
+  <footer>
+    <div class="wrap footer-row">
+      <div>GeoFlow — missed-call recovery for local service businesses</div>
+      <div><a href="audit.html">Free audit</a> · <a href="book-call.html">Book call</a></div>
     </div>
   </footer>
 </body>
