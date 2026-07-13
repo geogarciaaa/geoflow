@@ -7,50 +7,53 @@
   <meta name="description" content="Book a quick 10-minute discovery call with Geo to see how GeoFlow can help your business capture more leads." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/style.css" />
   <style>
     .split {
       display: grid;
       grid-template-columns: 0.9fr 1.1fr;
-      gap: 48px;
+      gap: 64px;
       align-items: start;
-      padding: 72px 0 90px;
+      padding: 90px 0 110px;
     }
 
-    .split h1 { margin: 18px 0 16px; }
-    .split .lead { margin-bottom: 32px; }
+    .split h1 { margin: 26px 0 18px; }
+    .split .lead { margin-bottom: 40px; }
 
     .benefit-box {
-      border: 1px solid rgba(74, 222, 128, 0.3);
+      border: var(--bw) solid var(--ink);
       border-radius: var(--radius);
-      padding: 24px;
-      background:
-        radial-gradient(ellipse 80% 100% at 50% -30%, rgba(74, 222, 128, 0.1), transparent 70%),
-        rgba(12, 20, 30, 0.7);
+      padding: 28px;
+      background: var(--yellow);
+      box-shadow: var(--shadow);
+      transform: rotate(-1deg);
     }
 
     .benefit-box h3 {
       font-family: var(--font-mono);
       font-size: 0.72rem;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--green);
-      margin-bottom: 16px;
+      font-weight: 700;
+      margin-bottom: 18px;
     }
 
     @media (max-width: 900px) {
-      .split { grid-template-columns: 1fr; gap: 36px; padding: 48px 0 64px; }
+      .split { grid-template-columns: 1fr; gap: 48px; padding: 56px 0 72px; }
+      .benefit-box { transform: none; }
     }
   </style>
 </head>
 <body>
 
+  <div class="progress"></div>
+
   <header class="nav">
     <div class="container nav-inner">
       <a class="brand" href="index.html"><span class="brand-mark">↗</span><span>Geo<em>Flow</em></span></a>
       <nav class="nav-links">
-        <a href="index.html#before-after">Before vs. after</a>
+        <a href="index.html#before-after">Before &amp; after</a>
         <a href="index.html#how-it-works">How it works</a>
         <a href="about.html">About</a>
         <a href="blog.html">Blog</a>
@@ -60,23 +63,23 @@
   </header>
 
   <div class="container split">
-    <div>
-      <span class="kicker">Book a call · 10 minutes</span>
-      <h1 class="display-xl">Ready to capture more <span class="grad-text">leads?</span></h1>
-      <p class="lead">Fill out the form and I'll personally reach out to schedule a quick 10-minute call to show you exactly how GeoFlow works.</p>
+    <div data-anim="left">
+      <span class="sticker">🗓️ 10 minutes, no pitch deck</span>
+      <h1 class="display-xl">Ready to capture more <span class="hl">leads?</span></h1>
+      <p class="lead">Fill out the form and I'll personally reach out to schedule a quick 10-minute call and show you exactly how GeoFlow works.</p>
 
       <div class="benefit-box">
         <h3>On this call, we'll</h3>
         <ul class="checklist">
-          <li>Quickly understand your business needs</li>
-          <li>Show you a live demo of GeoFlow in action</li>
-          <li>Explain how it can recover lost leads for you</li>
-          <li>Answer all your questions (no pressure, no pitch deck)</li>
+          <li>Understand your business quickly</li>
+          <li>Show a live demo of GeoFlow in action</li>
+          <li>Map how it recovers lost leads for you</li>
+          <li>Answer all your questions — no pressure</li>
         </ul>
       </div>
     </div>
 
-    <div class="form-card">
+    <div class="form-card" data-anim="right" data-delay="1">
       <form id="call-form">
         <div class="form-row">
           <div class="field">
@@ -136,7 +139,7 @@
       <div class="footer-grid">
         <div>
           <a class="brand" href="index.html"><span class="brand-mark">↗</span><span>Geo<em>Flow</em></span></a>
-          <p class="footer-blurb">Missed-call recovery for contractors and local service teams. When you can't answer, GeoFlow does.</p>
+          <p class="footer-blurb">When you can't answer, GeoFlow does. Missed-call recovery for the trades.</p>
         </div>
         <div class="footer-col">
           <h4>Product</h4>
@@ -154,7 +157,7 @@
         <div class="footer-col">
           <h4>Contact</h4>
           <a href="mailto:geo@geoflowai.com">geo@geoflowai.com</a>
-          <span style="display:block; padding: 4px 0; color: var(--muted); font-size: 0.9rem;">Philadelphia, PA</span>
+          <span style="display:block; padding: 5px 0; color: rgba(250,243,232,0.7); font-size: 0.92rem;">Philadelphia, PA</span>
         </div>
       </div>
       <div class="footer-mega">GEOFLOW</div>
