@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pricing — GeoFlow</title>
+  <meta name="description" content="Simple, transparent GeoFlow pricing: $97/month flat. No per-lead fees, no per-text charges, no contracts. Recover one $300 job and it's already 3× paid back." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <style>
+    .page-hero { padding: 84px 0 20px; max-width: 720px; text-align: center; margin: 0 auto; }
+    .page-hero h1 { margin: 22px 0 16px; }
+    .page-hero .lead { margin: 0 auto; }
+
+    .no-fees { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 26px; }
+    .no-fee { font-family: var(--font-display); font-weight: 700; font-size: 0.86rem; padding: 9px 15px; border: var(--bw) solid var(--ink); border-radius: 999px; background: var(--card); box-shadow: var(--shadow-sm); }
+    .no-fee b { color: var(--red); }
+
+    .price-grid { display: grid; grid-template-columns: 1fr 0.9fr; gap: 24px; align-items: stretch; }
+    .price-card { display: flex; flex-direction: column; }
+    .price { display: flex; align-items: baseline; gap: 6px; margin: 16px 0 6px; }
+    .price .amt { font-family: var(--font-display); font-weight: 700; font-size: 4rem; letter-spacing: -0.04em; color: var(--orange); line-height: 1; }
+    .price .per { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--muted); }
+    .price-sub { margin-bottom: 18px; }
+    .price-aside { display: flex; flex-direction: column; justify-content: center; }
+
+    /* embedded calculator */
+    .calc-card { max-width: 640px; margin: 0 auto; }
+    .slider-row { display: flex; align-items: center; gap: 18px; }
+    input[type="range"] { flex: 1; -webkit-appearance: none; appearance: none; height: 12px; border-radius: 8px; border: var(--bw) solid var(--ink); background: linear-gradient(90deg, var(--orange) var(--fill, 50%), var(--paper) var(--fill, 50%)); outline: none; }
+    input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 26px; height: 26px; border-radius: 50%; background: var(--yellow); border: var(--bw) solid var(--ink); box-shadow: 2px 2px 0 var(--ink); cursor: pointer; }
+    input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: var(--yellow); border: 2px solid var(--ink); cursor: pointer; }
+    .slider-val { min-width: 84px; text-align: right; font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; color: var(--orange); letter-spacing: -0.02em; }
+    .result { margin-top: 34px; border-top: 2px dashed rgba(23,19,12,0.3); padding-top: 30px; }
+    .loss-amount { text-align: center; margin-bottom: 26px; }
+    .loss-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700; margin-bottom: 12px; }
+    .loss-number { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 4.2rem); font-weight: 700; color: var(--red); letter-spacing: -0.05em; line-height: 1; }
+    .loss-sub { font-family: var(--font-hand); font-size: 1.35rem; color: var(--muted); margin-top: 10px; transform: rotate(-1deg); display: inline-block; }
+    .breakdown { background: var(--paper); border: var(--bw) solid var(--ink); border-radius: 14px; padding: 20px 24px; margin-bottom: 26px; box-shadow: var(--shadow-sm); }
+    .breakdown-row { display: flex; justify-content: space-between; font-size: 0.9rem; padding: 9px 0; border-bottom: 1px dashed rgba(23,19,12,0.25); color: var(--muted); }
+    .breakdown-row:last-child { border-bottom: none; }
+    .breakdown-row span:last-child { color: var(--ink); font-weight: 700; font-family: var(--font-display); }
+    .fix-box { border: var(--bw) solid var(--ink); border-radius: 16px; padding: 26px; text-align: center; background: var(--yellow); box-shadow: var(--shadow); }
+    .fix-box p { font-size: 0.98rem; color: rgba(23,19,12,0.8); margin-bottom: 18px; }
+    .fix-box strong { color: var(--ink); font-family: var(--font-display); }
+
+    @media (max-width: 900px) { .price-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <div class="progress"></div>
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html"><span class="brand-mark"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M12 2.4c-3.5 0-6.4 2.8-6.4 6.3 0 4.6 6.4 12.1 6.4 12.1s6.4-7.5 6.4-12.1c0-3.5-2.9-6.3-6.4-6.3Z" fill="#fff"/><path d="M8.4 9.6c1.2-1.9 2.4-1.9 3.6 0s2.4 1.9 3.6 0" stroke="#ff5a1f" stroke-width="1.8" stroke-linecap="round"/></svg></span><span>Geo<em>Flow</em></span></a>
+      <nav class="nav-links">
+        <a href="how-it-works.html">How it works</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Blog</a>
+        <a class="btn btn--sm" href="calculator.html">Calculate your loss</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="section" style="padding-bottom: 40px;">
+    <div class="container page-hero" data-anim="up">
+      <span class="sticker sticker--orange">🏷 simple, honest pricing</span>
+      <h1 class="display-xl">One flat rate. <span class="hl">$97 a month.</span></h1>
+      <p class="lead">Priced to pay for itself. It scales with your business without punishing you for growing.</p>
+      <div class="no-fees">
+        <span class="no-fee"><b>No</b> per-lead fees</span>
+        <span class="no-fee"><b>No</b> per-text charges</span>
+        <span class="no-fee"><b>No</b> contracts</span>
+      </div>
+    </div>
+
+    <div class="container" style="margin-top: 20px;">
+      <div class="price-grid">
+        <div class="card price-card" data-anim="left">
+          <span class="sticker sticker--orange">most popular</span>
+          <div class="price"><span class="amt">$97</span><span class="per">/ month</span></div>
+          <p class="price-sub muted">Everything you need to stop losing leads.</p>
+          <ul class="checklist">
+            <li>Unlimited missed-call text-backs</li>
+            <li>Human-written, on-brand message templates</li>
+            <li>Callback queue delivered to your phone</li>
+            <li>Human handoff on complex questions</li>
+            <li>Sends leads into Housecall Pro, Jobber, ServiceTitan, or SMS/email</li>
+            <li>Monthly optimization — cancel anytime</li>
+          </ul>
+          <a class="btn" href="book-call.html" style="width: 100%; margin-top: 22px;">Book a demo</a>
+        </div>
+        <div class="card card--ink price-aside" data-anim="right" data-delay="1">
+          <h3>Does it pay for itself?</h3>
+          <p>Recover a single <strong style="color:var(--yellow)">$300 job</strong> in a month and GeoFlow is already <strong style="color:var(--yellow)">3× paid back</strong>. Most teams recover several.</p>
+          <p style="margin-top: 16px;"><span class="sticker">One saved job &gt; a month of GeoFlow</span></p>
+          <a class="btn btn--yellow" href="#calc" style="margin-top: 22px;">See your number ↓</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="cut-line" />
+
+  <section class="section" id="calc">
+    <div class="container">
+      <div class="section-head" data-anim="up" style="text-align: center; margin-inline: auto;">
+        <span class="sticker sticker--blue sticker--tilt-r">🧮 run your own numbers</span>
+        <h2 class="display-lg">What are missed calls costing you?</h2>
+        <p style="margin-inline: auto;">Move the sliders. Then look at that number sitting next to $97/mo.</p>
+      </div>
+
+      <div class="form-card calc-card" data-anim="up">
+        <div class="field">
+          <label>How many calls do you get per week?</label>
+          <div class="slider-row"><input type="range" id="calls" min="1" max="100" value="20" oninput="update()"><div class="slider-val" id="calls-val">20 calls</div></div>
+        </div>
+        <div class="field">
+          <label>What % of calls do you miss?</label>
+          <div class="hint">Most contractors miss 40-60% while on the job</div>
+          <div class="slider-row"><input type="range" id="miss-rate" min="5" max="90" value="50" oninput="update()"><div class="slider-val" id="miss-val">50%</div></div>
+        </div>
+        <div class="field">
+          <label>What % of callers DON'T leave a voicemail?</label>
+          <div class="hint">Studies say ~62% hang up without a message</div>
+          <div class="slider-row"><input type="range" id="lost-rate" min="10" max="90" value="62" oninput="update()"><div class="slider-val" id="lost-val">62%</div></div>
+        </div>
+        <div class="field">
+          <label>Average job value?</label>
+          <div class="slider-row"><input type="range" id="job-value" min="100" max="10000" step="50" value="800" oninput="update()"><div class="slider-val" id="job-val">$800</div></div>
+        </div>
+        <div class="field">
+          <label>What % would have booked if you answered?</label>
+          <div class="slider-row"><input type="range" id="close-rate" min="5" max="80" value="30" oninput="update()"><div class="slider-val" id="close-val">30%</div></div>
+        </div>
+
+        <div class="result" id="result">
+          <div class="loss-amount">
+            <div class="loss-label">Estimated monthly revenue lost</div>
+            <div class="loss-number" id="loss-number">$0</div>
+            <div class="loss-sub" id="loss-sub">from missed calls per month</div>
+          </div>
+          <div class="breakdown" id="breakdown"></div>
+          <div class="fix-box">
+            <p>GeoFlow recovers an estimated <strong id="recover-est">$0</strong>/month — for a flat <strong>$97</strong>.</p>
+            <a href="book-call.html" class="btn">Book a demo →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="index.html"><span class="brand-mark"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M12 2.4c-3.5 0-6.4 2.8-6.4 6.3 0 4.6 6.4 12.1 6.4 12.1s6.4-7.5 6.4-12.1c0-3.5-2.9-6.3-6.4-6.3Z" fill="#fff"/><path d="M8.4 9.6c1.2-1.9 2.4-1.9 3.6 0s2.4 1.9 3.6 0" stroke="#ff5a1f" stroke-width="1.8" stroke-linecap="round"/></svg></span><span>Geo<em>Flow</em></span></a>
+          <p class="footer-blurb">When you can't answer, GeoFlow does. Missed-call recovery for the trades.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="how-it-works.html">How it works</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="calculator.html">Lost-revenue calculator</a>
+          <a href="audit.html">Free audit</a>
+          <a href="book-call.html">Book a demo</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="about.html">About</a>
+          <a href="blog.html">Blog</a>
+          <a href="https://www.linkedin.com/in/geovannigarciarosales/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="mailto:geo@geoflowai.com">geo@geoflowai.com</a>
+          <span style="display:block; padding: 5px 0; color: rgba(250,243,232,0.7); font-size: 0.92rem;">Philadelphia, PA</span>
+        </div>
+      </div>
+      <div class="footer-mega">GEOFLOW</div>
+      <div class="footer-legal">
+        <span>© <span data-year>2026</span> GeoFlow · Philadelphia, PA</span>
+        <span>$97/mo · no contracts</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/site.js"></script>
+  <script>
+    function fmt(n) { return '$' + Math.round(n).toLocaleString(); }
+    function paintSlider(el) { var pct = (el.value - el.min) / (el.max - el.min) * 100; el.style.setProperty('--fill', pct + '%'); }
+    function update() {
+      const calls = +document.getElementById('calls').value;
+      const missRate = +document.getElementById('miss-rate').value / 100;
+      const lostRate = +document.getElementById('lost-rate').value / 100;
+      const jobValue = +document.getElementById('job-value').value;
+      const closeRate = +document.getElementById('close-rate').value / 100;
+      document.querySelectorAll('input[type="range"]').forEach(paintSlider);
+      document.getElementById('calls-val').textContent = calls + ' calls';
+      document.getElementById('miss-val').textContent = Math.round(missRate * 100) + '%';
+      document.getElementById('lost-val').textContent = Math.round(lostRate * 100) + '%';
+      document.getElementById('job-val').textContent = '$' + jobValue.toLocaleString();
+      document.getElementById('close-val').textContent = Math.round(closeRate * 100) + '%';
+      const missedPerWeek = calls * missRate;
+      const lostLeadsPerWeek = missedPerWeek * lostRate;
+      const lostJobsPerWeek = lostLeadsPerWeek * closeRate;
+      const lostRevenuePerWeek = lostJobsPerWeek * jobValue;
+      const lostPerMonth = lostRevenuePerWeek * 4.3;
+      const lostPerYear = lostPerMonth * 12;
+      const recoverEst = lostPerMonth * 0.6;
+      document.getElementById('loss-number').textContent = fmt(lostPerMonth);
+      document.getElementById('loss-sub').textContent = `that's ${fmt(lostPerYear)} per year 😬`;
+      document.getElementById('recover-est').textContent = fmt(recoverEst);
+      document.getElementById('breakdown').innerHTML = `
+        <div class="breakdown-row"><span>Calls per week</span><span>${calls}</span></div>
+        <div class="breakdown-row"><span>Missed calls/week</span><span>${Math.round(missedPerWeek)}</span></div>
+        <div class="breakdown-row"><span>Lost leads/week (hung up)</span><span>${Math.round(lostLeadsPerWeek)}</span></div>
+        <div class="breakdown-row"><span>Lost jobs/week</span><span>${lostJobsPerWeek.toFixed(1)}</span></div>
+        <div class="breakdown-row"><span>Lost revenue/week</span><span>${fmt(lostRevenuePerWeek)}</span></div>
+        <div class="breakdown-row"><span style="color:var(--red);font-weight:700;">Lost revenue/month</span><span style="color:var(--red);">${fmt(lostPerMonth)}</span></div>`;
+    }
+    update();
+  </script>
+</body>
+</html>

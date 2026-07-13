@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How it works — GeoFlow</title>
+  <meta name="description" content="How GeoFlow recovers missed calls in four steps, hands complex questions to a human, and drops leads into the tools you already use — Housecall Pro, Jobber, ServiceTitan, or plain SMS and email." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <style>
+    .page-hero { padding: 84px 0 20px; max-width: 760px; }
+    .page-hero h1 { margin: 22px 0 16px; }
+
+    /* steps */
+    .step-num {
+      width: 46px; height: 46px; display: grid; place-items: center;
+      font-family: var(--font-display); font-weight: 700; font-size: 1.1rem;
+      border: var(--bw) solid var(--ink); border-radius: 12px; background: var(--blue); color: #fff;
+      box-shadow: var(--shadow-sm); transform: rotate(-3deg);
+    }
+    .step-card:nth-child(2) .step-num { background: var(--orange); transform: rotate(2deg); }
+    .step-card:nth-child(3) .step-num { background: var(--yellow); color: var(--ink); transform: rotate(-2deg); }
+    .step-card:nth-child(4) .step-num { background: var(--green); transform: rotate(3deg); }
+
+    /* phone + dashboard */
+    .phone-wrap { position: relative; display: grid; place-items: center; }
+    .phone { position: relative; width: min(360px, 100%); border: var(--bw) solid var(--ink); border-radius: 40px; padding: 14px; background: var(--card); box-shadow: 10px 10px 0 var(--ink); transform: rotate(1.4deg); }
+    .phone-screen { border-radius: 28px; background: var(--paper); border: var(--bw) solid var(--ink); padding: 16px 14px; overflow: hidden; }
+    .dash-head { display: flex; align-items: center; justify-content: space-between; padding: 2px 2px 14px; font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; }
+    .dash-head .badge { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em; background: var(--orange); color: #fff; border: 2px solid var(--ink); border-radius: 999px; padding: 3px 9px; font-weight: 700; }
+    .dash-row { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center; border: var(--bw) solid var(--ink); border-radius: 13px; background: var(--card); padding: 11px 12px; margin-bottom: 9px; box-shadow: 2px 2px 0 var(--ink); }
+    .dash-row.top { background: #fff6d6; }
+    .dash-row .tag { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; border: 1.5px solid var(--ink); border-radius: 6px; padding: 2px 6px; display: inline-block; margin-bottom: 5px; }
+    .tag.urgent { background: var(--red); color: #fff; }
+    .tag.new { background: var(--blue); color: #fff; }
+    .tag.quote { background: var(--yellow); }
+    .dash-row .desc { font-size: 0.82rem; line-height: 1.3; }
+    .dash-row .desc b { font-family: var(--font-display); }
+    .dash-row .when { font-size: 0.66rem; color: var(--muted); margin-top: 3px; }
+    .dash-row .call { font-size: 0.7rem; font-weight: 700; font-family: var(--font-display); background: var(--green); color: #fff; border: 2px solid var(--ink); border-radius: 9px; padding: 7px 10px; box-shadow: 1px 1px 0 var(--ink); }
+
+    .two-col { display: grid; grid-template-columns: 1fr 0.9fr; gap: 64px; align-items: center; }
+    .two-col.flip { grid-template-columns: 0.9fr 1fr; }
+    .dash-caption { font-family: var(--font-hand); font-size: 1.3rem; color: var(--blue); transform: rotate(-2deg); display: inline-block; margin-top: 12px; }
+
+    /* integrations */
+    .integrations { margin-top: 26px; }
+    .int-label { font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: var(--muted); display: block; margin-bottom: 12px; }
+    .int-badges { display: flex; flex-wrap: wrap; gap: 10px; }
+    .int { font-family: var(--font-display); font-weight: 700; font-size: 0.9rem; padding: 10px 16px; border: var(--bw) solid var(--ink); border-radius: 12px; background: var(--card); box-shadow: var(--shadow-sm); }
+    .int:last-child { background: var(--yellow); }
+
+    /* handoff */
+    .handoff-chat { display: grid; gap: 12px; border: var(--bw) solid var(--ink); border-radius: var(--radius); background: var(--card); padding: 24px; box-shadow: var(--shadow); }
+    .handoff-flag { display: flex; align-items: center; gap: 8px; margin-top: 2px; padding: 11px 13px; border: var(--bw) solid var(--ink); border-radius: 13px; background: var(--green); color: #04361f; font-family: var(--font-display); font-weight: 700; font-size: 0.82rem; box-shadow: var(--shadow-sm); }
+    .handoff-steps { list-style: none; display: grid; gap: 18px; counter-reset: h; }
+    .handoff-steps li { display: grid; grid-template-columns: 38px 1fr; gap: 14px; align-items: start; }
+    .handoff-steps li::before { counter-increment: h; content: counter(h); width: 38px; height: 38px; display: grid; place-items: center; font-family: var(--font-display); font-weight: 700; border: var(--bw) solid var(--ink); border-radius: 11px; background: var(--blue); color: #fff; box-shadow: var(--shadow-sm); }
+    .handoff-steps h4 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 3px; }
+    .handoff-steps p { color: var(--muted); font-size: 0.92rem; }
+
+    /* faq */
+    .cta-strip { border: var(--bw) solid var(--ink); border-radius: var(--radius-lg); padding: 52px 32px; text-align: center; background: var(--ink); color: var(--paper); box-shadow: 10px 10px 0 rgba(23,19,12,0.25); }
+    .cta-strip h2 { color: var(--paper); margin: 16px 0 22px; }
+    .cta-strip .hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    @media (max-width: 1000px) { .two-col, .two-col.flip { grid-template-columns: 1fr; gap: 48px; } }
+    @media (max-width: 720px) { .cta-strip { padding: 40px 22px; } }
+  </style>
+</head>
+<body>
+
+  <div class="progress"></div>
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html"><span class="brand-mark"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M12 2.4c-3.5 0-6.4 2.8-6.4 6.3 0 4.6 6.4 12.1 6.4 12.1s6.4-7.5 6.4-12.1c0-3.5-2.9-6.3-6.4-6.3Z" fill="#fff"/><path d="M8.4 9.6c1.2-1.9 2.4-1.9 3.6 0s2.4 1.9 3.6 0" stroke="#ff5a1f" stroke-width="1.8" stroke-linecap="round"/></svg></span><span>Geo<em>Flow</em></span></a>
+      <nav class="nav-links">
+        <a href="how-it-works.html">How it works</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Blog</a>
+        <a class="btn btn--sm" href="calculator.html">Calculate your loss</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="section" style="padding-bottom: 40px;">
+    <div class="container page-hero" data-anim="up">
+      <span class="sticker">⚙️ how it works</span>
+      <h1 class="display-xl">Four steps. <span class="hl">Zero new software.</span></h1>
+      <p class="lead">GeoFlow runs quietly in the background. No app to babysit, no workflow to relearn — just missed calls turning into booked jobs while your crew stays on the tools.</p>
+    </div>
+
+    <div class="container" style="margin-top: 10px;">
+      <div class="grid grid-4">
+        <div class="card step-card" data-anim="up"><span class="step-num">1</span><h3>Call gets missed</h3><p>GeoFlow spots the unanswered inbound call in real time.</p></div>
+        <div class="card step-card" data-anim="up" data-delay="1"><span class="step-num">2</span><h3>Sarah texts back</h3><p>A warm, human message goes out in ~3 seconds — asks what's wrong and where.</p></div>
+        <div class="card step-card" data-anim="up" data-delay="2"><span class="step-num">3</span><h3>Reply captured</h3><p>Issue, zip, and urgency are pulled from the reply and sorted for you.</p></div>
+        <div class="card step-card" data-anim="up" data-delay="3"><span class="step-num">4</span><h3>Lands on your phone</h3><p>Hottest lead first, in one clean queue. Tap to call. Booked.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="cut-line" />
+
+  <section class="section">
+    <div class="container two-col">
+      <div data-anim="left">
+        <span class="sticker sticker--blue">📥 where leads land</span>
+        <h2 class="display-lg" style="margin: 18px 0 14px;">One clean queue. No new app.</h2>
+        <p class="lead">Every captured lead drops into a single queue — sorted by urgency, with the customer's exact issue and location. Tap to call the hottest one first. That's the whole "office side."</p>
+        <span class="dash-caption">it fits your day, not the other way around</span>
+      </div>
+      <div class="phone-wrap" data-anim="right" data-delay="1">
+        <div class="phone" data-parallax="0.04">
+          <div class="phone-screen">
+            <div class="dash-head"><span>Callback queue</span><span class="badge">3 NEW</span></div>
+            <div class="dash-row top">
+              <div>
+                <span class="tag urgent">🔴 Urgent</span>
+                <div class="desc"><b>AC repair · 78701</b><br>"AC died, house is 85°"</div>
+                <div class="when">2 min ago · first in queue</div>
+              </div>
+              <span class="call">Call</span>
+            </div>
+            <div class="dash-row">
+              <div>
+                <span class="tag new">🔵 New</span>
+                <div class="desc"><b>Water heater · 78704</b><br>"No hot water this morning"</div>
+                <div class="when">14 min ago</div>
+              </div>
+              <span class="call">Call</span>
+            </div>
+            <div class="dash-row">
+              <div>
+                <span class="tag quote">🟡 Quote</span>
+                <div class="desc"><b>Roof inspection · 78745</b><br>"Storm damage — need an estimate"</div>
+                <div class="when">1 hr ago</div>
+              </div>
+              <span class="call">Call</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container">
+      <div class="section-head" data-anim="up">
+        <span class="sticker sticker--orange sticker--tilt-r">🔌 integrations</span>
+        <h2 class="display-lg">Drops into the tools you already run.</h2>
+        <p>Leads don't live in yet another login. They flow straight into your existing system — or just come in as clean SMS &amp; email.</p>
+      </div>
+      <div class="integrations" data-anim="up">
+        <span class="int-label">Sends leads into</span>
+        <div class="int-badges">
+          <span class="int">🏠 Housecall Pro</span>
+          <span class="int">🧰 Jobber</span>
+          <span class="int">🛠 ServiceTitan</span>
+          <span class="int">✉️ Plain SMS &amp; email</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="cut-line" />
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head" data-anim="up">
+        <span class="sticker sticker--blue sticker--tilt-r">🤝 human handoff</span>
+        <h2 class="display-lg">When it needs a human, <span class="hl">it gets one.</span></h2>
+        <p>A pricing question? A specific 1994 Trane model? GeoFlow never fakes an answer — it flags the lead and loops you in.</p>
+      </div>
+      <div class="two-col">
+        <div class="handoff-chat" data-anim="left">
+          <div class="bubble in">
+            <small><span>They ask</span><span>10:13 AM</span></small>
+            <p>"Do you take Amex? And can you fix a 1994 Trane XL1200?"</p>
+          </div>
+          <div class="bubble out">
+            <small><span>GeoFlow</span><span>10:13 AM</span></small>
+            <p>"Great questions — those are ones for Mike directly. I'm flagging this as a priority so he can text you right back. You're at 78701, correct?"</p>
+          </div>
+          <div class="handoff-flag">🔔 Flagged for a human — sent to your phone now.</div>
+        </div>
+        <ol class="handoff-steps" data-anim="right" data-delay="1">
+          <li><div><h4>It reads the message</h4><p>Spots pricing, technical, or off-script questions it shouldn't answer alone.</p></div></li>
+          <li><div><h4>It never guesses</h4><p>No made-up quotes or specs. It keeps the tone warm and buys you a minute.</p></div></li>
+          <li><div><h4>It hands off</h4><p>Flags the lead urgent and pings you to jump in — with the full conversation attached.</p></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container">
+      <div class="section-head" data-anim="up">
+        <span class="sticker sticker--blue">🙋 quick answers</span>
+        <h2 class="display-lg">Setup questions</h2>
+      </div>
+      <div data-anim="up" style="max-width: 760px;">
+        <details class="faq" open>
+          <summary>How fast can we launch?</summary>
+          <p>Days, not weeks — once your call routing and message are approved.</p>
+        </details>
+        <details class="faq">
+          <summary>Do we need to replace our CRM?</summary>
+          <p>Nope. GeoFlow sits on top of whatever you use today and sends leads into it.</p>
+        </details>
+        <details class="faq">
+          <summary>Will the texts sound like us?</summary>
+          <p>Yes — we write the copy with you, in your voice, with a real name on it.</p>
+        </details>
+        <details class="faq">
+          <summary>What if our team is tiny?</summary>
+          <p>Even better. That's when every missed call hurts the most.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container">
+      <div class="cta-strip" data-anim="pop">
+        <span class="sticker">⏱ see it live</span>
+        <h2 class="display-lg">Want to watch it work on your numbers?</h2>
+        <div class="hero-actions">
+          <a class="btn btn--yellow" href="book-call.html">Book a 15-minute demo</a>
+          <a class="btn btn--ghost" href="calculator.html">Calculate your loss</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="index.html"><span class="brand-mark"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M12 2.4c-3.5 0-6.4 2.8-6.4 6.3 0 4.6 6.4 12.1 6.4 12.1s6.4-7.5 6.4-12.1c0-3.5-2.9-6.3-6.4-6.3Z" fill="#fff"/><path d="M8.4 9.6c1.2-1.9 2.4-1.9 3.6 0s2.4 1.9 3.6 0" stroke="#ff5a1f" stroke-width="1.8" stroke-linecap="round"/></svg></span><span>Geo<em>Flow</em></span></a>
+          <p class="footer-blurb">When you can't answer, GeoFlow does. Missed-call recovery for the trades.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="how-it-works.html">How it works</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="calculator.html">Lost-revenue calculator</a>
+          <a href="audit.html">Free audit</a>
+          <a href="book-call.html">Book a demo</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="about.html">About</a>
+          <a href="blog.html">Blog</a>
+          <a href="https://www.linkedin.com/in/geovannigarciarosales/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="mailto:geo@geoflowai.com">geo@geoflowai.com</a>
+          <span style="display:block; padding: 5px 0; color: rgba(250,243,232,0.7); font-size: 0.92rem;">Philadelphia, PA</span>
+        </div>
+      </div>
+      <div class="footer-mega">GEOFLOW</div>
+      <div class="footer-legal">
+        <span>© <span data-year>2026</span> GeoFlow · Philadelphia, PA</span>
+        <span>Built for the trades. 🛠</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/site.js"></script>
+</body>
+</html>
