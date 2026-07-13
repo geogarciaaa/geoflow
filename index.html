@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GeoFlow — Turn every missed call into a booked job</title>
-  <meta name="description" content="When you can't answer, GeoFlow does. Instant text-back captures the lead in seconds — so missed calls become booked jobs instead of lost revenue." />
+  <meta name="description" content="When you can't answer, GeoFlow does. A warm, human text-back captures the lead in seconds and drops it straight on your phone — so missed calls become booked jobs instead of lost revenue." />
   <meta property="og:title" content="GeoFlow — Turn every missed call into a booked job" />
   <meta property="og:description" content="When you can't answer, GeoFlow does. Capture leads via text in seconds and turn missed calls into booked jobs." />
   <meta property="og:type" content="website" />
@@ -25,23 +25,15 @@
     }
 
     .hero h1 { margin: 26px 0 24px; }
-
     .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 34px; }
 
-    .hero-doodle {
-      position: relative;
-      display: inline-block;
-    }
-
-    /* hand-drawn arrow pointing at the phone (desktop only) */
     .arrow-note {
       position: absolute;
-      top: -66px;
+      top: -60px;
       right: 4%;
       text-align: center;
       transform: rotate(4deg);
     }
-
     .arrow-note svg { display: block; margin: 6px auto 0; }
 
     /* ---- phone mockup ---- */
@@ -49,7 +41,7 @@
 
     .phone {
       position: relative;
-      width: min(370px, 100%);
+      width: min(380px, 100%);
       border: var(--bw) solid var(--ink);
       border-radius: 40px;
       padding: 14px;
@@ -74,7 +66,7 @@
       border-radius: 28px;
       background: var(--paper);
       border: var(--bw) solid var(--ink);
-      padding: 16px 14px 16px;
+      padding: 16px 14px;
       overflow: hidden;
     }
 
@@ -106,82 +98,116 @@
     }
 
     .phone-screen .bubble { margin-bottom: 10px; opacity: 0; animation: drop-in 0.5s ease forwards; }
-    .phone-screen .bubble:nth-child(2) { animation-delay: 0.3s; }
-    .phone-screen .bubble:nth-child(3) { animation-delay: 0.9s; }
-    .phone-screen .bubble:nth-child(4) { animation-delay: 1.5s; }
-    .phone-screen .bubble:nth-child(5) { animation-delay: 2.1s; }
+    .phone-screen .bubble:nth-of-type(1) { animation-delay: 0.1s; }
+    .phone-screen .bubble:nth-of-type(2) { animation-delay: 0.6s; }
+    .phone-screen .bubble:nth-of-type(3) { animation-delay: 1.2s; }
+    .phone-screen .bubble:nth-of-type(4) { animation-delay: 1.8s; }
 
     @keyframes drop-in {
       from { opacity: 0; transform: translateY(16px) scale(0.96); }
       to { opacity: 1; transform: none; }
     }
 
+    .lead-alert {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+      padding: 11px 13px;
+      border: var(--bw) solid var(--ink);
+      border-radius: 13px;
+      background: var(--green);
+      color: #063; color: #04361f;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.82rem;
+      box-shadow: var(--shadow-sm);
+      opacity: 0;
+      animation: drop-in 0.5s ease forwards;
+      animation-delay: 2.3s;
+    }
+
     @media (prefers-reduced-motion: reduce) {
-      .phone-screen .bubble { animation: none; opacity: 1; }
+      .phone-screen .bubble, .lead-alert { animation: none; opacity: 1; }
       .live-dot { animation: none; }
     }
 
-    .phone-sticker {
+    .phone-sticker { position: absolute; bottom: -18px; left: -26px; z-index: 2; }
+
+    /* ---- cost-of-delay flow ---- */
+    .flow { padding: 34px; }
+    .flow h3 { font-size: 1.4rem; margin: 16px 0 6px; }
+    .flow.good { background: var(--yellow); }
+
+    .track { list-style: none; display: grid; margin-top: 16px; }
+
+    .track li {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 12px 0;
+      position: relative;
+      font-size: 0.94rem;
+      line-height: 1.45;
+    }
+
+    .track li::before {
+      content: "";
       position: absolute;
-      bottom: -18px;
-      left: -26px;
-      z-index: 2;
+      left: 16px;
+      top: 0; bottom: 0;
+      width: 2px;
+      background: repeating-linear-gradient(var(--ink) 0 4px, transparent 4px 9px);
+      opacity: 0.35;
     }
+    .track li:first-child::before { top: 24px; }
+    .track li:last-child::before { bottom: calc(100% - 24px); }
 
-    /* ---- before / after ---- */
-    .shift-card { padding: 34px; }
-    .shift-card h3 { font-size: 1.4rem; margin: 16px 0 22px; }
-    .shift-card.after { background: var(--yellow); }
-    .shift-card.after .timeline li { color: rgba(23, 19, 12, 0.8); }
-
-    .timeline { list-style: none; display: grid; gap: 15px; }
-    .timeline li { display: flex; gap: 14px; align-items: baseline; color: var(--muted); font-size: 0.95rem; }
-
-    .timeline .t {
-      flex: 0 0 56px;
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      color: var(--ink);
-      opacity: 0.55;
-    }
-
-    .timeline .x, .timeline .v {
-      flex: 0 0 20px; height: 20px;
+    .track .node {
+      width: 34px; height: 34px;
       display: grid; place-items: center;
-      font-size: 0.65rem; font-weight: 800;
-      border: 2px solid var(--ink); border-radius: 6px;
+      border: var(--bw) solid var(--ink);
+      border-radius: 50%;
+      font-size: 0.72rem; font-weight: 800;
       color: #fff;
+      z-index: 1;
+      box-shadow: 2px 2px 0 var(--ink);
     }
 
-    .timeline .x { background: var(--red); }
-    .timeline .v { background: var(--green); }
+    .flow.bad .node { background: var(--red); }
+    .flow.good .node { background: var(--green); }
+    .track .node svg { display: block; }
+    .track b { font-family: var(--font-mono); font-size: 0.72rem; opacity: 0.6; margin-right: 6px; }
+    .flow.good .track li { color: rgba(23, 19, 12, 0.82); }
 
-    .shift-result {
-      margin-top: 24px;
-      padding-top: 18px;
-      border-top: 2px dashed rgba(23, 19, 12, 0.3);
+    .bottom-line {
+      margin-top: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border: var(--bw) solid var(--ink);
+      border-radius: 14px;
+      padding: 14px 18px;
       font-family: var(--font-display);
       font-weight: 700;
-      font-size: 1rem;
+      box-shadow: var(--shadow-sm);
     }
-
-    .shift-result.bad { color: var(--red); }
+    .bottom-line .amt { font-size: 1.5rem; letter-spacing: -0.03em; }
+    .bottom-line.bad { background: #ffe2dc; }
+    .bottom-line.bad .amt { color: var(--red); }
+    .bottom-line.good { background: var(--card); }
+    .bottom-line.good .amt { color: var(--green); }
 
     /* ---- stats ---- */
     .stat-card { text-align: center; padding: 36px 20px; }
-
     .stat-card .num {
       font-family: var(--font-display);
       font-size: clamp(2.6rem, 5vw, 3.6rem);
-      font-weight: 700;
-      letter-spacing: -0.04em;
-      line-height: 1;
-      margin-bottom: 10px;
-      display: block;
+      font-weight: 700; letter-spacing: -0.04em; line-height: 1;
+      margin-bottom: 10px; display: block;
     }
-
     .stat-card p { font-size: 0.88rem; }
     .num--orange { color: var(--orange); }
     .num--blue { color: var(--blue); }
@@ -189,76 +215,124 @@
     .num--green { color: var(--green); }
 
     /* ---- steps ---- */
-    .step-card { text-align: left; }
-
     .step-num {
       width: 46px; height: 46px;
       display: grid; place-items: center;
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 1.1rem;
-      border: var(--bw) solid var(--ink);
-      border-radius: 12px;
-      background: var(--blue);
-      color: #fff;
-      box-shadow: var(--shadow-sm);
-      transform: rotate(-3deg);
+      font-family: var(--font-display); font-weight: 700; font-size: 1.1rem;
+      border: var(--bw) solid var(--ink); border-radius: 12px;
+      background: var(--blue); color: #fff;
+      box-shadow: var(--shadow-sm); transform: rotate(-3deg);
     }
-
     .step-card:nth-child(2) .step-num { background: var(--orange); transform: rotate(2deg); }
     .step-card:nth-child(3) .step-num { background: var(--yellow); color: var(--ink); transform: rotate(-2deg); }
     .step-card:nth-child(4) .step-num { background: var(--green); transform: rotate(3deg); }
 
-    /* ---- proof ---- */
-    .quote-stat {
-      font-family: var(--font-display);
-      font-size: clamp(1.5rem, 2.6vw, 2rem);
-      font-weight: 700;
-      letter-spacing: -0.035em;
-      line-height: 1.15;
-      margin: 14px 0 16px;
+    /* ---- lead dashboard ---- */
+    .dash-grid {
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .dash-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 2px 2px 14px;
+      font-family: var(--font-display); font-weight: 700; font-size: 0.95rem;
+    }
+    .dash-head .badge {
+      font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em;
+      background: var(--orange); color: #fff; border: 2px solid var(--ink);
+      border-radius: 999px; padding: 3px 9px; font-weight: 700;
+    }
+    .dash-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      align-items: center;
+      border: var(--bw) solid var(--ink);
+      border-radius: 13px;
+      background: var(--card);
+      padding: 11px 12px;
+      margin-bottom: 9px;
+      box-shadow: 2px 2px 0 var(--ink);
+    }
+    .dash-row.top { background: #fff6d6; }
+    .dash-row .tag {
+      font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.08em;
+      text-transform: uppercase; font-weight: 700;
+      border: 1.5px solid var(--ink); border-radius: 6px; padding: 2px 6px;
+      display: inline-block; margin-bottom: 5px;
+    }
+    .tag.urgent { background: var(--red); color: #fff; }
+    .tag.new { background: var(--blue); color: #fff; }
+    .tag.quote { background: var(--yellow); }
+    .dash-row .desc { font-size: 0.82rem; line-height: 1.3; }
+    .dash-row .desc b { font-family: var(--font-display); }
+    .dash-row .when { font-size: 0.66rem; color: var(--muted); margin-top: 3px; }
+    .dash-row .call {
+      font-size: 0.7rem; font-weight: 700; font-family: var(--font-display);
+      background: var(--green); color: #fff; border: 2px solid var(--ink);
+      border-radius: 9px; padding: 7px 10px; box-shadow: 1px 1px 0 var(--ink);
+    }
+    .dash-caption {
+      font-family: var(--font-hand); font-size: 1.3rem; color: var(--blue);
+      transform: rotate(-2deg); display: inline-block; margin-top: 12px;
     }
 
-    .attribution {
-      margin-top: 16px;
-      font-family: var(--font-hand);
-      font-size: 1.3rem;
-      color: var(--ink);
+    /* ---- automated not robotic ---- */
+    .tone-tag {
+      font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em;
+      text-transform: uppercase; font-weight: 700; color: var(--muted);
+      display: block; margin-bottom: 14px;
     }
+    .tone-card .bubble { background: var(--paper); }
+    .tone-card:nth-child(2) .bubble { background: #ffe9df; }
+    .tone-card:nth-child(3) .bubble { background: #e3eaff; }
+
+    /* ---- receipts tabs ---- */
+    .tabs { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 26px; }
+    .tab {
+      font-family: var(--font-display); font-weight: 700; font-size: 0.9rem;
+      padding: 10px 20px; border: var(--bw) solid var(--ink); border-radius: 999px;
+      background: var(--card); color: var(--ink); cursor: pointer;
+      box-shadow: var(--shadow-sm); transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+    .tab:hover { transform: translate(-1px, -1px); }
+    .tab.is-active { background: var(--ink); color: var(--paper); }
+    .panel { display: none; }
+    .panel.is-active { display: grid; }
+    .panel-head {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: clamp(1.3rem, 2.4vw, 1.9rem); letter-spacing: -0.03em;
+      line-height: 1.15; margin-bottom: 22px; max-width: 22ch;
+    }
+    .quote-stat {
+      font-family: var(--font-display); font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+      font-weight: 700; letter-spacing: -0.035em; line-height: 1.15; margin: 4px 0 14px;
+    }
+    .attribution { margin-top: 16px; font-family: var(--font-hand); font-size: 1.3rem; color: var(--ink); }
 
     /* ---- final cta ---- */
     .final-cta {
-      border: var(--bw) solid var(--ink);
-      border-radius: var(--radius-lg);
-      padding: 72px 40px;
-      text-align: center;
-      background: var(--ink);
-      color: var(--paper);
+      border: var(--bw) solid var(--ink); border-radius: var(--radius-lg);
+      padding: 72px 40px; text-align: center;
+      background: var(--ink); color: var(--paper);
       box-shadow: 10px 10px 0 rgba(23, 19, 12, 0.25);
-      position: relative;
-      overflow: hidden;
+      position: relative; overflow: hidden;
     }
-
     .final-cta h2 { margin: 22px auto 16px; max-width: 18ch; color: var(--paper); }
     .final-cta .lead { margin: 0 auto 34px; color: rgba(250, 243, 232, 0.72); }
     .final-cta .hero-actions { justify-content: center; margin-top: 0; }
-
-    .final-cta .confetti {
-      position: absolute;
-      font-size: 1.6rem;
-      opacity: 0.9;
-      user-select: none;
-    }
+    .final-cta .confetti { position: absolute; font-size: 1.6rem; opacity: 0.9; user-select: none; }
 
     @media (max-width: 1000px) {
       .hero { padding: 64px 0 80px; }
-      .hero-grid { grid-template-columns: 1fr; gap: 56px; }
+      .hero-grid, .dash-grid { grid-template-columns: 1fr; gap: 56px; }
       .arrow-note { display: none; }
     }
-
     @media (max-width: 720px) {
       .hero-actions .btn { width: 100%; }
-      .shift-card { padding: 24px; }
+      .flow { padding: 24px; }
       .final-cta { padding: 52px 22px; }
       .phone { transform: rotate(0deg); }
       .phone-sticker { left: -8px; }
@@ -271,13 +345,13 @@
 
   <header class="nav">
     <div class="container nav-inner">
-      <a class="brand" href="index.html"><span class="brand-mark">↗</span><span>Geo<em>Flow</em></span></a>
+      <a class="brand" href="index.html"><span class="brand-mark"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M12 2.4c-3.5 0-6.4 2.8-6.4 6.3 0 4.6 6.4 12.1 6.4 12.1s6.4-7.5 6.4-12.1c0-3.5-2.9-6.3-6.4-6.3Z" fill="#fff"/><path d="M8.4 9.6c1.2-1.9 2.4-1.9 3.6 0s2.4 1.9 3.6 0" stroke="#ff5a1f" stroke-width="1.8" stroke-linecap="round"/></svg></span><span>Geo<em>Flow</em></span></a>
       <nav class="nav-links">
         <a href="#before-after">Before &amp; after</a>
         <a href="#how-it-works">How it works</a>
         <a href="about.html">About</a>
         <a href="blog.html">Blog</a>
-        <a class="btn btn--sm" href="calculator.html">60-second audit</a>
+        <a class="btn btn--sm" href="calculator.html">Calculate your loss</a>
       </nav>
     </div>
   </header>
@@ -287,9 +361,9 @@
       <div>
         <span class="sticker">📞 For contractors &amp; home-service pros</span>
         <h1 class="display-xl">Miss the call.<br /><span class="hl">Keep the job.</span></h1>
-        <p class="lead">GeoFlow texts back every missed call in seconds, grabs the job details, and lines up your callback — <strong>before they dial your competitor.</strong></p>
+        <p class="lead">GeoFlow text-backs every missed call in seconds with a warm, human message, grabs the job details, and drops the lead straight on your phone — <strong>before they dial your competitor.</strong></p>
         <div class="hero-actions">
-          <a class="btn" href="calculator.html">What are missed calls costing you?</a>
+          <a class="btn" href="calculator.html">Calculate Your Lost Revenue</a>
           <a class="btn btn--ghost" href="book-call.html">Book a demo</a>
         </div>
         <span class="btn-note">↑ takes 60 seconds, no email needed</span>
@@ -297,7 +371,7 @@
 
       <div class="phone-wrap" aria-label="GeoFlow text-back workflow demo">
         <div class="arrow-note">
-          <span class="scribble">this all happens<br />by itself</span>
+          <span class="scribble">a real dispatcher,<br />on autopilot</span>
           <svg width="40" height="44" viewBox="0 0 40 44" fill="none" aria-hidden="true">
             <path d="M20 2 C 14 16, 26 26, 20 38" stroke="#2f5cff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
             <path d="M12 32 L 20 42 L 27 31" stroke="#2f5cff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
@@ -308,21 +382,22 @@
           <div class="phone-screen">
             <div class="phone-top"><span>Live workflow</span><span class="live"><span class="live-dot"></span>Active</span></div>
             <div class="bubble">
-              <small><span>Missed call</span><span>10:12</span></small>
+              <small><span>Missed call</span><span>10:12 AM</span></small>
               <p>Homeowner needs same-day AC repair. Your tech is on a roof.</p>
             </div>
             <div class="bubble out">
-              <small><span>GeoFlow texts back · 3s</span><span>10:12</span></small>
-              <p>"Sorry we missed you — this is {{BusinessName}}. What do you need help with right now? Reply with the issue + zip and we'll text back in minutes."</p>
+              <small><span>GeoFlow texts back · 3s</span><span>10:12 AM</span></small>
+              <p>"Hey there, sorry we missed your call! This is Sarah with [Your Business]. What's going on with your system today? Drop your zip code too and I'll see how fast we can get a tech out."</p>
             </div>
             <div class="bubble in">
-              <small><span>They reply</span><span>10:13</span></small>
+              <small><span>They reply</span><span>10:13 AM</span></small>
               <p>"AC died, house is 85°. 78701 — can someone come today?"</p>
             </div>
-            <div class="bubble">
-              <small><span>Lead captured</span><span>10:14</span></small>
-              <p>Tagged urgent · AC repair · 78701. First in your callback queue. ✅</p>
+            <div class="bubble out">
+              <small><span>Lead captured</span><span>10:14 AM</span></small>
+              <p>"Got it! I'm putting this right at the top of our dispatch list so the team sees it the second they step off the roof. Hang tight!"</p>
             </div>
+            <div class="lead-alert">⚡ Sent straight to your phone as an urgent lead.</div>
           </div>
           <span class="sticker sticker--orange phone-sticker">replies in ~3 sec</span>
         </div>
@@ -340,31 +415,32 @@
   <section class="section" id="before-after">
     <div class="container">
       <div class="section-head" data-anim="up">
-        <span class="sticker sticker--blue sticker--tilt-r">before → after</span>
-        <h2 class="display-lg">Same call. <span class="hl--orange hl">Two endings.</span></h2>
+        <span class="sticker sticker--blue sticker--tilt-r">the cost of delay</span>
+        <h2 class="display-lg">Same $300 call. <span class="hl--orange hl">Two endings.</span></h2>
+        <p>The only thing that changes is what happens in the first 60 seconds.</p>
       </div>
       <div class="grid grid-2">
-        <div class="card shift-card" data-anim="left">
+        <div class="card flow bad" data-anim="left">
           <span class="sticker sticker--paper">😬 without GeoFlow</span>
           <h3>Voicemail → competitor</h3>
-          <ul class="timeline">
-            <li><span class="t">10:12</span><span class="x">✕</span><span>Rings out. Crew's on a roof.</span></li>
-            <li><span class="t">10:13</span><span class="x">✕</span><span>Caller hangs up on voicemail.</span></li>
-            <li><span class="t">10:15</span><span class="x">✕</span><span>They call the next company. Someone answers.</span></li>
-            <li><span class="t">18:40</span><span class="x">✕</span><span>You call back: "we found someone, thanks."</span></li>
-          </ul>
-          <div class="shift-result bad">Job gone. Ad money wasted.</div>
+          <ol class="track">
+            <li><span class="node">✕</span><span><b>10:12</b> Ring out. Crew's on a roof.</span></li>
+            <li><span class="node">✕</span><span><b>10:13</b> Caller hangs up on voicemail.</span></li>
+            <li><span class="node">✕</span><span><b>10:15</b> They call the next company. Someone answers.</span></li>
+            <li><span class="node">✕</span><span><b>18:40</b> You call back — "we found someone, thanks."</span></li>
+          </ol>
+          <div class="bottom-line bad"><span>$300 job</span><span class="amt">— gone</span></div>
         </div>
-        <div class="card shift-card after" data-anim="right" data-delay="1">
+        <div class="card flow good" data-anim="right" data-delay="1">
           <span class="sticker sticker--paper">😎 with GeoFlow</span>
           <h3>Text-back → booked</h3>
-          <ul class="timeline">
-            <li><span class="t">10:12</span><span class="v">✓</span><span>Same missed ring — GeoFlow texts back in seconds.</span></li>
-            <li><span class="t">10:13</span><span class="v">✓</span><span>They reply with the issue + zip.</span></li>
-            <li><span class="t">10:14</span><span class="v">✓</span><span>Lead tagged urgent, first in your queue.</span></li>
-            <li><span class="t">10:26</span><span class="v">✓</span><span>Your office texts an arrival window. Booked. 🎉</span></li>
-          </ul>
-          <div class="shift-result">A job you never even answered the phone for.</div>
+          <ol class="track">
+            <li><span class="node">✓</span><span><b>10:12</b> Same missed ring — GeoFlow text-backs a warm, human greeting in seconds.</span></li>
+            <li><span class="node">✓</span><span><b>10:13</b> They reply with their emergency and location — they know a real person is looking.</span></li>
+            <li><span class="node">✓</span><span><b>10:14</b> Hot lead routes straight to your cell with the exact issue.</span></li>
+            <li><span class="node">✓</span><span><b>10:26</b> Your office pings an arrival window. Job locked down. 🎉</span></li>
+          </ol>
+          <div class="bottom-line good"><span>$300 job</span><span class="amt">+ booked</span></div>
         </div>
       </div>
     </div>
@@ -391,36 +467,135 @@
       </div>
       <div class="grid grid-4">
         <div class="card step-card" data-anim="up"><span class="step-num">1</span><h3>Call gets missed</h3><p>GeoFlow spots it instantly.</p></div>
-        <div class="card step-card" data-anim="up" data-delay="1"><span class="step-num">2</span><h3>Text goes out</h3><p>Branded reply in seconds, asks what + where.</p></div>
-        <div class="card step-card" data-anim="up" data-delay="2"><span class="step-num">3</span><h3>Reply captured</h3><p>Issue, zip, and urgency — tagged for you.</p></div>
-        <div class="card step-card" data-anim="up" data-delay="3"><span class="step-num">4</span><h3>You call back</h3><p>Clean queue, hottest lead first. Booked.</p></div>
+        <div class="card step-card" data-anim="up" data-delay="1"><span class="step-num">2</span><h3>Sarah texts back</h3><p>A warm, human message in seconds — asks what &amp; where.</p></div>
+        <div class="card step-card" data-anim="up" data-delay="2"><span class="step-num">3</span><h3>Reply captured</h3><p>Issue, zip, and urgency — sorted for you.</p></div>
+        <div class="card step-card" data-anim="up" data-delay="3"><span class="step-num">4</span><h3>Lands on your phone</h3><p>Hottest lead first. Tap to call. Booked.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container dash-grid">
+      <div data-anim="left">
+        <span class="sticker sticker--blue">📥 where leads land</span>
+        <h2 class="display-lg" style="margin: 18px 0 14px;">No new app to babysit.</h2>
+        <p class="lead">Every captured lead drops into one clean queue — sorted by urgency, with the customer's exact issue and location. Tap to call the hottest one first. That's the whole "office side."</p>
+        <span class="dash-caption">it fits your day, not the other way around</span>
+      </div>
+      <div class="phone-wrap" data-anim="right" data-delay="1">
+        <div class="phone" data-parallax="0.05">
+          <div class="phone-screen">
+            <div class="dash-head"><span>Callback queue</span><span class="badge">3 NEW</span></div>
+            <div class="dash-row top">
+              <div>
+                <span class="tag urgent">🔴 Urgent</span>
+                <div class="desc"><b>AC repair · 78701</b><br>"AC died, house is 85°"</div>
+                <div class="when">2 min ago · first in queue</div>
+              </div>
+              <span class="call">Call</span>
+            </div>
+            <div class="dash-row">
+              <div>
+                <span class="tag new">🔵 New</span>
+                <div class="desc"><b>Water heater · 78704</b><br>"No hot water this morning"</div>
+                <div class="when">14 min ago</div>
+              </div>
+              <span class="call">Call</span>
+            </div>
+            <div class="dash-row">
+              <div>
+                <span class="tag quote">🟡 Quote</span>
+                <div class="desc"><b>Roof inspection · 78745</b><br>"Storm damage — need an estimate"</div>
+                <div class="when">1 hr ago</div>
+              </div>
+              <span class="call">Call</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <hr class="cut-line" />
 
-  <section class="section" id="proof">
+  <section class="section" id="voice">
     <div class="container">
       <div class="section-head" data-anim="up">
-        <span class="sticker sticker--orange sticker--tilt-r">🧾 receipts</span>
-        <h2 class="display-lg">Real numbers, not vibes</h2>
+        <span class="sticker sticker--orange sticker--tilt-r">🗣 automated, not robotic</span>
+        <h2 class="display-lg">Sounds like your front office. <span class="hl">Not a bot.</span></h2>
+        <p>You pick the voice. Here's the same missed-call text back in three tones:</p>
       </div>
       <div class="grid grid-3">
-        <div class="card card--yellow" data-anim="left">
-          <div class="quote-stat">"15 missed calls a week → <span class="hl--orange hl">$14,200</span> recovered in month one."</div>
-          <p>"The auto-text caught 8 calls we'd have lost while we were up on roofs."</p>
-          <p class="attribution">— Dave K., Elite Roofing Co.</p>
+        <div class="card tone-card" data-anim="up">
+          <span class="tone-tag">Friendly · family plumber</span>
+          <div class="bubble"><p>"Hi! Sorry we missed you — this is Jenny at [Your Business]. What's going on with your plumbing today? Send your zip and I'll grab the soonest slot for you 🙂"</p></div>
         </div>
-        <div class="card" data-anim="up" data-delay="1">
-          <h3>"We finally have a system for after-hours leads."</h3>
-          <p>"Every missed call is already a text conversation by the time we open in the morning."</p>
-          <p class="attribution">— Ops Manager, plumbing co.</p>
+        <div class="card tone-card" data-anim="up" data-delay="1">
+          <span class="tone-tag">Urgent · emergency AC</span>
+          <div class="bubble"><p>"This is [Your Business] emergency line. We saw your missed call — is this a no-cool emergency? Reply with your address and we'll get the on-call tech dispatched right away."</p></div>
         </div>
-        <div class="card card--ink" data-anim="right" data-delay="2">
-          <h3>Built for the trades</h3>
-          <p>Roofing, HVAC, plumbing, electrical — and any crew that's on the tools when the phone rings.</p>
-          <p style="margin-top: 14px;"><span class="sticker" style="transform: rotate(-2deg);">5–10+ calls/week? Perfect fit.</span></p>
+        <div class="card tone-card" data-anim="up" data-delay="2">
+          <span class="tone-tag">Calm · roofing quote</span>
+          <div class="bubble"><p>"Thanks for reaching out to [Your Business]! Looking for a repair or a full roof quote? Drop your address (and a couple photos if you've got them) and we'll line up an estimate."</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight" id="proof">
+    <div class="container">
+      <div class="section-head" data-anim="up">
+        <span class="sticker sticker--blue sticker--tilt-r">🧾 receipts by trade</span>
+        <h2 class="display-lg">Find your trade. See the win.</h2>
+      </div>
+
+      <div class="tabs" role="tablist" data-anim="up">
+        <button class="tab is-active" data-trade="roofing" role="tab">🏠 Roofing</button>
+        <button class="tab" data-trade="hvac" role="tab">❄️ HVAC</button>
+        <button class="tab" data-trade="plumbing" role="tab">🔧 Plumbing</button>
+      </div>
+
+      <div class="tab-panels" data-anim="up" data-delay="1">
+        <div class="panel is-active grid grid-2" data-trade="roofing">
+          <div class="card card--yellow">
+            <div class="panel-head">How roofers recover jobs they miss while up on ladders.</div>
+            <div class="quote-stat">"15 missed calls a week → <span class="hl--orange hl">$14,200</span> recovered in month one."</div>
+            <p>"The auto-text caught 8 calls we'd have lost while we were up on roofs."</p>
+            <p class="attribution">— Dave K., Elite Roofing Co.</p>
+          </div>
+          <div class="card card--ink">
+            <h3>Why it lands</h3>
+            <p>Roofers are physically unable to answer mid-job. The text-back holds the lead until boots are back on the ground.</p>
+            <p style="margin-top: 14px;"><span class="sticker">8 of 15 weekly misses recovered</span></p>
+          </div>
+        </div>
+
+        <div class="panel grid grid-2" data-trade="hvac">
+          <div class="card card--yellow">
+            <div class="panel-head">How HVAC teams catch every after-hours no-cool emergency.</div>
+            <div class="quote-stat">Nights &amp; weekends stop leaking. <span class="hl--orange hl">~3s</span> to first reply, 24/7.</div>
+            <p>"Peak season, the phone never stops. Now every missed call is a text convo before we're back in the truck."</p>
+            <p class="attribution">— Service lead, HVAC co. (example)</p>
+          </div>
+          <div class="card card--ink">
+            <h3>Why it lands</h3>
+            <p>Emergencies come in hot and off-hours. An instant, urgent-toned reply keeps the panicked homeowner from dialing the next listing.</p>
+            <p style="margin-top: 14px;"><span class="sticker">24/7 coverage, no after-hours staff</span></p>
+          </div>
+        </div>
+
+        <div class="panel grid grid-2" data-trade="plumbing">
+          <div class="card card--yellow">
+            <div class="panel-head">How plumbers recover 10+ hours of weekend calls.</div>
+            <div class="quote-stat">Every missed call is <span class="hl--orange hl">already a text</span> by Monday morning.</div>
+            <p>"Before GeoFlow, we lost track of voicemail leads. Now we work them in priority order the second we open."</p>
+            <p class="attribution">— Ops Manager, plumbing co.</p>
+          </div>
+          <div class="card card--ink">
+            <h3>Why it lands</h3>
+            <p>Weekend burst pipes don't wait. The queue means no scrambling through voicemails on Monday — the hot ones are already sorted.</p>
+            <p style="margin-top: 14px;"><span class="sticker">Weekend leads, captured &amp; sorted</span></p>
+          </div>
         </div>
       </div>
     </div>
@@ -443,7 +618,7 @@
         </details>
         <details class="faq">
           <summary>Will the texts sound like us?</summary>
-          <p>Yes — we write the copy with you so it sounds like your company, not a bot.</p>
+          <p>Yes — we write the copy with you, in your voice, with a real name on it. See the three tone examples above.</p>
         </details>
         <details class="faq">
           <summary>What if our team is tiny?</summary>
@@ -461,10 +636,10 @@
         <span class="confetti" style="bottom: 16%; left: 14%; transform: rotate(8deg);">✅</span>
         <span class="confetti" style="bottom: 20%; right: 16%; transform: rotate(-10deg);">🔧</span>
         <span class="sticker">⏱ takes less time than one missed call</span>
-        <h2 class="display-lg">See what missed calls cost you — in 60 seconds</h2>
+        <h2 class="display-lg">See what missed calls are costing you</h2>
         <p class="lead">Free calculator. No email. No sales call. Just a number you probably don't want to see.</p>
         <div class="hero-actions">
-          <a class="btn btn--yellow" href="calculator.html">Run the 60-second audit</a>
+          <a class="btn btn--yellow" href="calculator.html">Calculate Your Lost Revenue →</a>
           <a class="btn btn--ghost" href="book-call.html">Book a 15-minute demo</a>
         </div>
       </div>
@@ -475,7 +650,7 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <a class="brand" href="index.html"><span class="brand-mark">↗</span><span>Geo<em>Flow</em></span></a>
+          <a class="brand" href="index.html"><span class="brand-mark"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M12 2.4c-3.5 0-6.4 2.8-6.4 6.3 0 4.6 6.4 12.1 6.4 12.1s6.4-7.5 6.4-12.1c0-3.5-2.9-6.3-6.4-6.3Z" fill="#fff"/><path d="M8.4 9.6c1.2-1.9 2.4-1.9 3.6 0s2.4 1.9 3.6 0" stroke="#ff5a1f" stroke-width="1.8" stroke-linecap="round"/></svg></span><span>Geo<em>Flow</em></span></a>
           <p class="footer-blurb">When you can't answer, GeoFlow does. Missed-call recovery for the trades.</p>
         </div>
         <div class="footer-col">
@@ -506,5 +681,21 @@
   </footer>
 
   <script src="assets/site.js"></script>
+  <script>
+    // receipts-by-trade tabs
+    (function () {
+      var tabs = document.querySelectorAll('.tab[data-trade]');
+      var panels = document.querySelectorAll('.panel[data-trade]');
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          var trade = tab.getAttribute('data-trade');
+          tabs.forEach(function (t) { t.classList.toggle('is-active', t === tab); });
+          panels.forEach(function (p) {
+            p.classList.toggle('is-active', p.getAttribute('data-trade') === trade);
+          });
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
