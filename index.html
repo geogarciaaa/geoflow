@@ -16,121 +16,52 @@
   <style>
     /* ---- hero ---- */
     .hero { padding: 100px 0 110px; position: relative; }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 64px;
-      align-items: center;
-    }
-
+    .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 64px; align-items: center; }
     .hero h1 { margin: 26px 0 24px; }
     .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 34px; }
 
-    .arrow-note {
-      position: absolute;
-      top: -60px;
-      right: 4%;
-      text-align: center;
-      transform: rotate(4deg);
-    }
+    .arrow-note { position: absolute; top: -60px; right: 4%; text-align: center; transform: rotate(4deg); }
     .arrow-note svg { display: block; margin: 6px auto 0; }
 
     /* ---- phone mockup ---- */
     .phone-wrap { position: relative; display: grid; place-items: center; }
-
     .phone {
-      position: relative;
-      width: min(380px, 100%);
-      border: var(--bw) solid var(--ink);
-      border-radius: 40px;
-      padding: 14px;
-      background: var(--card);
-      box-shadow: 10px 10px 0 var(--ink);
-      transform: rotate(1.6deg);
+      position: relative; width: min(380px, 100%);
+      border: var(--bw) solid var(--ink); border-radius: 40px; padding: 14px;
+      background: var(--card); box-shadow: 10px 10px 0 var(--ink); transform: rotate(1.6deg);
     }
-
     .phone-tape {
-      position: absolute;
-      top: -16px;
-      left: 50%;
-      width: 120px;
-      height: 32px;
-      background: rgba(255, 210, 63, 0.75);
-      border: 1px solid rgba(23, 19, 12, 0.18);
-      transform: translateX(-50%) rotate(-4deg);
-      z-index: 2;
+      position: absolute; top: -16px; left: 50%; width: 120px; height: 32px;
+      background: rgba(255, 210, 63, 0.75); border: 1px solid rgba(23, 19, 12, 0.18);
+      transform: translateX(-50%) rotate(-4deg); z-index: 2;
     }
-
     .phone-screen {
-      border-radius: 28px;
-      background: var(--paper);
-      border: var(--bw) solid var(--ink);
-      padding: 16px 14px;
-      overflow: hidden;
+      border-radius: 28px; background: var(--paper); border: var(--bw) solid var(--ink);
+      padding: 16px 14px; overflow: hidden;
     }
-
     .phone-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-family: var(--font-mono);
-      font-size: 0.64rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: var(--muted);
-      padding: 2px 4px 14px;
+      display: flex; align-items: center; justify-content: space-between;
+      font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.14em;
+      text-transform: uppercase; font-weight: 700; color: var(--muted); padding: 2px 4px 14px;
     }
-
     .phone-top .live { color: var(--green); display: inline-flex; align-items: center; gap: 7px; }
-
-    .live-dot {
-      width: 9px; height: 9px; border-radius: 50%;
-      background: var(--green);
-      border: 1.5px solid var(--ink);
-      animation: pulse 2.2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 0 3px rgba(31, 185, 107, 0.35); }
-      50% { box-shadow: 0 0 0 9px rgba(31, 185, 107, 0.05); }
-    }
+    .live-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--green); border: 1.5px solid var(--ink); animation: pulse 2.2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100% { box-shadow: 0 0 0 3px rgba(31,185,107,0.35);} 50% { box-shadow: 0 0 0 9px rgba(31,185,107,0.05);} }
 
     .phone-screen .bubble { margin-bottom: 10px; opacity: 0; animation: drop-in 0.5s ease forwards; }
     .phone-screen .bubble:nth-of-type(1) { animation-delay: 0.1s; }
     .phone-screen .bubble:nth-of-type(2) { animation-delay: 0.6s; }
     .phone-screen .bubble:nth-of-type(3) { animation-delay: 1.2s; }
     .phone-screen .bubble:nth-of-type(4) { animation-delay: 1.8s; }
-
-    @keyframes drop-in {
-      from { opacity: 0; transform: translateY(16px) scale(0.96); }
-      to { opacity: 1; transform: none; }
-    }
+    @keyframes drop-in { from { opacity: 0; transform: translateY(16px) scale(0.96);} to { opacity: 1; transform: none;} }
 
     .lead-alert {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 4px;
-      padding: 11px 13px;
-      border: var(--bw) solid var(--ink);
-      border-radius: 13px;
-      background: var(--green);
-      color: #063; color: #04361f;
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 0.82rem;
-      box-shadow: var(--shadow-sm);
-      opacity: 0;
-      animation: drop-in 0.5s ease forwards;
-      animation-delay: 2.3s;
+      display: flex; align-items: center; gap: 8px; margin-top: 4px; padding: 11px 13px;
+      border: var(--bw) solid var(--ink); border-radius: 13px; background: var(--green); color: #04361f;
+      font-family: var(--font-display); font-weight: 700; font-size: 0.82rem; box-shadow: var(--shadow-sm);
+      opacity: 0; animation: drop-in 0.5s ease forwards; animation-delay: 2.3s;
     }
-
-    @media (prefers-reduced-motion: reduce) {
-      .phone-screen .bubble, .lead-alert { animation: none; opacity: 1; }
-      .live-dot { animation: none; }
-    }
+    @media (prefers-reduced-motion: reduce) { .phone-screen .bubble, .lead-alert { animation: none; opacity: 1; } .live-dot { animation: none; } }
 
     .phone-sticker { position: absolute; bottom: -18px; left: -26px; z-index: 2; }
 
@@ -138,62 +69,17 @@
     .flow { padding: 34px; }
     .flow h3 { font-size: 1.4rem; margin: 16px 0 6px; }
     .flow.good { background: var(--yellow); }
-
     .track { list-style: none; display: grid; margin-top: 16px; }
-
-    .track li {
-      display: grid;
-      grid-template-columns: 34px 1fr;
-      gap: 14px;
-      align-items: start;
-      padding: 12px 0;
-      position: relative;
-      font-size: 0.94rem;
-      line-height: 1.45;
-    }
-
-    .track li::before {
-      content: "";
-      position: absolute;
-      left: 16px;
-      top: 0; bottom: 0;
-      width: 2px;
-      background: repeating-linear-gradient(var(--ink) 0 4px, transparent 4px 9px);
-      opacity: 0.35;
-    }
+    .track li { display: grid; grid-template-columns: 34px 1fr; gap: 14px; align-items: start; padding: 12px 0; position: relative; font-size: 0.94rem; line-height: 1.45; }
+    .track li::before { content: ""; position: absolute; left: 16px; top: 0; bottom: 0; width: 2px; background: repeating-linear-gradient(var(--ink) 0 4px, transparent 4px 9px); opacity: 0.35; }
     .track li:first-child::before { top: 24px; }
     .track li:last-child::before { bottom: calc(100% - 24px); }
-
-    .track .node {
-      width: 34px; height: 34px;
-      display: grid; place-items: center;
-      border: var(--bw) solid var(--ink);
-      border-radius: 50%;
-      font-size: 0.72rem; font-weight: 800;
-      color: #fff;
-      z-index: 1;
-      box-shadow: 2px 2px 0 var(--ink);
-    }
-
+    .track .node { width: 34px; height: 34px; display: grid; place-items: center; border: var(--bw) solid var(--ink); border-radius: 50%; font-size: 0.72rem; font-weight: 800; color: #fff; z-index: 1; box-shadow: 2px 2px 0 var(--ink); }
     .flow.bad .node { background: var(--red); }
     .flow.good .node { background: var(--green); }
-    .track .node svg { display: block; }
     .track b { font-family: var(--font-mono); font-size: 0.72rem; opacity: 0.6; margin-right: 6px; }
     .flow.good .track li { color: rgba(23, 19, 12, 0.82); }
-
-    .bottom-line {
-      margin-top: 22px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      border: var(--bw) solid var(--ink);
-      border-radius: 14px;
-      padding: 14px 18px;
-      font-family: var(--font-display);
-      font-weight: 700;
-      box-shadow: var(--shadow-sm);
-    }
+    .bottom-line { margin-top: 22px; display: flex; align-items: center; justify-content: space-between; gap: 12px; border: var(--bw) solid var(--ink); border-radius: 14px; padding: 14px 18px; font-family: var(--font-display); font-weight: 700; box-shadow: var(--shadow-sm); }
     .bottom-line .amt { font-size: 1.5rem; letter-spacing: -0.03em; }
     .bottom-line.bad { background: #ffe2dc; }
     .bottom-line.bad .amt { color: var(--red); }
@@ -202,183 +88,43 @@
 
     /* ---- stats ---- */
     .stat-card { text-align: center; padding: 36px 20px; }
-    .stat-card .num {
-      font-family: var(--font-display);
-      font-size: clamp(2.6rem, 5vw, 3.6rem);
-      font-weight: 700; letter-spacing: -0.04em; line-height: 1;
-      margin-bottom: 10px; display: block;
-    }
+    .stat-card .num { font-family: var(--font-display); font-size: clamp(2.6rem, 5vw, 3.6rem); font-weight: 700; letter-spacing: -0.04em; line-height: 1; margin-bottom: 10px; display: block; }
     .stat-card p { font-size: 0.88rem; }
     .num--orange { color: var(--orange); }
     .num--blue { color: var(--blue); }
     .num--red { color: var(--red); }
     .num--green { color: var(--green); }
 
-    /* ---- steps ---- */
-    .step-num {
-      width: 46px; height: 46px;
-      display: grid; place-items: center;
-      font-family: var(--font-display); font-weight: 700; font-size: 1.1rem;
-      border: var(--bw) solid var(--ink); border-radius: 12px;
-      background: var(--blue); color: #fff;
-      box-shadow: var(--shadow-sm); transform: rotate(-3deg);
-    }
-    .step-card:nth-child(2) .step-num { background: var(--orange); transform: rotate(2deg); }
-    .step-card:nth-child(3) .step-num { background: var(--yellow); color: var(--ink); transform: rotate(-2deg); }
-    .step-card:nth-child(4) .step-num { background: var(--green); transform: rotate(3deg); }
-
-    /* ---- lead dashboard ---- */
-    .dash-grid {
-      display: grid;
-      grid-template-columns: 1fr 0.9fr;
-      gap: 64px;
-      align-items: center;
-    }
-    .dash-head {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 2px 2px 14px;
-      font-family: var(--font-display); font-weight: 700; font-size: 0.95rem;
-    }
-    .dash-head .badge {
-      font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em;
-      background: var(--orange); color: #fff; border: 2px solid var(--ink);
-      border-radius: 999px; padding: 3px 9px; font-weight: 700;
-    }
-    .dash-row {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 8px;
-      align-items: center;
-      border: var(--bw) solid var(--ink);
-      border-radius: 13px;
-      background: var(--card);
-      padding: 11px 12px;
-      margin-bottom: 9px;
-      box-shadow: 2px 2px 0 var(--ink);
-    }
-    .dash-row.top { background: #fff6d6; }
-    .dash-row .tag {
-      font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.08em;
-      text-transform: uppercase; font-weight: 700;
-      border: 1.5px solid var(--ink); border-radius: 6px; padding: 2px 6px;
-      display: inline-block; margin-bottom: 5px;
-    }
-    .tag.urgent { background: var(--red); color: #fff; }
-    .tag.new { background: var(--blue); color: #fff; }
-    .tag.quote { background: var(--yellow); }
-    .dash-row .desc { font-size: 0.82rem; line-height: 1.3; }
-    .dash-row .desc b { font-family: var(--font-display); }
-    .dash-row .when { font-size: 0.66rem; color: var(--muted); margin-top: 3px; }
-    .dash-row .call {
-      font-size: 0.7rem; font-weight: 700; font-family: var(--font-display);
-      background: var(--green); color: #fff; border: 2px solid var(--ink);
-      border-radius: 9px; padding: 7px 10px; box-shadow: 1px 1px 0 var(--ink);
-    }
-    .dash-caption {
-      font-family: var(--font-hand); font-size: 1.3rem; color: var(--blue);
-      transform: rotate(-2deg); display: inline-block; margin-top: 12px;
-    }
-
-    /* ---- automated not robotic ---- */
-    .tone-tag {
-      font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em;
-      text-transform: uppercase; font-weight: 700; color: var(--muted);
-      display: block; margin-bottom: 14px;
-    }
+    /* ---- tone cards ---- */
+    .tone-tag { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; color: var(--muted); display: block; margin-bottom: 14px; }
     .tone-card .bubble { background: var(--paper); }
     .tone-card:nth-child(2) .bubble { background: #ffe9df; }
     .tone-card:nth-child(3) .bubble { background: #e3eaff; }
 
-    /* ---- receipts tabs ---- */
-    .tabs { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 26px; }
-    .tab {
-      font-family: var(--font-display); font-weight: 700; font-size: 0.9rem;
-      padding: 10px 20px; border: var(--bw) solid var(--ink); border-radius: 999px;
-      background: var(--card); color: var(--ink); cursor: pointer;
-      box-shadow: var(--shadow-sm); transition: transform 0.12s ease, box-shadow 0.12s ease;
+    /* ---- explore band ---- */
+    .explore { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .explore-card {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 30px; border: var(--bw) solid var(--ink); border-radius: var(--radius);
+      background: var(--card); box-shadow: var(--shadow);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
     }
-    .tab:hover { transform: translate(-1px, -1px); }
-    .tab.is-active { background: var(--ink); color: var(--paper); }
-    .panel { display: none; }
-    .panel.is-active { display: grid; }
-    .panel-head {
-      font-family: var(--font-display); font-weight: 700;
-      font-size: clamp(1.3rem, 2.4vw, 1.9rem); letter-spacing: -0.03em;
-      line-height: 1.15; margin-bottom: 22px; max-width: 22ch;
-    }
-    .quote-stat {
-      font-family: var(--font-display); font-size: clamp(1.4rem, 2.4vw, 1.9rem);
-      font-weight: 700; letter-spacing: -0.035em; line-height: 1.15; margin: 4px 0 14px;
-    }
-    .attribution { margin-top: 16px; font-family: var(--font-hand); font-size: 1.3rem; color: var(--ink); }
+    .explore-card:hover { transform: translate(-3px,-3px); box-shadow: 8px 8px 0 var(--ink); }
+    .explore-card h3 { font-size: 1.25rem; margin-bottom: 4px; }
+    .explore-card p { color: var(--muted); font-size: 0.9rem; }
+    .explore-card .arrow { font-family: var(--font-display); font-weight: 700; font-size: 1.6rem; }
 
     /* ---- final cta ---- */
-    .final-cta {
-      border: var(--bw) solid var(--ink); border-radius: var(--radius-lg);
-      padding: 72px 40px; text-align: center;
-      background: var(--ink); color: var(--paper);
-      box-shadow: 10px 10px 0 rgba(23, 19, 12, 0.25);
-      position: relative; overflow: hidden;
-    }
+    .final-cta { border: var(--bw) solid var(--ink); border-radius: var(--radius-lg); padding: 72px 40px; text-align: center; background: var(--ink); color: var(--paper); box-shadow: 10px 10px 0 rgba(23,19,12,0.25); position: relative; overflow: hidden; }
     .final-cta h2 { margin: 22px auto 16px; max-width: 18ch; color: var(--paper); }
     .final-cta .lead { margin: 0 auto 34px; color: rgba(250, 243, 232, 0.72); }
     .final-cta .hero-actions { justify-content: center; margin-top: 0; }
     .final-cta .confetti { position: absolute; font-size: 1.6rem; opacity: 0.9; user-select: none; }
 
-    /* ---- integrations ---- */
-    .integrations { margin-top: 28px; }
-    .int-label {
-      font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.12em;
-      text-transform: uppercase; font-weight: 700; color: var(--muted);
-      display: block; margin-bottom: 12px;
-    }
-    .int-badges { display: flex; flex-wrap: wrap; gap: 10px; }
-    .int {
-      font-family: var(--font-display); font-weight: 700; font-size: 0.82rem;
-      padding: 8px 14px; border: var(--bw) solid var(--ink); border-radius: 11px;
-      background: var(--card); box-shadow: var(--shadow-sm);
-    }
-    .int:last-child { background: var(--yellow); }
-
-    /* ---- human handoff ---- */
-    .handoff-chat {
-      display: grid; gap: 12px;
-      border: var(--bw) solid var(--ink); border-radius: var(--radius);
-      background: var(--card); padding: 24px; box-shadow: var(--shadow);
-    }
-    .handoff-flag {
-      display: flex; align-items: center; gap: 8px; margin-top: 2px;
-      padding: 11px 13px; border: var(--bw) solid var(--ink); border-radius: 13px;
-      background: var(--green); color: #04361f;
-      font-family: var(--font-display); font-weight: 700; font-size: 0.82rem;
-      box-shadow: var(--shadow-sm);
-    }
-    .handoff-steps { list-style: none; display: grid; gap: 18px; counter-reset: h; }
-    .handoff-steps li { display: grid; grid-template-columns: 38px 1fr; gap: 14px; align-items: start; }
-    .handoff-steps li::before {
-      counter-increment: h; content: counter(h);
-      width: 38px; height: 38px; display: grid; place-items: center;
-      font-family: var(--font-display); font-weight: 700;
-      border: var(--bw) solid var(--ink); border-radius: 11px;
-      background: var(--blue); color: #fff; box-shadow: var(--shadow-sm);
-    }
-    .handoff-steps h4 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 3px; }
-    .handoff-steps p { color: var(--muted); font-size: 0.92rem; }
-
-    /* ---- pricing ---- */
-    .price-card { display: flex; flex-direction: column; }
-    .price { display: flex; align-items: baseline; gap: 6px; margin: 16px 0 6px; }
-    .price .amt {
-      font-family: var(--font-display); font-weight: 700; font-size: 3.4rem;
-      letter-spacing: -0.04em; color: var(--orange); line-height: 1;
-    }
-    .price .per { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--muted); }
-    .price-sub { margin-bottom: 18px; }
-    .price-aside { display: flex; flex-direction: column; justify-content: center; }
-
     @media (max-width: 1000px) {
       .hero { padding: 64px 0 80px; }
-      .hero-grid, .dash-grid { grid-template-columns: 1fr; gap: 56px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 56px; }
+      .explore { grid-template-columns: 1fr; }
       .arrow-note { display: none; }
     }
     @media (max-width: 720px) {
@@ -398,8 +144,8 @@
     <div class="container nav-inner">
       <a class="brand" href="index.html"><span class="brand-mark"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M12 2.4c-3.5 0-6.4 2.8-6.4 6.3 0 4.6 6.4 12.1 6.4 12.1s6.4-7.5 6.4-12.1c0-3.5-2.9-6.3-6.4-6.3Z" fill="#fff"/><path d="M8.4 9.6c1.2-1.9 2.4-1.9 3.6 0s2.4 1.9 3.6 0" stroke="#ff5a1f" stroke-width="1.8" stroke-linecap="round"/></svg></span><span>Geo<em>Flow</em></span></a>
       <nav class="nav-links">
-        <a href="#how-it-works">How it works</a>
-        <a href="#pricing">Pricing</a>
+        <a href="how-it-works.html">How it works</a>
+        <a href="pricing.html">Pricing</a>
         <a href="about.html">About</a>
         <a href="blog.html">Blog</a>
         <a class="btn btn--sm" href="calculator.html">Calculate your loss</a>
@@ -414,10 +160,10 @@
         <h1 class="display-xl">Miss the call.<br /><span class="hl">Keep the job.</span></h1>
         <p class="lead">GeoFlow text-backs every missed call in seconds with a warm, human message, grabs the job details, and drops the lead straight on your phone — <strong>before they dial your competitor.</strong></p>
         <div class="hero-actions">
-          <a class="btn" href="calculator.html">Calculate Your Lost Revenue</a>
-          <a class="btn btn--ghost" href="book-call.html">Book a demo</a>
+          <a class="btn" href="book-call.html">Book a demo</a>
+          <a class="btn btn--ghost" href="calculator.html">Calculate your loss</a>
         </div>
-        <span class="btn-note">↑ takes 60 seconds, no email needed</span>
+        <span class="btn-note">↑ the calculator takes 60 seconds, no email needed</span>
       </div>
 
       <div class="phone-wrap" aria-label="GeoFlow text-back workflow demo">
@@ -510,75 +256,7 @@
     </div>
   </section>
 
-  <section class="section section--tight" id="how-it-works">
-    <div class="container">
-      <div class="section-head" data-anim="up">
-        <span class="sticker">⚙️ how it works</span>
-        <h2 class="display-lg">Four steps. Zero new software.</h2>
-      </div>
-      <div class="grid grid-4">
-        <div class="card step-card" data-anim="up"><span class="step-num">1</span><h3>Call gets missed</h3><p>GeoFlow spots it instantly.</p></div>
-        <div class="card step-card" data-anim="up" data-delay="1"><span class="step-num">2</span><h3>Sarah texts back</h3><p>A warm, human message in seconds — asks what &amp; where.</p></div>
-        <div class="card step-card" data-anim="up" data-delay="2"><span class="step-num">3</span><h3>Reply captured</h3><p>Issue, zip, and urgency — sorted for you.</p></div>
-        <div class="card step-card" data-anim="up" data-delay="3"><span class="step-num">4</span><h3>Lands on your phone</h3><p>Hottest lead first. Tap to call. Booked.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--tight">
-    <div class="container dash-grid">
-      <div data-anim="left">
-        <span class="sticker sticker--blue">📥 where leads land</span>
-        <h2 class="display-lg" style="margin: 18px 0 14px;">No new app to babysit.</h2>
-        <p class="lead">Every captured lead drops into one clean queue — sorted by urgency, with the customer's exact issue and location. Tap to call the hottest one first. That's the whole "office side."</p>
-        <span class="dash-caption">it fits your day, not the other way around</span>
-        <div class="integrations">
-          <span class="int-label">Sends leads into what you already use</span>
-          <div class="int-badges">
-            <span class="int">Housecall Pro</span>
-            <span class="int">Jobber</span>
-            <span class="int">ServiceTitan</span>
-            <span class="int">+ plain SMS &amp; email</span>
-          </div>
-        </div>
-      </div>
-      <div class="phone-wrap" data-anim="right" data-delay="1">
-        <div class="phone" data-parallax="0.05">
-          <div class="phone-screen">
-            <div class="dash-head"><span>Callback queue</span><span class="badge">3 NEW</span></div>
-            <div class="dash-row top">
-              <div>
-                <span class="tag urgent">🔴 Urgent</span>
-                <div class="desc"><b>AC repair · 78701</b><br>"AC died, house is 85°"</div>
-                <div class="when">2 min ago · first in queue</div>
-              </div>
-              <span class="call">Call</span>
-            </div>
-            <div class="dash-row">
-              <div>
-                <span class="tag new">🔵 New</span>
-                <div class="desc"><b>Water heater · 78704</b><br>"No hot water this morning"</div>
-                <div class="when">14 min ago</div>
-              </div>
-              <span class="call">Call</span>
-            </div>
-            <div class="dash-row">
-              <div>
-                <span class="tag quote">🟡 Quote</span>
-                <div class="desc"><b>Roof inspection · 78745</b><br>"Storm damage — need an estimate"</div>
-                <div class="when">1 hr ago</div>
-              </div>
-              <span class="call">Call</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="cut-line" />
-
-  <section class="section" id="voice">
+  <section class="section section--tight" id="voice">
     <div class="container">
       <div class="section-head" data-anim="up">
         <span class="sticker sticker--orange sticker--tilt-r">🗣 automated, not robotic</span>
@@ -602,147 +280,17 @@
     </div>
   </section>
 
-  <section class="section section--tight" id="handoff">
+  <section class="section section--tight">
     <div class="container">
-      <div class="section-head" data-anim="up">
-        <span class="sticker sticker--blue sticker--tilt-r">🤝 human handoff</span>
-        <h2 class="display-lg">When it needs a human, <span class="hl">it gets one.</span></h2>
-        <p>A pricing question? A specific 1994 Trane model? GeoFlow never fakes an answer — it flags the lead and loops you in.</p>
-      </div>
-      <div class="grid grid-2" style="align-items: center;">
-        <div class="handoff-chat" data-anim="left">
-          <div class="bubble in">
-            <small><span>They ask</span><span>10:13 AM</span></small>
-            <p>"Do you take Amex? And can you fix a 1994 Trane XL1200?"</p>
-          </div>
-          <div class="bubble out">
-            <small><span>GeoFlow</span><span>10:13 AM</span></small>
-            <p>"Great questions — those are ones for Mike directly. I'm flagging this as a priority so he can text you right back. You're at 78701, correct?"</p>
-          </div>
-          <div class="handoff-flag">🔔 Flagged for a human — sent to your phone now.</div>
-        </div>
-        <ol class="handoff-steps" data-anim="right" data-delay="1">
-          <li><div><h4>It reads the message</h4><p>Spots pricing, technical, or off-script questions it shouldn't answer alone.</p></div></li>
-          <li><div><h4>It never guesses</h4><p>No made-up quotes or specs. It keeps the tone warm and buys you a minute.</p></div></li>
-          <li><div><h4>It hands off</h4><p>Flags the lead urgent and pings you to jump in — with the full conversation attached.</p></div></li>
-        </ol>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--tight" id="proof">
-    <div class="container">
-      <div class="section-head" data-anim="up">
-        <span class="sticker sticker--blue sticker--tilt-r">🧾 receipts by trade</span>
-        <h2 class="display-lg">Find your trade. See the win.</h2>
-      </div>
-
-      <div class="tabs" role="tablist" data-anim="up">
-        <button class="tab is-active" data-trade="roofing" role="tab">🏠 Roofing</button>
-        <button class="tab" data-trade="hvac" role="tab">❄️ HVAC</button>
-        <button class="tab" data-trade="plumbing" role="tab">🔧 Plumbing</button>
-      </div>
-
-      <div class="tab-panels" data-anim="up" data-delay="1">
-        <div class="panel is-active grid grid-2" data-trade="roofing">
-          <div class="card card--yellow">
-            <div class="panel-head">How roofers recover jobs they miss while up on ladders.</div>
-            <div class="quote-stat">"15 missed calls a week → <span class="hl--orange hl">$14,200</span> recovered in month one."</div>
-            <p>"The auto-text caught 8 calls we'd have lost while we were up on roofs."</p>
-            <p class="attribution">— Dave K., Elite Roofing Co.</p>
-          </div>
-          <div class="card card--ink">
-            <h3>Why it lands</h3>
-            <p>Roofers are physically unable to answer mid-job. The text-back holds the lead until boots are back on the ground.</p>
-            <p style="margin-top: 14px;"><span class="sticker">8 of 15 weekly misses recovered</span></p>
-          </div>
-        </div>
-
-        <div class="panel grid grid-2" data-trade="hvac">
-          <div class="card card--yellow">
-            <div class="panel-head">How HVAC teams catch every after-hours no-cool emergency.</div>
-            <div class="quote-stat">Nights &amp; weekends stop leaking. <span class="hl--orange hl">~3s</span> to first reply, 24/7.</div>
-            <p>"Peak season, the phone never stops. Now every missed call is a text convo before we're back in the truck."</p>
-            <p class="attribution">— Service lead, HVAC co. (example)</p>
-          </div>
-          <div class="card card--ink">
-            <h3>Why it lands</h3>
-            <p>Emergencies come in hot and off-hours. An instant, urgent-toned reply keeps the panicked homeowner from dialing the next listing.</p>
-            <p style="margin-top: 14px;"><span class="sticker">24/7 coverage, no after-hours staff</span></p>
-          </div>
-        </div>
-
-        <div class="panel grid grid-2" data-trade="plumbing">
-          <div class="card card--yellow">
-            <div class="panel-head">How plumbers recover 10+ hours of weekend calls.</div>
-            <div class="quote-stat">Every missed call is <span class="hl--orange hl">already a text</span> by Monday morning.</div>
-            <p>"Before GeoFlow, we lost track of voicemail leads. Now we work them in priority order the second we open."</p>
-            <p class="attribution">— Ops Manager, plumbing co.</p>
-          </div>
-          <div class="card card--ink">
-            <h3>Why it lands</h3>
-            <p>Weekend burst pipes don't wait. The queue means no scrambling through voicemails on Monday — the hot ones are already sorted.</p>
-            <p style="margin-top: 14px;"><span class="sticker">Weekend leads, captured &amp; sorted</span></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--tight" id="faq">
-    <div class="container">
-      <div class="section-head" data-anim="up">
-        <span class="sticker sticker--blue">🙋 quick answers</span>
-        <h2 class="display-lg">FAQ</h2>
-      </div>
-      <div data-anim="up" style="max-width: 760px;">
-        <details class="faq" open>
-          <summary>How fast can we launch?</summary>
-          <p>Days, not weeks — once your call routing and message are approved.</p>
-        </details>
-        <details class="faq">
-          <summary>Do we need to replace our CRM?</summary>
-          <p>Nope. GeoFlow sits on top of whatever you use today.</p>
-        </details>
-        <details class="faq">
-          <summary>Will the texts sound like us?</summary>
-          <p>Yes — we write the copy with you, in your voice, with a real name on it. See the three tone examples above.</p>
-        </details>
-        <details class="faq">
-          <summary>What if our team is tiny?</summary>
-          <p>Even better. That's when every missed call hurts the most.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--tight" id="pricing">
-    <div class="container">
-      <div class="section-head" data-anim="up">
-        <span class="sticker sticker--orange sticker--tilt-r">🏷 simple pricing</span>
-        <h2 class="display-lg">Priced to pay for itself.</h2>
-        <p>One flat monthly rate that scales with your business. No per-lead fees, no per-text charges, no contracts.</p>
-      </div>
-      <div class="grid grid-2" style="align-items: stretch;">
-        <div class="card price-card" data-anim="left">
-          <span class="sticker sticker--orange">most popular</span>
-          <div class="price"><span class="amt">$97</span><span class="per">/ month</span></div>
-          <p class="price-sub muted">Everything you need to stop losing leads.</p>
-          <ul class="checklist">
-            <li>Unlimited missed-call text-backs</li>
-            <li>Human-written, on-brand message templates</li>
-            <li>Callback queue delivered to your phone</li>
-            <li>Human handoff on complex questions</li>
-            <li>Monthly optimization — cancel anytime</li>
-          </ul>
-          <a class="btn" href="book-call.html" style="width: 100%; margin-top: 22px;">Book a demo</a>
-        </div>
-        <div class="card card--ink price-aside" data-anim="right" data-delay="1">
-          <h3>Does it pay for itself?</h3>
-          <p>Recover a single $300 job in a month and GeoFlow is already 3× paid back. Most teams recover several.</p>
-          <p style="margin-top: 16px;"><span class="sticker">One saved job &gt; a month of GeoFlow</span></p>
-          <a class="btn btn--yellow" href="calculator.html" style="margin-top: 22px;">See your number →</a>
-        </div>
+      <div class="explore" data-anim="up">
+        <a class="explore-card" href="how-it-works.html">
+          <div><h3>See exactly how it works →</h3><p>The 4-step flow, human handoff, and the tools it plugs into.</p></div>
+          <span class="arrow">⚙️</span>
+        </a>
+        <a class="explore-card" href="pricing.html">
+          <div><h3>See the pricing →</h3><p>$97/mo flat. No per-lead fees, no contracts. Runs the numbers with you.</p></div>
+          <span class="arrow">🏷</span>
+        </a>
       </div>
     </div>
   </section>
@@ -774,8 +322,9 @@
         </div>
         <div class="footer-col">
           <h4>Product</h4>
-          <a href="index.html#how-it-works">How it works</a>
-          <a href="calculator.html">Missed-call calculator</a>
+          <a href="how-it-works.html">How it works</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="calculator.html">Lost-revenue calculator</a>
           <a href="audit.html">Free audit</a>
           <a href="book-call.html">Book a demo</a>
         </div>
@@ -800,21 +349,5 @@
   </footer>
 
   <script src="assets/site.js"></script>
-  <script>
-    // receipts-by-trade tabs
-    (function () {
-      var tabs = document.querySelectorAll('.tab[data-trade]');
-      var panels = document.querySelectorAll('.panel[data-trade]');
-      tabs.forEach(function (tab) {
-        tab.addEventListener('click', function () {
-          var trade = tab.getAttribute('data-trade');
-          tabs.forEach(function (t) { t.classList.toggle('is-active', t === tab); });
-          panels.forEach(function (p) {
-            p.classList.toggle('is-active', p.getAttribute('data-trade') === trade);
-          });
-        });
-      });
-    })();
-  </script>
 </body>
 </html>
