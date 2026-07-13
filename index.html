@@ -4,809 +4,507 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GeoFlow — Turn every missed call into a booked job</title>
-  <meta name="description" content="When you can't answer, GeoFlow does. Instant text-back captures the lead in seconds, logs the job details, and queues the callback — so missed calls become booked jobs instead of lost revenue." />
+  <meta name="description" content="When you can't answer, GeoFlow does. Instant text-back captures the lead in seconds — so missed calls become booked jobs instead of lost revenue." />
   <meta property="og:title" content="GeoFlow — Turn every missed call into a booked job" />
-  <meta property="og:description" content="When you can't answer, GeoFlow does. Capture leads via text in seconds and turn missed inbound calls into booked jobs." />
+  <meta property="og:description" content="When you can't answer, GeoFlow does. Capture leads via text in seconds and turn missed calls into booked jobs." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://geoflowai.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
   <style>
-    :root {
-      --bg: #070d13;
-      --bg-soft: #0d1620;
-      --panel: rgba(14, 22, 31, 0.88);
-      --panel-strong: rgba(16, 24, 36, 0.96);
-      --line: rgba(255, 255, 255, 0.09);
-      --line-strong: rgba(255, 255, 255, 0.15);
-      --text: #eff4fa;
-      --muted: #a8b8c8;
-      --green: #78ef9f;
-      --lime: #cbff7a;
-      --blue: #82bfff;
-      --red: #ff9a8a;
-      --radius: 24px;
-      --shadow: 0 24px 70px rgba(0, 0, 0, 0.30);
-      --max: 1180px;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 12% 0%, rgba(120, 239, 159, 0.12), transparent 24%),
-        radial-gradient(circle at 88% 8%, rgba(130, 191, 255, 0.16), transparent 20%),
-        linear-gradient(180deg, #070d13 0%, #091119 35%, #070d13 100%);
-      line-height: 1.55;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    .wrap { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
-    .muted { color: var(--muted); }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 40;
-      backdrop-filter: blur(16px);
-      background: rgba(7, 13, 19, 0.74);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 14px 0;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 1.06rem;
-      font-weight: 800;
-      letter-spacing: -0.04em;
-    }
-
-    .brand-mark {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      display: grid;
-      place-items: center;
-      border: 1px solid var(--line);
-      background: linear-gradient(135deg, rgba(120, 239, 159, 0.24), rgba(130, 191, 255, 0.20));
-      box-shadow: var(--shadow);
-    }
-
-    .brand span { color: var(--green); }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-      color: var(--muted);
-      font-size: 0.93rem;
-    }
-
-    .nav-links a:hover { color: var(--text); }
-
-    .nav-cta {
-      padding: 10px 16px;
-      border-radius: 12px;
-      font-weight: 800;
-      color: #09130b;
-      background: linear-gradient(135deg, var(--green), var(--lime));
-      box-shadow: 0 14px 30px rgba(120, 239, 159, 0.2);
-    }
-
-    .section { padding: 44px 0; }
-
-    .hero {
-      padding: 72px 0 40px;
-    }
+    /* ---- hero ---- */
+    .hero { padding: 100px 0 110px; position: relative; }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 20px;
-      align-items: stretch;
-    }
-
-    .hero-main,
-    .hero-visual,
-    .card,
-    .compare-card,
-    .faq-item,
-    .final-cta,
-    .shift-card {
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--panel);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(12px);
-    }
-
-    .card,
-    .compare-card,
-    .shift-card {
-      transition: transform 0.25s ease, border-color 0.25s ease;
-    }
-
-    .card:hover,
-    .compare-card:hover {
-      transform: translateY(-3px);
-      border-color: var(--line-strong);
-    }
-
-    .hero-main {
-      padding: 34px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 560px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 64px;
       align-items: center;
-      gap: 8px;
-      border: 1px solid rgba(120, 239, 159, 0.22);
-      background: rgba(120, 239, 159, 0.09);
-      color: var(--green);
-      border-radius: 999px;
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      padding: 8px 12px;
-      margin-bottom: 18px;
     }
 
-    h1 {
-      font-size: clamp(2.3rem, 4.6vw, 4.2rem);
-      letter-spacing: -0.055em;
-      line-height: 1.0;
-      max-width: 14ch;
-      margin-bottom: 16px;
+    .hero h1 { margin: 26px 0 24px; }
+
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 34px; }
+
+    .hero-doodle {
+      position: relative;
+      display: inline-block;
     }
 
-    .gradient {
-      background: linear-gradient(135deg, var(--green), var(--lime) 55%, #a8d5ff 120%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .lead {
-      color: var(--muted);
-      max-width: 58ch;
-      font-size: 1.05rem;
-      margin-bottom: 24px;
-    }
-
-    .lead strong { color: var(--text); }
-
-    .hero-actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 12px;
-    }
-
-    .btn-primary,
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 13px 18px;
-      border-radius: 12px;
-      font-weight: 800;
-      font-size: 0.96rem;
-    }
-
-    .btn-primary {
-      color: #07110a;
-      background: linear-gradient(135deg, var(--green), var(--lime));
-      box-shadow: 0 14px 30px rgba(120, 239, 159, 0.22);
-    }
-
-    .btn-primary:hover { filter: brightness(1.06); }
-
-    .btn-secondary {
-      border: 1px solid var(--line-strong);
-      background: rgba(255, 255, 255, 0.02);
-    }
-
-    .btn-secondary:hover { background: rgba(255, 255, 255, 0.06); }
-
-    .cta-note {
-      color: var(--muted);
-      font-size: 0.83rem;
-      margin-bottom: 22px;
-    }
-
-    .trust-strip {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    .trust-pill {
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.02);
-      padding: 10px 12px;
-      font-size: 0.83rem;
-      color: var(--muted);
+    /* hand-drawn arrow pointing at the phone (desktop only) */
+    .arrow-note {
+      position: absolute;
+      top: -66px;
+      right: 4%;
       text-align: center;
+      transform: rotate(4deg);
     }
 
-    .hero-visual {
-      padding: 20px;
-      background: linear-gradient(180deg, var(--panel-strong), rgba(10, 17, 26, 0.92));
-      display: grid;
-      align-content: start;
-      gap: 12px;
+    .arrow-note svg { display: block; margin: 6px auto 0; }
+
+    /* ---- phone mockup ---- */
+    .phone-wrap { position: relative; display: grid; place-items: center; }
+
+    .phone {
+      position: relative;
+      width: min(370px, 100%);
+      border: var(--bw) solid var(--ink);
+      border-radius: 40px;
+      padding: 14px;
+      background: var(--card);
+      box-shadow: 10px 10px 0 var(--ink);
+      transform: rotate(1.6deg);
     }
 
-    .visual-head {
+    .phone-tape {
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      width: 120px;
+      height: 32px;
+      background: rgba(255, 210, 63, 0.75);
+      border: 1px solid rgba(23, 19, 12, 0.18);
+      transform: translateX(-50%) rotate(-4deg);
+      z-index: 2;
+    }
+
+    .phone-screen {
+      border-radius: 28px;
+      background: var(--paper);
+      border: var(--bw) solid var(--ink);
+      padding: 16px 14px 16px;
+      overflow: hidden;
+    }
+
+    .phone-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      color: var(--muted);
-      text-transform: uppercase;
+      font-family: var(--font-mono);
+      font-size: 0.64rem;
       letter-spacing: 0.14em;
-      font-size: 0.73rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--muted);
+      padding: 2px 4px 14px;
     }
+
+    .phone-top .live { color: var(--green); display: inline-flex; align-items: center; gap: 7px; }
 
     .live-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
+      width: 9px; height: 9px; border-radius: 50%;
       background: var(--green);
-      display: inline-block;
-      box-shadow: 0 0 0 8px rgba(120, 239, 159, 0.10);
-      margin-right: 8px;
-      animation: pulse 2.4s ease-in-out infinite;
+      border: 1.5px solid var(--ink);
+      animation: pulse 2.2s ease-in-out infinite;
     }
 
     @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 0 4px rgba(120, 239, 159, 0.14); }
-      50% { box-shadow: 0 0 0 10px rgba(120, 239, 159, 0.05); }
+      0%, 100% { box-shadow: 0 0 0 3px rgba(31, 185, 107, 0.35); }
+      50% { box-shadow: 0 0 0 9px rgba(31, 185, 107, 0.05); }
     }
 
-    .msg {
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.025);
-      padding: 14px;
+    .phone-screen .bubble { margin-bottom: 10px; opacity: 0; animation: drop-in 0.5s ease forwards; }
+    .phone-screen .bubble:nth-child(2) { animation-delay: 0.3s; }
+    .phone-screen .bubble:nth-child(3) { animation-delay: 0.9s; }
+    .phone-screen .bubble:nth-child(4) { animation-delay: 1.5s; }
+    .phone-screen .bubble:nth-child(5) { animation-delay: 2.1s; }
+
+    @keyframes drop-in {
+      from { opacity: 0; transform: translateY(16px) scale(0.96); }
+      to { opacity: 1; transform: none; }
     }
 
-    .msg.outbound { border-color: rgba(120, 239, 159, 0.28); background: rgba(120, 239, 159, 0.06); }
-    .msg.inbound { border-color: rgba(130, 191, 255, 0.28); background: rgba(130, 191, 255, 0.06); }
-
-    .msg small {
-      display: flex;
-      justify-content: space-between;
-      color: var(--muted);
-      font-size: 0.78rem;
-      margin-bottom: 7px;
+    @media (prefers-reduced-motion: reduce) {
+      .phone-screen .bubble { animation: none; opacity: 1; }
+      .live-dot { animation: none; }
     }
 
-    .msg p { font-size: 0.93rem; }
-
-    .metric-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
+    .phone-sticker {
+      position: absolute;
+      bottom: -18px;
+      left: -26px;
+      z-index: 2;
     }
 
-    .metric {
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 12px;
-      background: rgba(255, 255, 255, 0.02);
-    }
+    /* ---- before / after ---- */
+    .shift-card { padding: 34px; }
+    .shift-card h3 { font-size: 1.4rem; margin: 16px 0 22px; }
+    .shift-card.after { background: var(--yellow); }
+    .shift-card.after .timeline li { color: rgba(23, 19, 12, 0.8); }
 
-    .metric .label {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--muted);
-      margin-bottom: 5px;
-    }
-
-    .metric strong {
-      font-size: 1.1rem;
-      letter-spacing: -0.03em;
-    }
-
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 16px;
-      margin-bottom: 18px;
-    }
-
-    .section-head h2 {
-      font-size: clamp(1.8rem, 3vw, 2.7rem);
-      line-height: 0.98;
-      letter-spacing: -0.05em;
-      max-width: 14ch;
-    }
-
-    .section-head p {
-      max-width: 58ch;
-      color: var(--muted);
-    }
-
-    .shift-grid,
-    .proof-grid,
-    .problem-grid,
-    .solution-grid,
-    .why-grid,
-    .fit-grid,
-    .process-grid,
-    .faq-grid {
-      display: grid;
-      gap: 14px;
-    }
-
-    .shift-grid { grid-template-columns: 1fr 1fr; }
-    .proof-grid { grid-template-columns: 1.2fr 1fr 1fr; }
-    .problem-grid,
-    .solution-grid,
-    .why-grid,
-    .fit-grid,
-    .process-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-    .faq-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-
-    .card { padding: 20px; }
-
-    .kicker {
-      color: var(--muted);
-      font-size: 0.73rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      margin-bottom: 10px;
-    }
-
-    .kicker.good { color: var(--green); }
-    .kicker.bad { color: var(--red); }
-
-    .card h3 {
-      font-size: 1.08rem;
-      letter-spacing: -0.02em;
-      margin-bottom: 8px;
-    }
-
-    .card p,
-    .faq-item p,
-    .compare-card p,
-    .shift-card p { color: var(--muted); }
-
-    .shift-card { padding: 24px; }
-
-    .shift-card.before {
-      background: linear-gradient(180deg, rgba(255, 122, 100, 0.05), rgba(10, 17, 25, 0.92));
-      border-color: rgba(255, 154, 138, 0.18);
-    }
-
-    .shift-card.after {
-      background: linear-gradient(180deg, rgba(120, 239, 159, 0.08), rgba(10, 17, 25, 0.92));
-      border-color: rgba(120, 239, 159, 0.28);
-    }
-
-    .shift-card h3 {
-      font-size: 1.25rem;
-      letter-spacing: -0.03em;
-      margin-bottom: 14px;
-    }
-
-    .timeline {
-      list-style: none;
-      display: grid;
-      gap: 10px;
-    }
-
-    .timeline li {
-      display: flex;
-      gap: 12px;
-      align-items: baseline;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
+    .timeline { list-style: none; display: grid; gap: 15px; }
+    .timeline li { display: flex; gap: 14px; align-items: baseline; color: var(--muted); font-size: 0.95rem; }
 
     .timeline .t {
-      flex: 0 0 72px;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      opacity: 0.75;
+      flex: 0 0 56px;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--ink);
+      opacity: 0.55;
     }
 
-    .timeline .bad-mark { color: var(--red); font-weight: 700; }
-    .timeline .good-mark { color: var(--green); font-weight: 700; }
+    .timeline .x, .timeline .v {
+      flex: 0 0 20px; height: 20px;
+      display: grid; place-items: center;
+      font-size: 0.65rem; font-weight: 800;
+      border: 2px solid var(--ink); border-radius: 6px;
+      color: #fff;
+    }
+
+    .timeline .x { background: var(--red); }
+    .timeline .v { background: var(--green); }
 
     .shift-result {
-      margin-top: 16px;
-      padding-top: 14px;
-      border-top: 1px solid var(--line);
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 2px dashed rgba(23, 19, 12, 0.3);
+      font-family: var(--font-display);
       font-weight: 700;
       font-size: 1rem;
     }
 
     .shift-result.bad { color: var(--red); }
-    .shift-result.good { color: var(--green); }
 
-    .quote-stat {
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      letter-spacing: -0.045em;
-      line-height: 1.05;
-      margin-bottom: 12px;
-      font-weight: 800;
-    }
+    /* ---- stats ---- */
+    .stat-card { text-align: center; padding: 36px 20px; }
 
-    .quote-stat span { color: var(--green); }
-
-    .compare-card {
-      padding: 22px;
-      background: linear-gradient(180deg, rgba(16, 24, 36, 0.96), rgba(10, 17, 25, 0.92));
-    }
-
-    .fit-list {
-      list-style: none;
-      display: grid;
-      gap: 8px;
-      margin-top: 10px;
-      color: var(--muted);
-    }
-
-    .fit-list li::before {
-      content: "✓";
-      color: var(--green);
-      margin-right: 8px;
+    .stat-card .num {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 5vw, 3.6rem);
       font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 10px;
+      display: block;
     }
 
-    .faq-item {
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.02);
+    .stat-card p { font-size: 0.88rem; }
+    .num--orange { color: var(--orange); }
+    .num--blue { color: var(--blue); }
+    .num--red { color: var(--red); }
+    .num--green { color: var(--green); }
+
+    /* ---- steps ---- */
+    .step-card { text-align: left; }
+
+    .step-num {
+      width: 46px; height: 46px;
+      display: grid; place-items: center;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: var(--bw) solid var(--ink);
+      border-radius: 12px;
+      background: var(--blue);
+      color: #fff;
+      box-shadow: var(--shadow-sm);
+      transform: rotate(-3deg);
     }
 
-    .faq-item h3 {
-      font-size: 1rem;
-      margin-bottom: 8px;
-      letter-spacing: -0.01em;
+    .step-card:nth-child(2) .step-num { background: var(--orange); transform: rotate(2deg); }
+    .step-card:nth-child(3) .step-num { background: var(--yellow); color: var(--ink); transform: rotate(-2deg); }
+    .step-card:nth-child(4) .step-num { background: var(--green); transform: rotate(3deg); }
+
+    /* ---- proof ---- */
+    .quote-stat {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 2.6vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 1.15;
+      margin: 14px 0 16px;
     }
 
+    .attribution {
+      margin-top: 16px;
+      font-family: var(--font-hand);
+      font-size: 1.3rem;
+      color: var(--ink);
+    }
+
+    /* ---- final cta ---- */
     .final-cta {
-      padding: 32px;
-      border: 1px solid rgba(120, 239, 159, 0.28);
-      background: linear-gradient(145deg, rgba(120, 239, 159, 0.12), rgba(130, 191, 255, 0.08));
+      border: var(--bw) solid var(--ink);
+      border-radius: var(--radius-lg);
+      padding: 72px 40px;
+      text-align: center;
+      background: var(--ink);
+      color: var(--paper);
+      box-shadow: 10px 10px 0 rgba(23, 19, 12, 0.25);
+      position: relative;
+      overflow: hidden;
     }
 
-    .final-cta h2 {
-      font-size: clamp(1.9rem, 3vw, 3rem);
-      letter-spacing: -0.055em;
-      line-height: 1.0;
-      margin-bottom: 12px;
-      max-width: 18ch;
+    .final-cta h2 { margin: 22px auto 16px; max-width: 18ch; color: var(--paper); }
+    .final-cta .lead { margin: 0 auto 34px; color: rgba(250, 243, 232, 0.72); }
+    .final-cta .hero-actions { justify-content: center; margin-top: 0; }
+
+    .final-cta .confetti {
+      position: absolute;
+      font-size: 1.6rem;
+      opacity: 0.9;
+      user-select: none;
     }
 
-    .final-cta p {
-      color: var(--muted);
-      max-width: 58ch;
-      margin-bottom: 18px;
+    @media (max-width: 1000px) {
+      .hero { padding: 64px 0 80px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 56px; }
+      .arrow-note { display: none; }
     }
 
-    footer {
-      padding: 30px 0 42px;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    .footer-row {
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      padding-top: 16px;
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    @media (max-width: 1024px) {
-      .hero-grid,
-      .shift-grid,
-      .proof-grid,
-      .problem-grid,
-      .solution-grid,
-      .why-grid,
-      .fit-grid,
-      .process-grid,
-      .faq-grid,
-      .trust-strip,
-      .metric-grid { grid-template-columns: 1fr; }
-      .hero-main { min-height: auto; }
-    }
-
-    @media (max-width: 760px) {
-      .wrap { width: min(var(--max), calc(100% - 22px)); }
-      .nav-links { display: none; }
-      .hero-main,
-      .hero-visual,
-      .card,
-      .compare-card,
-      .faq-item,
-      .final-cta,
-      .shift-card { padding: 18px; border-radius: 18px; }
-      .hero-actions { flex-direction: column; }
-      .btn-primary,
-      .btn-secondary { width: 100%; }
-      .section { padding: 30px 0; }
-      .timeline .t { flex-basis: 60px; }
+    @media (max-width: 720px) {
+      .hero-actions .btn { width: 100%; }
+      .shift-card { padding: 24px; }
+      .final-cta { padding: 52px 22px; }
+      .phone { transform: rotate(0deg); }
+      .phone-sticker { left: -8px; }
     }
   </style>
 </head>
 <body>
-  <div class="topbar">
-    <div class="wrap">
-      <nav>
-        <a class="brand" href="index.html"><div class="brand-mark">↗</div><div>Geo<span>Flow</span></div></a>
-        <div class="nav-links">
-          <a href="#before-after">Before vs. after</a>
-          <a href="#how-it-works">How it works</a>
-          <a href="#fit">Who it's for</a>
-          <a href="#faq">FAQ</a>
-          <a href="calculator.html" class="nav-cta">60-second audit</a>
-        </div>
+
+  <div class="progress"></div>
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html"><span class="brand-mark">↗</span><span>Geo<em>Flow</em></span></a>
+      <nav class="nav-links">
+        <a href="#before-after">Before &amp; after</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Blog</a>
+        <a class="btn btn--sm" href="calculator.html">60-second audit</a>
       </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="sticker">📞 For contractors &amp; home-service pros</span>
+        <h1 class="display-xl">Miss the call.<br /><span class="hl">Keep the job.</span></h1>
+        <p class="lead">GeoFlow texts back every missed call in seconds, grabs the job details, and lines up your callback — <strong>before they dial your competitor.</strong></p>
+        <div class="hero-actions">
+          <a class="btn" href="calculator.html">What are missed calls costing you?</a>
+          <a class="btn btn--ghost" href="book-call.html">Book a demo</a>
+        </div>
+        <span class="btn-note">↑ takes 60 seconds, no email needed</span>
+      </div>
+
+      <div class="phone-wrap" aria-label="GeoFlow text-back workflow demo">
+        <div class="arrow-note">
+          <span class="scribble">this all happens<br />by itself</span>
+          <svg width="40" height="44" viewBox="0 0 40 44" fill="none" aria-hidden="true">
+            <path d="M20 2 C 14 16, 26 26, 20 38" stroke="#2f5cff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+            <path d="M12 32 L 20 42 L 27 31" stroke="#2f5cff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+        <div class="phone" data-parallax="0.06">
+          <div class="phone-tape"></div>
+          <div class="phone-screen">
+            <div class="phone-top"><span>Live workflow</span><span class="live"><span class="live-dot"></span>Active</span></div>
+            <div class="bubble">
+              <small><span>Missed call</span><span>10:12</span></small>
+              <p>Homeowner needs same-day AC repair. Your tech is on a roof.</p>
+            </div>
+            <div class="bubble out">
+              <small><span>GeoFlow texts back · 3s</span><span>10:12</span></small>
+              <p>"Sorry we missed you — this is {{BusinessName}}. What do you need help with right now? Reply with the issue + zip and we'll text back in minutes."</p>
+            </div>
+            <div class="bubble in">
+              <small><span>They reply</span><span>10:13</span></small>
+              <p>"AC died, house is 85°. 78701 — can someone come today?"</p>
+            </div>
+            <div class="bubble">
+              <small><span>Lead captured</span><span>10:14</span></small>
+              <p>Tagged urgent · AC repair · 78701. First in your callback queue. ✅</p>
+            </div>
+          </div>
+          <span class="sticker sticker--orange phone-sticker">replies in ~3 sec</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Roofing <b>✦</b></span><span>HVAC <b>✦</b></span><span>Plumbing <b>✦</b></span><span>Electrical <b>✦</b></span><span>Junk removal <b>✦</b></span><span>Garage door <b>✦</b></span><span>Locksmith <b>✦</b></span><span>Landscaping <b>✦</b></span>
+      <span>Roofing <b>✦</b></span><span>HVAC <b>✦</b></span><span>Plumbing <b>✦</b></span><span>Electrical <b>✦</b></span><span>Junk removal <b>✦</b></span><span>Garage door <b>✦</b></span><span>Locksmith <b>✦</b></span><span>Landscaping <b>✦</b></span>
     </div>
   </div>
 
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div class="hero-main">
-        <div>
-          <div class="eyebrow">Missed-call recovery for contractors</div>
-          <h1>Turn every missed call into a <span class="gradient">booked job</span> — instantly.</h1>
-          <p class="lead">When you can't answer, GeoFlow does. The caller gets a text <strong>within seconds</strong>, their job details are captured automatically, and your team gets a clean callback queue — so the lead books with you, not the next company they dial.</p>
-          <div class="hero-actions">
-            <a class="btn-primary" href="calculator.html">See what missed calls cost you</a>
-            <a class="btn-secondary" href="book-call.html">Book a 15-minute demo</a>
-          </div>
-          <p class="cta-note">The calculator takes 60 seconds — no email, no sales call required.</p>
-        </div>
-        <div class="trust-strip">
-          <div class="trust-pill">Built for local service teams</div>
-          <div class="trust-pill">Done-for-you setup in days</div>
-          <div class="trust-pill">No CRM migration required</div>
-          <div class="trust-pill">Monthly optimization included</div>
-        </div>
-      </div>
-
-      <div class="hero-visual" aria-label="GeoFlow text-back workflow">
-        <div class="visual-head"><span>Live workflow preview</span><span><span class="live-dot"></span>Active</span></div>
-        <div class="msg">
-          <small><span>Missed inbound call</span><span>10:12 AM</span></small>
-          <p>Homeowner called for same-day AC repair while your tech was on-site.</p>
-        </div>
-        <div class="msg outbound">
-          <small><span>Instant text sent — 3 seconds later</span><span>10:12 AM</span></small>
-          <p>"Sorry we missed you — this is {{BusinessName}}. What repair or emergency do you need help with right now? Reply with the issue and your zip code, and our team will text you back in minutes."</p>
-        </div>
-        <div class="msg inbound">
-          <small><span>Homeowner replies</span><span>10:13 AM</span></small>
-          <p>"AC stopped cooling, house is at 85°. 78701 — can someone come today?"</p>
-        </div>
-        <div class="msg">
-          <small><span>Lead captured + prioritized</span><span>10:14 AM</span></small>
-          <p>Tagged urgent · same-day AC repair · 78701. Queued first for your next open rep.</p>
-        </div>
-        <div class="metric-grid">
-          <div class="metric"><div class="label">First response</div><strong>~3 seconds</strong></div>
-          <div class="metric"><div class="label">Lead capture</div><strong>24/7</strong></div>
-          <div class="metric"><div class="label">Setup time</div><strong>Days, not months</strong></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section class="section" id="before-after">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>The same missed call, two very different endings</h2>
-        <p>Most callers move on to the next contractor within minutes. The only variable is what happens in the first 60 seconds after the missed ring.</p>
+    <div class="container">
+      <div class="section-head" data-anim="up">
+        <span class="sticker sticker--blue sticker--tilt-r">before → after</span>
+        <h2 class="display-lg">Same call. <span class="hl--orange hl">Two endings.</span></h2>
       </div>
-      <div class="shift-grid">
-        <div class="shift-card before">
-          <div class="kicker bad">Before GeoFlow</div>
-          <h3>The lead goes to voicemail — then to your competitor</h3>
+      <div class="grid grid-2">
+        <div class="card shift-card" data-anim="left">
+          <span class="sticker sticker--paper">😬 without GeoFlow</span>
+          <h3>Voicemail → competitor</h3>
           <ul class="timeline">
-            <li><span class="t">10:12 AM</span><span><span class="bad-mark">✕</span> Homeowner calls. Your crew is on a roof. It rings out.</span></li>
-            <li><span class="t">10:13 AM</span><span><span class="bad-mark">✕</span> Voicemail picks up. Most callers hang up without leaving one.</span></li>
-            <li><span class="t">10:15 AM</span><span><span class="bad-mark">✕</span> They call the next company on Google. Someone answers.</span></li>
-            <li><span class="t">6:40 PM</span><span><span class="bad-mark">✕</span> You call back after work. "We already found someone, thanks."</span></li>
+            <li><span class="t">10:12</span><span class="x">✕</span><span>Rings out. Crew's on a roof.</span></li>
+            <li><span class="t">10:13</span><span class="x">✕</span><span>Caller hangs up on voicemail.</span></li>
+            <li><span class="t">10:15</span><span class="x">✕</span><span>They call the next company. Someone answers.</span></li>
+            <li><span class="t">18:40</span><span class="x">✕</span><span>You call back: "we found someone, thanks."</span></li>
           </ul>
-          <div class="shift-result bad">Result: the job — and the ad spend that generated the call — is gone.</div>
+          <div class="shift-result bad">Job gone. Ad money wasted.</div>
         </div>
-        <div class="shift-card after">
-          <div class="kicker good">With GeoFlow</div>
-          <h3>The lead is answered, captured, and queued in 2 minutes</h3>
+        <div class="card shift-card after" data-anim="right" data-delay="1">
+          <span class="sticker sticker--paper">😎 with GeoFlow</span>
+          <h3>Text-back → booked</h3>
           <ul class="timeline">
-            <li><span class="t">10:12 AM</span><span><span class="good-mark">✓</span> Same missed ring — but GeoFlow texts the caller back in seconds.</span></li>
-            <li><span class="t">10:13 AM</span><span><span class="good-mark">✓</span> They reply with the issue and zip code instead of dialing a competitor.</span></li>
-            <li><span class="t">10:14 AM</span><span><span class="good-mark">✓</span> Lead is tagged urgent and queued first for your next open rep.</span></li>
-            <li><span class="t">10:26 AM</span><span><span class="good-mark">✓</span> Your office texts a same-day arrival window. Job booked.</span></li>
+            <li><span class="t">10:12</span><span class="v">✓</span><span>Same missed ring — GeoFlow texts back in seconds.</span></li>
+            <li><span class="t">10:13</span><span class="v">✓</span><span>They reply with the issue + zip.</span></li>
+            <li><span class="t">10:14</span><span class="v">✓</span><span>Lead tagged urgent, first in your queue.</span></li>
+            <li><span class="t">10:26</span><span class="v">✓</span><span>Your office texts an arrival window. Booked. 🎉</span></li>
           </ul>
-          <div class="shift-result good">Result: a booked job from a call you never physically answered.</div>
+          <div class="shift-result">A job you never even answered the phone for.</div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="proof">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>What recovery looks like in real numbers</h2>
-        <p>We focus on a narrow, measurable problem: inbound calls that were ready to buy but went unanswered.</p>
-      </div>
-      <div class="proof-grid">
-        <div class="card">
-          <div class="kicker">Customer result</div>
-          <div class="quote-stat">"15 missed calls a week → <span>$14,200</span> in recovered jobs our first month."</div>
-          <p>"Before GeoFlow, we missed about 15 calls a week while we were up on roofs. In our first month, the auto-text recovered 8 of them — that was $14,200 in extra booked jobs we would have lost."</p>
-          <p class="muted">— Dave K., Owner, Elite Roofing Co.</p>
-        </div>
-        <div class="card">
-          <div class="kicker">After-hours coverage</div>
-          <h3>"We finally have a system for after-hours leads."</h3>
-          <p>"Before GeoFlow, we lost track of voicemail leads. Now every missed call is already a text conversation by the time we open in the morning, and we work them in priority order."</p>
-          <p class="muted">— Operations Manager, Plumbing Company</p>
-        </div>
-        <div class="card">
-          <div class="kicker">Trusted by teams like</div>
-          <h3>Roofing • HVAC • Plumbing</h3>
-          <p>Electricians, junk removal, garage door companies, locksmiths, and other field-first service businesses that are on the tools when the phone rings.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="problem">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>The problem is simple</h2>
-        <p>If nobody answers, the lead doesn't wait. Most callers move to the next contractor within minutes.</p>
-      </div>
-      <div class="problem-grid">
-        <div class="card"><div class="kicker">Reality</div><h3>Your team is busy when the phone rings</h3><p>Jobs in progress, driving, and after-hours calls create unavoidable misses.</p></div>
-        <div class="card"><div class="kicker">Leak</div><h3>Voicemail is a weak fallback</h3><p>Many leads never leave one, and those who do often call someone else first.</p></div>
-        <div class="card"><div class="kicker">Cost</div><h3>Marketing dollars get wasted</h3><p>You already paid to generate the inbound call. Missing the response wastes that spend.</p></div>
-        <div class="card"><div class="kicker">Impact</div><h3>Revenue becomes inconsistent</h3><p>Lost calls create avoidable gaps in booked jobs and weekly pipeline stability.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="how-it-works">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>How GeoFlow works</h2>
-        <p>Clear system. No giant software overhaul. Just what you need to recover and close more inbound opportunities.</p>
-      </div>
-      <div class="solution-grid">
-        <div class="card"><div class="kicker">Step 1</div><h3>Missed call triggers instantly</h3><p>GeoFlow detects the unanswered inbound call in real time.</p></div>
-        <div class="card"><div class="kicker">Step 2</div><h3>Auto text starts the conversation</h3><p>The caller gets a branded reply in seconds that asks exactly what they need and where — so replying is easier than redialing a competitor.</p></div>
-        <div class="card"><div class="kicker">Step 3</div><h3>Lead details are captured</h3><p>Issue, location, and urgency are pulled from the reply and organized for your team.</p></div>
-        <div class="card"><div class="kicker">Step 4</div><h3>Follow-up gets prioritized</h3><p>Your callback queue is clearer, faster, and easier to execute.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="why">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Why GeoFlow instead</h2>
-        <p>We solve missed-call recovery directly, without adding admin complexity.</p>
-      </div>
-      <div class="why-grid">
-        <div class="compare-card"><div class="kicker">Vs voicemail only</div><h3>Respond now, not later</h3><p>Voicemail waits for the customer to do work. GeoFlow starts the conversation for you.</p></div>
-        <div class="compare-card"><div class="kicker">Vs bloated CRMs</div><h3>Lightweight and focused</h3><p>No long onboarding or tool sprawl. You get the lead recovery layer that matters.</p></div>
-        <div class="compare-card"><div class="kicker">Vs hiring admin staff</div><h3>Coverage without payroll jump</h3><p>Extend responsiveness outside normal office coverage before adding headcount.</p></div>
-        <div class="compare-card"><div class="kicker">Vs DIY texting</div><h3>Consistent, trackable workflow</h3><p>Every missed call follows the same process, so fewer leads slip through.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="fit">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Who it's for</h2>
-        <p>Best fit for contractor and local service businesses that rely on inbound calls and need tighter follow-up.</p>
-      </div>
-      <div class="fit-grid">
-        <div class="card">
-          <div class="kicker">Core verticals</div>
-          <h3>Contractors + field service teams</h3>
-          <ul class="fit-list">
-            <li>Roofing</li>
-            <li>HVAC</li>
-            <li>Plumbing</li>
-            <li>Electrical</li>
-          </ul>
-        </div>
-        <div class="card">
-          <div class="kicker">Also strong fit</div>
-          <h3>Home service operators</h3>
-          <ul class="fit-list">
-            <li>Junk removal</li>
-            <li>Garage door</li>
-            <li>Locksmith</li>
-            <li>Other local service niches</li>
-          </ul>
-        </div>
-        <div class="card"><div class="kicker">Best-fit signal</div><h3>You miss calls during real work</h3><p>If owners and techs are often on-site, you'll benefit quickly from instant text-back.</p></div>
-        <div class="card"><div class="kicker good">Best-fit volume</div><h3>5–10+ inbound calls a week</h3><p>Teams at this volume and above see the fastest payback — enough calls that every miss matters, and GeoFlow guarantees zero leakage on the leads you've already earned.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="process">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Launch process</h2>
-        <p>Concrete rollout, simple milestones, and visibility from day one.</p>
-      </div>
-      <div class="process-grid">
-        <div class="card"><div class="kicker">01 Audit</div><h3>Missed-call review</h3><p>We map your current call handling and identify where leads leak.</p></div>
-        <div class="card"><div class="kicker">02 Setup</div><h3>Message + routing configuration</h3><p>We tailor templates and response logic to your business and service area.</p></div>
-        <div class="card"><div class="kicker">03 Launch</div><h3>Go-live and validation</h3><p>We test your missed-call workflow with your team before full handoff.</p></div>
-        <div class="card"><div class="kicker">04 Optimize</div><h3>Recover more qualified leads</h3><p>We track responses and tune the flow to improve booked jobs over time.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="faq">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Frequently asked questions</h2>
-        <p>Short answers to the objections most operators have before implementing missed-call recovery.</p>
-      </div>
-      <div class="faq-grid">
-        <div class="faq-item"><h3>How fast can we launch?</h3><p>Most teams can launch in days once call routing and messaging are approved.</p></div>
-        <div class="faq-item"><h3>Do we need to replace our CRM?</h3><p>No. GeoFlow is built to improve missed-call response without forcing a full CRM migration.</p></div>
-        <div class="faq-item"><h3>Can messages match our brand voice?</h3><p>Yes. We customize copy so your replies sound like your company, not a generic bot.</p></div>
-        <div class="faq-item"><h3>What if our team is small?</h3><p>That's exactly where this helps most: fewer missed opportunities while your crew stays in the field.</p></div>
-      </div>
-    </div>
-  </section>
+  <hr class="cut-line" />
 
   <section class="section">
-    <div class="wrap">
-      <div class="final-cta">
-        <div class="kicker">Takes less time than one missed call</div>
-        <h2>See your missed-call savings in 60 seconds</h2>
-        <p>Run the free calculator to see what missed calls cost you every month — no email required. Want the full picture? Book a 15-minute demo and we'll map exactly where your inbound leads leak and how the text-back flow recovers them.</p>
-        <div class="hero-actions" style="margin-bottom: 0;">
-          <a class="btn-primary" href="calculator.html">Run the 60-second missed-call audit</a>
-          <a class="btn-secondary" href="book-call.html">Book a 15-minute demo</a>
+    <div class="container">
+      <div class="grid grid-4">
+        <div class="card stat-card" data-anim="pop"><span class="num num--green" data-count="3" data-prefix="~" data-suffix="s">~3s</span><p>from missed ring to first text back</p></div>
+        <div class="card stat-card" data-anim="pop" data-delay="1"><span class="num num--red" data-count="62" data-suffix="%">62%</span><p>of callers won't leave a voicemail</p></div>
+        <div class="card stat-card" data-anim="pop" data-delay="2"><span class="num num--blue" data-count="21" data-suffix="×">21×</span><p>more likely to win the lead replying in 5 min</p></div>
+        <div class="card stat-card" data-anim="pop" data-delay="3"><span class="num num--orange">24/7</span><p>nights, weekends, on-the-roof hours</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight" id="how-it-works">
+    <div class="container">
+      <div class="section-head" data-anim="up">
+        <span class="sticker">⚙️ how it works</span>
+        <h2 class="display-lg">Four steps. Zero new software.</h2>
+      </div>
+      <div class="grid grid-4">
+        <div class="card step-card" data-anim="up"><span class="step-num">1</span><h3>Call gets missed</h3><p>GeoFlow spots it instantly.</p></div>
+        <div class="card step-card" data-anim="up" data-delay="1"><span class="step-num">2</span><h3>Text goes out</h3><p>Branded reply in seconds, asks what + where.</p></div>
+        <div class="card step-card" data-anim="up" data-delay="2"><span class="step-num">3</span><h3>Reply captured</h3><p>Issue, zip, and urgency — tagged for you.</p></div>
+        <div class="card step-card" data-anim="up" data-delay="3"><span class="step-num">4</span><h3>You call back</h3><p>Clean queue, hottest lead first. Booked.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="cut-line" />
+
+  <section class="section" id="proof">
+    <div class="container">
+      <div class="section-head" data-anim="up">
+        <span class="sticker sticker--orange sticker--tilt-r">🧾 receipts</span>
+        <h2 class="display-lg">Real numbers, not vibes</h2>
+      </div>
+      <div class="grid grid-3">
+        <div class="card card--yellow" data-anim="left">
+          <div class="quote-stat">"15 missed calls a week → <span class="hl--orange hl">$14,200</span> recovered in month one."</div>
+          <p>"The auto-text caught 8 calls we'd have lost while we were up on roofs."</p>
+          <p class="attribution">— Dave K., Elite Roofing Co.</p>
+        </div>
+        <div class="card" data-anim="up" data-delay="1">
+          <h3>"We finally have a system for after-hours leads."</h3>
+          <p>"Every missed call is already a text conversation by the time we open in the morning."</p>
+          <p class="attribution">— Ops Manager, plumbing co.</p>
+        </div>
+        <div class="card card--ink" data-anim="right" data-delay="2">
+          <h3>Built for the trades</h3>
+          <p>Roofing, HVAC, plumbing, electrical — and any crew that's on the tools when the phone rings.</p>
+          <p style="margin-top: 14px;"><span class="sticker" style="transform: rotate(-2deg);">5–10+ calls/week? Perfect fit.</span></p>
         </div>
       </div>
     </div>
   </section>
 
-  <footer>
-    <div class="wrap footer-row">
-      <div>GeoFlow — missed-call recovery for local service businesses</div>
-      <div><a href="calculator.html">60-second audit</a> · <a href="book-call.html">Book a demo</a> · <a href="audit.html">Free audit report</a></div>
+  <section class="section section--tight" id="faq">
+    <div class="container">
+      <div class="section-head" data-anim="up">
+        <span class="sticker sticker--blue">🙋 quick answers</span>
+        <h2 class="display-lg">FAQ</h2>
+      </div>
+      <div data-anim="up" style="max-width: 760px;">
+        <details class="faq" open>
+          <summary>How fast can we launch?</summary>
+          <p>Days, not weeks — once your call routing and message are approved.</p>
+        </details>
+        <details class="faq">
+          <summary>Do we need to replace our CRM?</summary>
+          <p>Nope. GeoFlow sits on top of whatever you use today.</p>
+        </details>
+        <details class="faq">
+          <summary>Will the texts sound like us?</summary>
+          <p>Yes — we write the copy with you so it sounds like your company, not a bot.</p>
+        </details>
+        <details class="faq">
+          <summary>What if our team is tiny?</summary>
+          <p>Even better. That's when every missed call hurts the most.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container">
+      <div class="final-cta" data-anim="pop">
+        <span class="confetti" style="top: 14%; left: 8%; transform: rotate(-12deg);">📞</span>
+        <span class="confetti" style="top: 22%; right: 10%; transform: rotate(14deg);">💸</span>
+        <span class="confetti" style="bottom: 16%; left: 14%; transform: rotate(8deg);">✅</span>
+        <span class="confetti" style="bottom: 20%; right: 16%; transform: rotate(-10deg);">🔧</span>
+        <span class="sticker">⏱ takes less time than one missed call</span>
+        <h2 class="display-lg">See what missed calls cost you — in 60 seconds</h2>
+        <p class="lead">Free calculator. No email. No sales call. Just a number you probably don't want to see.</p>
+        <div class="hero-actions">
+          <a class="btn btn--yellow" href="calculator.html">Run the 60-second audit</a>
+          <a class="btn btn--ghost" href="book-call.html">Book a 15-minute demo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="index.html"><span class="brand-mark">↗</span><span>Geo<em>Flow</em></span></a>
+          <p class="footer-blurb">When you can't answer, GeoFlow does. Missed-call recovery for the trades.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="index.html#how-it-works">How it works</a>
+          <a href="calculator.html">Missed-call calculator</a>
+          <a href="audit.html">Free audit</a>
+          <a href="book-call.html">Book a demo</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="about.html">About</a>
+          <a href="blog.html">Blog</a>
+          <a href="https://www.linkedin.com/in/geovannigarciarosales/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="mailto:geo@geoflowai.com">geo@geoflowai.com</a>
+          <span style="display:block; padding: 5px 0; color: rgba(250,243,232,0.7); font-size: 0.92rem;">Philadelphia, PA</span>
+        </div>
+      </div>
+      <div class="footer-mega">GEOFLOW</div>
+      <div class="footer-legal">
+        <span>© <span data-year>2026</span> GeoFlow · Philadelphia, PA</span>
+        <span>Built for the trades. 🛠</span>
+      </div>
     </div>
   </footer>
+
+  <script src="assets/site.js"></script>
 </body>
 </html>

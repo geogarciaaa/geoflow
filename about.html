@@ -4,304 +4,198 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About — GeoFlow</title>
+  <meta name="description" content="GeoFlow was built by Geo, a Business & Engineering student at Drexel University, after watching his dad's landscaping business lose jobs to missed calls." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    .about-hero { max-width: 800px; margin: 90px auto 80px; padding: 0 20px; }
+    .about-hero h1 { margin: 26px 0 30px; }
+    .about-hero .intro { font-size: 1.1rem; color: var(--muted); line-height: 1.85; margin-bottom: 20px; max-width: 62ch; }
+    .about-hero .intro strong { color: var(--ink); }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #0a0a0a;
-      color: #f0f0f0;
-      line-height: 1.6;
-    }
+    .story { max-width: 800px; margin: 0 auto 100px; padding: 0 20px; display: grid; gap: 28px; }
 
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 40px;
-      border-bottom: 1px solid #1e1e1e;
-    }
+    .story-card { padding: 34px; }
+    .story-card:nth-child(odd) { transform: rotate(-0.6deg); }
+    .story-card:nth-child(even) { transform: rotate(0.6deg); }
+    .story-card h2 { font-size: 1.45rem; margin: 14px 0 12px; }
+    .story-card p { color: var(--muted); font-size: 0.98rem; line-height: 1.8; }
 
-    .logo {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: #fff;
-      text-decoration: none;
-    }
-    .logo span { color: #4ade80; }
+    .values { max-width: 800px; margin: 0 auto 100px; padding: 0 20px; }
+    .values .grid { margin-top: 28px; }
 
-    nav a {
-      color: #888;
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.2s;
-    }
-    nav a:hover { color: #fff; }
-
-    .cta-btn {
-      background: #4ade80;
-      color: #000 !important;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-weight: 600;
-    }
-
-    .hero {
-      max-width: 760px;
-      margin: 80px auto 60px;
-      padding: 0 40px;
-    }
-
-    .tag {
-      display: inline-block;
-      background: #1a1a1a;
-      border: 1px solid #2a2a2a;
-      color: #4ade80;
-      font-size: 0.8rem;
-      padding: 6px 14px;
-      border-radius: 20px;
-      margin-bottom: 28px;
-      letter-spacing: 0.5px;
-    }
-
-    h1 {
-      font-size: 2.8rem;
-      font-weight: 800;
-      line-height: 1.15;
-      letter-spacing: -1px;
-      margin-bottom: 24px;
-    }
-
-    h1 span { color: #4ade80; }
-
-    .intro {
-      font-size: 1.1rem;
-      color: #888;
-      line-height: 1.8;
-      margin-bottom: 20px;
-    }
-
-    /* Story section */
-    .story {
-      max-width: 760px;
-      margin: 0 auto 80px;
-      padding: 0 40px;
-    }
-
-    .story-block {
-      border-left: 2px solid #1e1e1e;
-      padding-left: 28px;
-      margin-bottom: 40px;
-    }
-
-    .story-block:hover { border-left-color: #4ade80; }
-
-    .story-label {
-      font-size: 0.75rem;
-      color: #4ade80;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-
-    .story-block h2 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    .story-block p {
-      color: #777;
-      font-size: 0.95rem;
-      line-height: 1.8;
-    }
-
-    /* Values */
-    .values {
-      max-width: 760px;
-      margin: 0 auto 80px;
-      padding: 0 40px;
-    }
-
-    .values-title {
-      font-size: 0.75rem;
-      color: #555;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 28px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid #1a1a1a;
-    }
-
-    .values-grid {
+    .value-icon {
+      width: 48px;
+      height: 48px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
+      place-items: center;
+      font-size: 1.3rem;
+      border-radius: 14px;
+      border: var(--bw) solid var(--ink);
+      background: var(--paper);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 8px;
+      transform: rotate(-3deg);
     }
 
-    .value-card {
-      background: #111;
-      border: 1px solid #1e1e1e;
-      border-radius: 12px;
-      padding: 22px;
-    }
-
-    .value-icon { font-size: 1.5rem; margin-bottom: 10px; }
-    .value-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; }
-    .value-card p { font-size: 0.82rem; color: #666; line-height: 1.5; }
-
-    /* CTA */
-    .cta-box {
-      max-width: 760px;
-      margin: 0 auto 80px;
-      padding: 0 40px;
-    }
+    .cta-box { max-width: 800px; margin: 0 auto 110px; padding: 0 20px; }
 
     .cta-inner {
-      background: #111;
-      border: 1px solid #1e1e1e;
-      border-radius: 14px;
-      padding: 40px;
+      border: var(--bw) solid var(--ink);
+      border-radius: var(--radius-lg);
+      padding: 60px 34px;
       text-align: center;
+      background: var(--ink);
+      color: var(--paper);
+      box-shadow: 10px 10px 0 rgba(23, 19, 12, 0.25);
     }
 
-    .cta-inner h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 10px; }
-    .cta-inner p { color: #666; margin-bottom: 28px; font-size: 0.95rem; }
-
-    .btn-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-
-    .btn-green {
-      background: #4ade80;
-      color: #000;
-      padding: 13px 26px;
-      border-radius: 9px;
-      font-weight: 700;
-      text-decoration: none;
-      font-size: 0.95rem;
-    }
-
-    .btn-ghost {
-      background: #1a1a1a;
-      color: #ccc;
-      padding: 13px 26px;
-      border-radius: 9px;
-      font-weight: 600;
-      text-decoration: none;
-      font-size: 0.95rem;
-      border: 1px solid #2a2a2a;
-    }
-
-    footer {
-      text-align: center;
-      padding: 24px;
-      color: #333;
-      font-size: 0.8rem;
-      border-top: 1px solid #1a1a1a;
-    }
-
-    @media (max-width: 600px) {
-      h1 { font-size: 2rem; }
-      nav { padding: 16px 20px; }
-      .hero, .story, .values, .cta-box { padding: 0 20px; }
-    }
+    .cta-inner h2 { margin: 18px 0 14px; color: var(--paper); }
+    .cta-inner p { color: rgba(250, 243, 232, 0.72); margin-bottom: 30px; max-width: 48ch; margin-inline: auto; }
+    .btn-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="index.html" class="logo">Geo<span>Flow</span></a>
-    <a href="book-call.html" class="cta-btn">Book a Call</a>
-  </nav>
+  <div class="progress"></div>
 
-  <div class="hero">
-    <div class="tag">👋 About GeoFlow</div>
-    <h1>Built by a student.<br>For <span>real businesses.</span></h1>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html"><span class="brand-mark">↗</span><span>Geo<em>Flow</em></span></a>
+      <nav class="nav-links">
+        <a href="index.html#before-after">Before &amp; after</a>
+        <a href="index.html#how-it-works">How it works</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Blog</a>
+        <a class="btn btn--sm" href="book-call.html">Book a call</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="about-hero">
+    <span class="sticker">👋 about GeoFlow</span>
+    <h1 class="display-xl">Built by a student. For <span class="hl">real businesses.</span></h1>
     <p class="intro">
-      Hey — I'm Geo. I'm a Business & Engineering student at <strong style="color:#f0f0f0;">Drexel University</strong> in Philadelphia, and GeoFlow started because of my dad.
+      Hey — I'm Geo. I'm a Business &amp; Engineering student at <strong>Drexel University</strong> in Philadelphia, and GeoFlow started because of my dad.
     </p>
     <p class="intro">
-      Growing up, I worked with him in his landscaping business. He'd be out on jobs all day — hands dirty, crew to manage, no time to stop and answer every call. A lot of those calls went to voicemail. A lot of those voicemails never got called back. And a lot of those jobs went to someone else.
+      Growing up, I worked with him in his landscaping business. He'd be out on jobs all day — hands dirty, crew to manage, no time to answer every call. A lot of those calls went to voicemail. A lot of those jobs went to someone else.
     </p>
     <p class="intro">
-      It wasn't because he wasn't good at what he did — he was great. He just didn't have a system to catch the leads he missed. That stuck with me. When I got to Drexel and started learning how to actually build software, I knew exactly what I wanted to solve first.
+      He wasn't bad at his work — he was great. He just had no system to catch the leads he missed. That stuck with me. When I got to Drexel and learned to build software, I knew exactly what to solve first.
     </p>
   </div>
 
   <div class="story">
 
-    <div class="story-block">
-      <div class="story-label">The Problem</div>
+    <div class="card story-card" data-anim="left">
+      <span class="sticker sticker--orange">the problem</span>
       <h2>40-60% of leads go to voicemail and never call back</h2>
       <p>
-        My dad was one of those guys. Out on jobs all day, doing great work — but missing calls and losing jobs to competitors who just happened to pick up. He wasn't alone. It's happening to local businesses everywhere, every single day. They work hard, they're good at what they do, but they lose jobs before they even get a chance to quote them. It's not a skill problem. It's a follow-up problem.
+        It's happening to local businesses everywhere, every single day. They work hard, they're good at what they do — but they lose jobs before they even get to quote them. It's not a skill problem. It's a follow-up problem.
       </p>
     </div>
 
-    <div class="story-block">
-      <div class="story-label">The Idea</div>
+    <div class="card story-card" data-anim="right">
+      <span class="sticker sticker--blue">the idea</span>
       <h2>What if the follow-up happened automatically — in 2 minutes?</h2>
       <p>
-        I started thinking about this when I noticed how fast people move on. If you text someone back within 2 minutes of a missed call, there's still a good chance they respond. Wait an hour and they've already hired someone else. So I built a system that does exactly that — the moment a call is missed, the person gets a personal text back instantly. No app, no change to how the business operates. It just runs in the background.
+        Text someone back within 2 minutes of a missed call and there's a good chance they respond. Wait an hour and they've hired someone else. So I built exactly that: the moment a call is missed, the caller gets a personal text back. No app, no workflow change. It just runs.
       </p>
     </div>
 
-    <div class="story-block">
-      <div class="story-label">Why Me</div>
-      <h2>I'm a freshman at Drexel — not a tech genius, just someone who saw a real problem</h2>
+    <div class="card story-card" data-anim="left">
+      <span class="sticker">why me</span>
+      <h2>Not a tech genius — just someone who saw a real problem</h2>
       <p>
-        I'm a freshman at Drexel University studying Business & Engineering. I'm not going to pretend I've been coding for 10 years — I haven't. But I saw a real problem, learned what I needed to learn, and built something that works. GeoFlow isn't some big agency with a team behind it. It's me, figuring it out, staying accountable, and making sure it actually delivers for the people I work with. That's the whole thing.
+        I'm a freshman studying Business &amp; Engineering. I won't pretend I've been coding for 10 years. But I saw a real problem, learned what I needed, and built something that works. GeoFlow is me — figuring it out, staying accountable, and delivering for the people I work with.
       </p>
     </div>
 
-    <div class="story-block">
-      <div class="story-label">The Mission</div>
+    <div class="card story-card" data-anim="right">
+      <span class="sticker sticker--orange">the mission</span>
       <h2>Help local businesses compete with the big guys</h2>
       <p>
-        Big franchises have entire call centers and CRM systems. Local businesses have one guy and a cell phone. GeoFlow levels the playing field — giving small businesses the same automated follow-up power as a company 10x their size, at a price that actually makes sense.
+        Big franchises have call centers and CRMs. Local businesses have one guy and a cell phone. GeoFlow levels the field — the same automated follow-up power as a company 10× your size, at a price that makes sense.
       </p>
     </div>
 
   </div>
 
   <div class="values">
-    <div class="values-title">What We Stand For</div>
-    <div class="values-grid">
-      <div class="value-card">
+    <span class="sticker sticker--blue sticker--tilt-r">what we stand for</span>
+    <div class="grid grid-4">
+      <div class="card" data-anim="pop">
         <div class="value-icon">🤝</div>
-        <h3>Personal Service</h3>
-        <p>You work directly with me. No bots, no overseas support teams.</p>
+        <h3>Personal service</h3>
+        <p>You work directly with me. No bots, no ticket queues.</p>
       </div>
-      <div class="value-card">
+      <div class="card" data-anim="pop" data-delay="1">
         <div class="value-icon">⚡</div>
-        <h3>Fast Setup</h3>
-        <p>Live in 24 hours. We don't make you wait weeks for results.</p>
+        <h3>Fast setup</h3>
+        <p>Live in 24 hours, not weeks.</p>
       </div>
-      <div class="value-card">
-        <div class="value-icon">🔒</div>
-        <h3>No Contracts</h3>
-        <p>Cancel anytime. We earn your business every month.</p>
+      <div class="card" data-anim="pop" data-delay="2">
+        <div class="value-icon">🔓</div>
+        <h3>No contracts</h3>
+        <p>Cancel anytime. We earn it monthly.</p>
       </div>
-      <div class="value-card">
+      <div class="card" data-anim="pop" data-delay="3">
         <div class="value-icon">📍</div>
-        <h3>Local First</h3>
-        <p>Started in Philly. Built for real businesses in real neighborhoods.</p>
+        <h3>Local first</h3>
+        <p>Started in Philly, built for real neighborhoods.</p>
       </div>
     </div>
   </div>
 
   <div class="cta-box">
-    <div class="cta-inner">
-      <h2>Let's talk.</h2>
-      <p>Book a free 10-minute call. I'll show you exactly what GeoFlow does and whether it's a fit for your business — no pressure, no pitch deck.</p>
+    <div class="cta-inner" data-anim="pop">
+      <span class="sticker">☕ no pressure, promise</span>
+      <h2 class="display-lg">Let's talk.</h2>
+      <p>A free 10-minute call. I'll show you what GeoFlow does and whether it fits your business.</p>
       <div class="btn-row">
-        <a href="book-call.html?subject=Book a Call" class="btn-green">Book a Free Call</a>
-        <a href="https://www.linkedin.com/in/geovannigarciarosales/" target="_blank" class="btn-ghost">My LinkedIn</a>
+        <a href="book-call.html" class="btn btn--yellow">Book a free call</a>
+        <a href="https://www.linkedin.com/in/geovannigarciarosales/" target="_blank" rel="noopener" class="btn btn--ghost">My LinkedIn</a>
       </div>
     </div>
   </div>
 
-  <footer>© 2026 GeoFlow · Philadelphia, PA · geo@geoflowai.com</footer>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="index.html"><span class="brand-mark">↗</span><span>Geo<em>Flow</em></span></a>
+          <p class="footer-blurb">When you can't answer, GeoFlow does. Missed-call recovery for the trades.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="index.html#how-it-works">How it works</a>
+          <a href="calculator.html">Missed-call calculator</a>
+          <a href="audit.html">Free audit</a>
+          <a href="book-call.html">Book a demo</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="about.html">About</a>
+          <a href="blog.html">Blog</a>
+          <a href="https://www.linkedin.com/in/geovannigarciarosales/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="mailto:geo@geoflowai.com">geo@geoflowai.com</a>
+          <span style="display:block; padding: 5px 0; color: rgba(250,243,232,0.7); font-size: 0.92rem;">Philadelphia, PA</span>
+        </div>
+      </div>
+      <div class="footer-mega">GEOFLOW</div>
+      <div class="footer-legal">
+        <span>© <span data-year>2026</span> GeoFlow · Philadelphia, PA</span>
+        <span>geo@geoflowai.com</span>
+      </div>
+    </div>
+  </footer>
 
+  <script src="assets/site.js"></script>
 </body>
 </html>
