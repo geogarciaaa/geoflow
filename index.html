@@ -325,6 +325,57 @@
     .final-cta .hero-actions { justify-content: center; margin-top: 0; }
     .final-cta .confetti { position: absolute; font-size: 1.6rem; opacity: 0.9; user-select: none; }
 
+    /* ---- integrations ---- */
+    .integrations { margin-top: 28px; }
+    .int-label {
+      font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.12em;
+      text-transform: uppercase; font-weight: 700; color: var(--muted);
+      display: block; margin-bottom: 12px;
+    }
+    .int-badges { display: flex; flex-wrap: wrap; gap: 10px; }
+    .int {
+      font-family: var(--font-display); font-weight: 700; font-size: 0.82rem;
+      padding: 8px 14px; border: var(--bw) solid var(--ink); border-radius: 11px;
+      background: var(--card); box-shadow: var(--shadow-sm);
+    }
+    .int:last-child { background: var(--yellow); }
+
+    /* ---- human handoff ---- */
+    .handoff-chat {
+      display: grid; gap: 12px;
+      border: var(--bw) solid var(--ink); border-radius: var(--radius);
+      background: var(--card); padding: 24px; box-shadow: var(--shadow);
+    }
+    .handoff-flag {
+      display: flex; align-items: center; gap: 8px; margin-top: 2px;
+      padding: 11px 13px; border: var(--bw) solid var(--ink); border-radius: 13px;
+      background: var(--green); color: #04361f;
+      font-family: var(--font-display); font-weight: 700; font-size: 0.82rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .handoff-steps { list-style: none; display: grid; gap: 18px; counter-reset: h; }
+    .handoff-steps li { display: grid; grid-template-columns: 38px 1fr; gap: 14px; align-items: start; }
+    .handoff-steps li::before {
+      counter-increment: h; content: counter(h);
+      width: 38px; height: 38px; display: grid; place-items: center;
+      font-family: var(--font-display); font-weight: 700;
+      border: var(--bw) solid var(--ink); border-radius: 11px;
+      background: var(--blue); color: #fff; box-shadow: var(--shadow-sm);
+    }
+    .handoff-steps h4 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 3px; }
+    .handoff-steps p { color: var(--muted); font-size: 0.92rem; }
+
+    /* ---- pricing ---- */
+    .price-card { display: flex; flex-direction: column; }
+    .price { display: flex; align-items: baseline; gap: 6px; margin: 16px 0 6px; }
+    .price .amt {
+      font-family: var(--font-display); font-weight: 700; font-size: 3.4rem;
+      letter-spacing: -0.04em; color: var(--orange); line-height: 1;
+    }
+    .price .per { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--muted); }
+    .price-sub { margin-bottom: 18px; }
+    .price-aside { display: flex; flex-direction: column; justify-content: center; }
+
     @media (max-width: 1000px) {
       .hero { padding: 64px 0 80px; }
       .hero-grid, .dash-grid { grid-template-columns: 1fr; gap: 56px; }
@@ -347,8 +398,8 @@
     <div class="container nav-inner">
       <a class="brand" href="index.html"><span class="brand-mark"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M12 2.4c-3.5 0-6.4 2.8-6.4 6.3 0 4.6 6.4 12.1 6.4 12.1s6.4-7.5 6.4-12.1c0-3.5-2.9-6.3-6.4-6.3Z" fill="#fff"/><path d="M8.4 9.6c1.2-1.9 2.4-1.9 3.6 0s2.4 1.9 3.6 0" stroke="#ff5a1f" stroke-width="1.8" stroke-linecap="round"/></svg></span><span>Geo<em>Flow</em></span></a>
       <nav class="nav-links">
-        <a href="#before-after">Before &amp; after</a>
         <a href="#how-it-works">How it works</a>
+        <a href="#pricing">Pricing</a>
         <a href="about.html">About</a>
         <a href="blog.html">Blog</a>
         <a class="btn btn--sm" href="calculator.html">Calculate your loss</a>
@@ -481,6 +532,15 @@
         <h2 class="display-lg" style="margin: 18px 0 14px;">No new app to babysit.</h2>
         <p class="lead">Every captured lead drops into one clean queue — sorted by urgency, with the customer's exact issue and location. Tap to call the hottest one first. That's the whole "office side."</p>
         <span class="dash-caption">it fits your day, not the other way around</span>
+        <div class="integrations">
+          <span class="int-label">Sends leads into what you already use</span>
+          <div class="int-badges">
+            <span class="int">Housecall Pro</span>
+            <span class="int">Jobber</span>
+            <span class="int">ServiceTitan</span>
+            <span class="int">+ plain SMS &amp; email</span>
+          </div>
+        </div>
       </div>
       <div class="phone-wrap" data-anim="right" data-delay="1">
         <div class="phone" data-parallax="0.05">
@@ -538,6 +598,34 @@
           <span class="tone-tag">Calm · roofing quote</span>
           <div class="bubble"><p>"Thanks for reaching out to [Your Business]! Looking for a repair or a full roof quote? Drop your address (and a couple photos if you've got them) and we'll line up an estimate."</p></div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight" id="handoff">
+    <div class="container">
+      <div class="section-head" data-anim="up">
+        <span class="sticker sticker--blue sticker--tilt-r">🤝 human handoff</span>
+        <h2 class="display-lg">When it needs a human, <span class="hl">it gets one.</span></h2>
+        <p>A pricing question? A specific 1994 Trane model? GeoFlow never fakes an answer — it flags the lead and loops you in.</p>
+      </div>
+      <div class="grid grid-2" style="align-items: center;">
+        <div class="handoff-chat" data-anim="left">
+          <div class="bubble in">
+            <small><span>They ask</span><span>10:13 AM</span></small>
+            <p>"Do you take Amex? And can you fix a 1994 Trane XL1200?"</p>
+          </div>
+          <div class="bubble out">
+            <small><span>GeoFlow</span><span>10:13 AM</span></small>
+            <p>"Great questions — those are ones for Mike directly. I'm flagging this as a priority so he can text you right back. You're at 78701, correct?"</p>
+          </div>
+          <div class="handoff-flag">🔔 Flagged for a human — sent to your phone now.</div>
+        </div>
+        <ol class="handoff-steps" data-anim="right" data-delay="1">
+          <li><div><h4>It reads the message</h4><p>Spots pricing, technical, or off-script questions it shouldn't answer alone.</p></div></li>
+          <li><div><h4>It never guesses</h4><p>No made-up quotes or specs. It keeps the tone warm and buys you a minute.</p></div></li>
+          <li><div><h4>It hands off</h4><p>Flags the lead urgent and pings you to jump in — with the full conversation attached.</p></div></li>
+        </ol>
       </div>
     </div>
   </section>
@@ -624,6 +712,37 @@
           <summary>What if our team is tiny?</summary>
           <p>Even better. That's when every missed call hurts the most.</p>
         </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight" id="pricing">
+    <div class="container">
+      <div class="section-head" data-anim="up">
+        <span class="sticker sticker--orange sticker--tilt-r">🏷 simple pricing</span>
+        <h2 class="display-lg">Priced to pay for itself.</h2>
+        <p>One flat monthly rate that scales with your business. No per-lead fees, no per-text charges, no contracts.</p>
+      </div>
+      <div class="grid grid-2" style="align-items: stretch;">
+        <div class="card price-card" data-anim="left">
+          <span class="sticker sticker--orange">most popular</span>
+          <div class="price"><span class="amt">$97</span><span class="per">/ month</span></div>
+          <p class="price-sub muted">Everything you need to stop losing leads.</p>
+          <ul class="checklist">
+            <li>Unlimited missed-call text-backs</li>
+            <li>Human-written, on-brand message templates</li>
+            <li>Callback queue delivered to your phone</li>
+            <li>Human handoff on complex questions</li>
+            <li>Monthly optimization — cancel anytime</li>
+          </ul>
+          <a class="btn" href="book-call.html" style="width: 100%; margin-top: 22px;">Book a demo</a>
+        </div>
+        <div class="card card--ink price-aside" data-anim="right" data-delay="1">
+          <h3>Does it pay for itself?</h3>
+          <p>Recover a single $300 job in a month and GeoFlow is already 3× paid back. Most teams recover several.</p>
+          <p style="margin-top: 16px;"><span class="sticker">One saved job &gt; a month of GeoFlow</span></p>
+          <a class="btn btn--yellow" href="calculator.html" style="margin-top: 22px;">See your number →</a>
+        </div>
       </div>
     </div>
   </section>
